@@ -23,7 +23,7 @@ namespace bacit_dotnet.MVC.Controllers
                             <head>
                             <title>BACIT</title>    
                             </head>
-                            <body><h1>En time til ørsta rådhus</h1>
+                            <body><h1>Nora Tronstad</h1>
                             </body> 
                             </html>", ContentType = "text/html; charset=UTF-8" };
         }

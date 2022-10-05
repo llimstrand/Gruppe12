@@ -16,49 +16,21 @@ namespace bacit_dotnet.MVC.Controllers
             this.sqlConnector = sqlConnector;
         }
 
-        public IActionResult Index()
+        public IActionResult AlleFor()
         {
-            return new ContentResult() { 
-                Content = @"<html>
-                            <head>
-                            <title>BACIT</title>    
-                            </head>
-                            <body><h1>Alle forslag</h1>
-                            </body> 
-                            </html>", ContentType = "text/html; charset=UTF-8" };
+            return View();
         }
          public IActionResult MitTeam()
         {
-            return new ContentResult() { 
-                Content = @"<html>
-                            <head>
-                            <title>BACIT</title>    
-                            </head>
-                            <body><h1>Side for mitt team</h1>
-                            </body> 
-                            </html>", ContentType = "text/html; charset=UTF-8" };
+           return View();
         }
           public IActionResult Stat()
         {
-            return new ContentResult() { 
-                Content = @"<html>
-                            <head>
-                            <title>BACIT</title>    
-                            </head>
-                            <body><h1>Statistikk</h1>
-                            </body> 
-                            </html>", ContentType = "text/html; charset=UTF-8" };
+            return View();
         }
            public IActionResult MinProf()
         {
-            return new ContentResult() { 
-                Content = @"<html>
-                            <head>
-                            <title>BACIT</title>    
-                            </head>
-                            <body><h1>Min profil</h1>
-                            </body> 
-                            </html>", ContentType = "text/html; charset=UTF-8" };
+            return View();
         }
            public IActionResult Privacy()
         {

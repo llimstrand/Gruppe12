@@ -1,27 +1,39 @@
 ﻿<form action="/suggestions/save" method="post">
-<ul>
+<ul style="list-style: none;">
     <li>
-<label for="Title">Tittel</label>
-<input type="text" name="Title" />
+<label for="For_Overskrift">Overskrift</label>
+<input type="text" name="For_Overskrift" />
 </li>
 <li>
-<label for="Name">Navn</label>
-<input type="text" name="Name" />
+<label for="For_Beskrivelse">Beskrivelse</label>
+<input type="text" name="For_Beskrivelse" />
 </li>
 <li>
-<label for="Team">Team</label>
-<input type="text" name="Team" />
+<label for="For_Ansvarlig">Ansvarlig</label>
+<input type="text" name="For_Ansvarlig" />
 </li>
 <li>
-<label for="Description">Beskrivelse</label>
-<input type="text" name="Description" />
+<label for="For_Status">Status</label>
+<select name="For_Status"> 
+   <option value="plan">Plan</option> 
+   <option value="do">Do</option>
+   <option value="study">Study</option>
+   <option value="act">Act</option>
+</select>
 </li>
 <li>
-<label for="TimeStamp">Tidspunkt</label>
-<input type="datetime" name="TimeStamp" />
+<label for="For_Frist">Frist</label>
+<input type="text" name="For_Frist" />
 </li>
 <li>
-<input type="submit" value="Lagre" />
+<label for="For_Varighet">Varighet</label> <br>
+<input type="radio" name="For_Varighet" id="kortsiktig" value="Kortsiktig" />
+<label for="kortsiktig">Kortsiktig</label> <br>
+<input type="radio" name="For_Varighet" id="langsiktig" value="Langsiktig" />
+<label for="langsiktig">Langsiktig</label> <br>
+</li>
+<li>
+<input type="submit" value="Send inn" />
 </li>
 </ul>
 </form> 

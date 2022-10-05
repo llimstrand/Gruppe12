@@ -5,9 +5,14 @@
 
 <p>Alle forslag</p>
 
-<h3> Tittel: @Model.Title</h3>
-<p style="color: blue;"> Navn: @Model.Name
-    Beskrivelse: @Model.Description
-    Team: @Model.Team
-    Dato: @Model.TimeStamp
-</p>
+<div style="border: 1px solid black; padding: 20px;">
+<h4> Tittel: @Model.For_Overskrift</h4>
+<p> Beskrivelse: @Model.For_Beskrivelse</p>
+<p> Ansvarlig: @Model.For_Ansvarlig</p>
+<p> Status: @Model.For_Status</p>
+<p> Frist: @Model.For_Frist</p>
+<p> Varighet: @Model.For_Varighet</p>
+<p> Sendt inn: @Model.For_Timestamp</p>
+
+
+</div>

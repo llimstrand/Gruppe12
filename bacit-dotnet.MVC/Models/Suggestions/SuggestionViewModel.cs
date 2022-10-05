@@ -6,10 +6,19 @@ namespace bacit_dotnet.MVC.Models.Suggestions
     {
         [Required]
         [MinLength(7, ErrorMessage ="Skriv en ordentlig tittel!")]
-        public string Title { get; set; }
-        public string Name { get; set; }
-        public int Team { get; set; }
-        public string Description { get; set; }
-        public string TimeStamp { get; set; }
+        public string For_Overskrift { get; set; }
+        public string For_Beskrivelse { get; set; }
+        public string For_Ansvarlig { get; set; }
+        public string For_Status { get; set; }
+        public string For_Frist { get; set; }
+        public string For_Varighet { get; set; }
+
+        public DateTime For_Timestamp {get; set;}
+
+        public SuggestionViewModel(){
+            this.For_Timestamp = DateTime.Now;
+        }
+        
     }
+
 }

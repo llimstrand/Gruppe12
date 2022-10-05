@@ -23,10 +23,57 @@ namespace bacit_dotnet.MVC.Controllers
                             <head>
                             <title>BACIT</title>    
                             </head>
-                            <body><h1>Nora Tronstad</h1>
+                            <body><h1>Alle forslag</h1>
                             </body> 
                             </html>", ContentType = "text/html; charset=UTF-8" };
         }
+         public IActionResult MitTeam()
+        {
+            return new ContentResult() { 
+                Content = @"<html>
+                            <head>
+                            <title>BACIT</title>    
+                            </head>
+                            <body><h1>Side for mitt team</h1>
+                            </body> 
+                            </html>", ContentType = "text/html; charset=UTF-8" };
+        }
+          public IActionResult Stat()
+        {
+            return new ContentResult() { 
+                Content = @"<html>
+                            <head>
+                            <title>BACIT</title>    
+                            </head>
+                            <body><h1>Statistikk</h1>
+                            </body> 
+                            </html>", ContentType = "text/html; charset=UTF-8" };
+        }
+           public IActionResult MinProf()
+        {
+            return new ContentResult() { 
+                Content = @"<html>
+                            <head>
+                            <title>BACIT</title>    
+                            </head>
+                            <body><h1>Min profil</h1>
+                            </body> 
+                            </html>", ContentType = "text/html; charset=UTF-8" };
+        }
+           public IActionResult Privacy()
+        {
+            return new ContentResult() { 
+                Content = @"<html>
+                            <head>
+                            <title>BACIT</title>    
+                            </head>
+                            <body><h1>?</h1>
+                            </body> 
+                            </html>", ContentType = "text/html; charset=UTF-8" };
+        }
+
+      
+        
 
         [HttpGet]
         public IActionResult UserData()

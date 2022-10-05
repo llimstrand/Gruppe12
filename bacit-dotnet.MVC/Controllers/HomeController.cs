@@ -16,17 +16,36 @@ namespace bacit_dotnet.MVC.Controllers
             this.sqlConnector = sqlConnector;
         }
 
-        public IActionResult Index()
+        public IActionResult AlleFor()
+        {
+            return View();
+        }
+         public IActionResult MitTeam()
+        {
+           return View();
+        }
+          public IActionResult Stat()
+        {
+            return View();
+        }
+           public IActionResult MinProf()
+        {
+            return View();
+        }
+           public IActionResult Privacy()
         {
             return new ContentResult() { 
                 Content = @"<html>
                             <head>
                             <title>BACIT</title>    
                             </head>
-                            <body><h1>Nora Tronstad</h1>
+                            <body><h1>?</h1>
                             </body> 
                             </html>", ContentType = "text/html; charset=UTF-8" };
         }
+
+      
+        
 
         [HttpGet]
         public IActionResult UserData()

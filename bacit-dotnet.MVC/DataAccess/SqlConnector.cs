@@ -46,7 +46,7 @@ namespace bacit_dotnet.MVC.DataAccess
         {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
             connection.Open();
-            var query = "Insert into suggestions(For_Overskrift, For_Beskrivelse, For_Ansvarlig, For_Status, For_Frist, For_Varighet, For_Timestamp) values (@Overskrift, @Beskrivelse, @Ansvarlig, @Status, @Frist, @Varighet, @Timestamp)";
+            var query = "Insert into suggestions(Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet, Sug_Timestamp) values (@Overskrift, @Beskrivelse, @Ansvarlig, @Status, @Frist, @Varighet, @Timestamp)";
             Console.WriteLine(query);
             WriteData(query, connection, model);
             connection.Close();
@@ -59,13 +59,13 @@ namespace bacit_dotnet.MVC.DataAccess
             using var command = conn.CreateCommand();
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = query;
-            command.Parameters.AddWithValue("@Overskrift", model.For_Overskrift);
-            command.Parameters.AddWithValue("@Beskrivelse", model.For_Beskrivelse);
-            command.Parameters.AddWithValue("@Ansvarlig", model.For_Ansvarlig);
-            command.Parameters.AddWithValue("@Status", model.For_Status);
-            command.Parameters.AddWithValue("@Frist", model.For_Frist);
-            command.Parameters.AddWithValue("@Varighet", model.For_Varighet);
-            command.Parameters.AddWithValue("@Timestamp", model.For_Timestamp);
+            command.Parameters.AddWithValue("@Overskrift", model.Sug_Overskrift);
+            command.Parameters.AddWithValue("@Beskrivelse", model.Sug_Beskrivelse);
+            command.Parameters.AddWithValue("@Ansvarlig", model.Sug_Ansvarlig);
+            command.Parameters.AddWithValue("@Status", model.Sug_Status);
+            command.Parameters.AddWithValue("@Frist", model.Sug_Frist);
+            command.Parameters.AddWithValue("@Varighet", model.Sug_Varighet);
+            command.Parameters.AddWithValue("@Timestamp", model.Sug_Timestamp);
             command.ExecuteNonQuery(); 
         }
     }

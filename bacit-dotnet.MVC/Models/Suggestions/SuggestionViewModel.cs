@@ -12,6 +12,8 @@ namespace bacit_dotnet.MVC.Models.Suggestions
         public string For_Status { get; set; }
         public string For_Frist { get; set; }
         public string For_Varighet { get; set; }
+        public byte[] For_VedleggEn { get; set; }
+        public byte[] For_VedleggTo { get; set; }
 
         public DateTime For_Timestamp {get; set;}
 

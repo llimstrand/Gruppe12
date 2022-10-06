@@ -1,19 +1,19 @@
 ﻿<form action="/suggestions/save" method="post">
 <ul style="list-style: none;">
     <li>
-<label for="For_Overskrift">Overskrift</label>
+<label for="For_Overskrift">Overskrift &ensp;&nbsp;</label>
 <input type="text" name="For_Overskrift" />
 </li>
 <li>
-<label for="For_Beskrivelse">Beskrivelse</label>
+<label for="For_Beskrivelse">Beskrivelse &nbsp;</label>
 <input type="text" name="For_Beskrivelse" />
 </li>
 <li>
-<label for="For_Ansvarlig">Ansvarlig</label>
+<label for="For_Ansvarlig">Ansvarlig &emsp;</label>
 <input type="text" name="For_Ansvarlig" />
 </li>
 <li>
-<label for="For_Status">Status</label>
+<label for="For_Status">Status &nbsp;&emsp;&emsp;</label>
 <select name="For_Status"> 
    <option value="plan">Plan</option> 
    <option value="do">Do</option>
@@ -22,18 +22,27 @@
 </select>
 </li>
 <li>
-<label for="For_Frist">Frist</label>
+<label for="For_Frist">Frist &emsp;&emsp;&emsp;</label>
 <input type="text" name="For_Frist" />
 </li>
 <li>
 <label for="For_Varighet">Varighet</label> <br>
 <input type="radio" name="For_Varighet" id="kortsiktig" value="Kortsiktig" />
-<label for="kortsiktig">Kortsiktig</label> <br>
+<label for="kortsiktig">Kortsiktig </label> <br>
 <input type="radio" name="For_Varighet" id="langsiktig" value="Langsiktig" />
 <label for="langsiktig">Langsiktig</label> <br>
+</li>
+<li>
+<label for="For_VedleggEn">Før-bilde &emsp;</label>
+<input type="byte" name="For_VedleggEn" />
+</li>
+<li>
+<label for="For_VedleggTo">Etter-Bilde &emsp;</label>
+<input type="byte" name="For_VedleggTo" />
 </li>
 <li>
 <input type="submit" value="Send inn" />
 </li>
 </ul>
 </form> 
+

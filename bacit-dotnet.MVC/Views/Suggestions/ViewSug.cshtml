@@ -1,20 +1,56 @@
 @model bacit_dotnet.MVC.Models.SuggestionsModel
+<style>
+    .forslagsliste{
+        border: 1px solid black; 
+        margin: 20px; 
+        box-shadow: 5px 10px 18px #888888; 
+        border-radius: 10px; 
+        padding: 5px;
+    }
 
-<p>Månedens forslag</p>
+    .sidemeny {
+        width: 250px;
+        position: fixed;
+        top: 150px;
+        left: 25px;
+        background: #eee;
+        padding: 8px 0;
+    }
 
-<p>Alle forslag</p>
-    <ul>
+    .alleforslag{
+        list-style: none;
+        margin-left: 10%;
+    }
+
+</style>
+
+    <div class="sidemeny">
+        <input type="text" placeholder="Søk">
+        <p>Status</p>
+            <input type="checkbox" id="plan" name="plan" value="Plan">
+            <label for="plan"> Plan</label><br>
+            <input type="checkbox" id="do" name="do" value="Do">
+            <label for="do"> Do</label><br>
+            <input type="checkbox" id="study" name="study" value="Study">
+            <label for="study"> Study</label><br>
+            <input type="checkbox" id="act" name="act" value="Act">
+            <label for="act"> Act</label> <br> <br>
+        <p>Frist</p>
+            <input type="date">
+
+    </div>
+
+    <ul class="alleforslag">
+        <p>Månedens forslag</p>
+        <p>Alle forslag</p>
+
         @foreach (var user in Model.suggestions)
         {
-            <li>
-                <div>
-                <h3> @user.Sug_Overskrift</h3>
-                <p>Beskrivelse: @user.Sug_Beskrivelse</p> 
-                <p>Ansvarlig: @user.Sug_Ansvarlig </p> 
+            <div class="forslagsliste">
                 <p>Status: @user.Sug_Status</p>
+                <h5> @user.Sug_Overskrift</h5>
                 <p>Frist: @user.Sug_Frist</p>
-                <p>Varighet: @user.Sug_Varighet</p>
-                </div>
-            </li>
+            </div>
+        
         }
     </ul>

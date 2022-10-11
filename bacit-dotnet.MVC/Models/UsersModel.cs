@@ -6,4 +6,9 @@ namespace bacit_dotnet.MVC.Models
     {
         public IEnumerable<User> Users { get; set; }
     }
+
+    public class SuggestionsModel
+    {
+        public IEnumerable<Suggestion> suggestions { get; set; }
+    }
 }

@@ -34,6 +34,30 @@ namespace bacit_dotnet.MVC.DataAccess
             return users;
         }
 
+        public IEnumerable<Suggestion> GetSuggestions()
+        {
+
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var reader = ReadData("Select Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions;", connection);
+
+            var suggestions = new List<Suggestion>();
+            while (reader.Read())
+            {
+                var suggestion = new Suggestion();
+                suggestion.Sug_Overskrift = reader.GetString(1);
+                suggestion.Sug_Beskrivelse = reader.GetString(2);
+                suggestion.Sug_Ansvarlig = reader.GetString(3);
+                suggestion.Sug_Status = reader.GetString(4);
+                suggestion.Sug_Frist = reader.GetString(5);
+                suggestion.Sug_Varighet = reader.GetString(6);
+                suggestions.Add(suggestion);
+            }
+            connection.Close();
+            return suggestions;
+        }
+
         private MySqlDataReader ReadData(string query, MySqlConnection conn)
         {
             using var command = conn.CreateCommand();
@@ -67,6 +91,30 @@ namespace bacit_dotnet.MVC.DataAccess
             command.Parameters.AddWithValue("@Varighet", model.Sug_Varighet);
             command.Parameters.AddWithValue("@Timestamp", model.Sug_Timestamp);
             command.ExecuteNonQuery(); 
+        }
+
+        public  IEnumerable<Suggestion> FetchSug() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Suggestions = new List<Suggestion>();
+            var reader = ReadData("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions", connection);
+            while (reader.Read())
+            {
+                var user = new Suggestion();
+                Console.WriteLine(reader.GetInt32("Sug_ID"));
+                user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
+                user.Sug_Beskrivelse = reader.GetString("Sug_Beskrivelse");
+                user.Sug_Ansvarlig = reader.GetString("Sug_Ansvarlig");
+                user.Sug_Status = reader.GetString("Sug_Status");
+                user.Sug_Frist = reader.GetString("Sug_Frist");
+                user.Sug_Varighet = reader.GetString("Sug_Varighet");
+                Suggestions.Add(user);
+            }
+            connection.Close();
+            return Suggestions;
+
+
         }
     }
 }

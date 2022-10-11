@@ -15,8 +15,19 @@ namespace bacit_dotnet.MVC.Controllers
             _logger = logger;
             this.sqlConnector = sqlConnector;
         }
-
-        public IActionResult AlleFor()
+        public IActionResult Index()
+        
+        {
+            return new ContentResult() { 
+                Content = @"<html>
+                            <head>
+                            <title>BACIT</title>    
+                            </head>
+                            <body><h1>Forside</h1>
+                            </body> 
+                            </html>", ContentType = "text/html; charset=UTF-8" };
+        }
+        public IActionResult ViewSug()
         {
             return View();
         }

@@ -1,0 +1,20 @@
+@model bacit_dotnet.MVC.Models.SuggestionsModel
+
+<p>Månedens forslag</p>
+
+<p>Alle forslag</p>
+    <ul>
+        @foreach (var user in Model.suggestions)
+        {
+            <li>
+                <div>
+                <h3> @user.Sug_Overskrift</h3>
+                <p>Beskrivelse: @user.Sug_Beskrivelse</p> 
+                <p>Ansvarlig: @user.Sug_Ansvarlig </p> 
+                <p>Status: @user.Sug_Status</p>
+                <p>Frist: @user.Sug_Frist</p>
+                <p>Varighet: @user.Sug_Varighet</p>
+                </div>
+            </li>
+        }
+    </ul>

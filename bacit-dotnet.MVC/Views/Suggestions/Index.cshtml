@@ -2,16 +2,41 @@
     .lageforslag {
         border: 1px solid black;
         padding: 50px;
-        column-count: 2;
-
-  
+        width: 60%;
+        margin: auto;
+        border-radius: 10px;
     }
     .tittel {
         border: none;
         border-bottom: 1px solid black;
         font-size: 30px;
         text-align: center;
-        column-span: all;
+        display: block;
+        margin : 0 auto;
+    }
+    .inputs{
+        column-count: 2;
+    }
+
+    .sendinn{
+        padding: 15px;
+        background-color: #717e74;
+        border-radius: 5px;
+        color: white;
+        border: none;
+        width: 180px;
+    }
+    select option[value="plan"] {
+    background: #89b747;
+    }
+    select option[value="do"] {
+    background: #f5b669;
+    }
+    select option[value="study"] {
+    background: #9fe4ed;
+    }
+    select option[value="act"] {
+    background: #999999;
     }
 
 </style>
@@ -20,16 +45,17 @@
 <form action="/suggestions/save" method="post">
 <ul style="list-style: none;">
     <li>
-        <input required="required" type="text" name="Sug_Overskrift" placeholder="Tittel" class="tittel"/>
-    </li>
+        <input required="required" type="text" name="Sug_Overskrift" placeholder="Tittel" class="tittel"/> 
+    </li><br>
+    <div class="inputs">
     <li>
         <label for="Sug_Beskrivelse">Hva går forslaget ut på? </label> <br>
-        <input required="required"  type="text" name="Sug_Beskrivelse" placeholder="Beskriv forslag her..."/>
-    </li>
+        <textarea required="required"  type="text" name="Sug_Beskrivelse" placeholder="Beskriv forslag her..." class="beskrivelse"></textarea> 
+    </li><br>
     <li>
         <label for="Sug_Ansvarlig">Hvem er ansvarlig for at dette blir gjort?</label> <br>
         <input required="required" type="text" name="Sug_Ansvarlig" placeholder="Forslagsansvarlig" />
-    </li>
+    </li><br>
     <li>
         <label for="Sug_Status">Status for forslaget</label> <br>
         <select name="Sug_Status" required> 
@@ -39,34 +65,35 @@
         <option value="study">Study</option>
         <option value="act">Act</option>
         </select>
-    </li>
+    </li><br>
     <li>
         <label for="Sug_Frist">Når skal dette være gjort?</label> <br>
         <input required="required" type="text" name="Sug_Frist" placeholder="Frist" />
-    </li>
+    </li><br>
     <li>
         <label for="Sug_Varighet">Hva er varigheten på forslaget?</label> <br>
         <input type="radio" name="Sug_Varighet" id="kortsiktig" value="Kortsiktig"/>
         <label for="kortsiktig">Kortsiktig </label> <br>
         <input type="radio" name="Sug_Varighet" id="langsiktig" value="Langsiktig" />
         <label for="langsiktig">Langsiktig</label> <br>
-    </li>
+    </li><br>
     <li>
         <label for="Sug_VedleggEn">Før-bilde 'Denne må fikses'</label> <br>
         <input type="byte" name="Sug_VedleggEn" />
-    </li>
+    </li><br>
     <li>
         <label for="Sug_VedleggTo">Etter-Bilde 'denne må fikses'</label> <br>
         <input type="byte" name="Sug_VedleggTo" />
-    </li>
+    </li><br>
     <li>
-        <input type="submit" value="Send inn" />
-    </li>
+        <input type="submit" value="Send inn" class="sendinn"/>
+    </li><br>
+     </div>
 </ul>
 </form> 
 
 <form action="/Home/MitTeam" method="post"> 
-    <input type="submit" value="Lagre Utkast" />
+    <input type="submit" value="Lagre Utkast"/>
 </form>
 
 </div>

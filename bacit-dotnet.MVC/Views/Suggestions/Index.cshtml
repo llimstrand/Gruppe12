@@ -39,9 +39,19 @@
     background: #999999;
     }
 
+    .button-back {
+       font-size: 17px;
+       background-color: white;
+       border-radius: 20px;
+       border: none;
+       position:relative
+ 
+  }
+
 </style>
 
 <div class="lageforslag">
+<input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
 <form action="/suggestions/save" method="post">
 <ul style="list-style: none;">
     <li>

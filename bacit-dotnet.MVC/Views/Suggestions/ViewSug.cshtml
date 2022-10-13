@@ -1,4 +1,4 @@
-  @model bacit_dotnet.MVC.Models.SuggestionsModel
+@model bacit_dotnet.MVC.Models.SuggestionsModel
 <style>
     .forslagsliste{
         border: none; 
@@ -49,11 +49,9 @@
                 <p>Status: @user.Sug_Status</p>
                 <h5> @user.Sug_Overskrift</h5>
                 <p>Frist: @user.Sug_Frist</p>
-                <form method="post" asp-controller="Suggestions">
-                    <input type="submit" value="Edit" asp-action="Edit" />
-                    <input type="submit" value="Delete" asp-action="Delete" />
-                </form>
+         
             </div>
-        
+
+                 
         }
     </ul>

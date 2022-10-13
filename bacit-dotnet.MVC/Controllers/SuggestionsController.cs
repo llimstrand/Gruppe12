@@ -39,5 +39,11 @@ namespace bacit_dotnet.MVC.Controllers
             return View("AlleFor",model);
 
         }
+        public IActionResult Edit()
+        {
+
+            return View();
+
+        }
     }
 }

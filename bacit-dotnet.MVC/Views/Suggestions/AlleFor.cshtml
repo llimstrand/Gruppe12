@@ -1,7 +1,7 @@
-@model bacit_dotnet.MVC.Models.SuggestionsModel
+  @model bacit_dotnet.MVC.Models.SuggestionsModel
 <style>
     .forslagsliste{
-        border: 1px solid black; 
+        border: none; 
         margin: 20px; 
         box-shadow: 5px 10px 18px #888888; 
         border-radius: 10px; 
@@ -13,7 +13,6 @@
         position: fixed;
         top: 150px;
         left: 25px;
-        background: #eee;
         padding: 8px 0;
     }
 
@@ -25,7 +24,7 @@
 </style>
 
     <div class="sidemeny">
-        <input type="text" placeholder="Søk">
+        <input type="text" placeholder="Søk" style="height:50px;">
         <p>Status</p>
             <input type="checkbox" id="plan" name="plan" value="Plan">
             <label for="plan"> Plan</label><br>

@@ -36,7 +36,7 @@ namespace bacit_dotnet.MVC.Controllers
             var model = new SuggestionsModel();
             model.suggestions = data;
 
-            return View(model);
+            return View("AlleFor",model);
 
         }
     }

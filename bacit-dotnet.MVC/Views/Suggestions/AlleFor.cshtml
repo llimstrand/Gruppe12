@@ -21,6 +21,13 @@
         margin-left: 10%;
     }
 
+    .knapper {
+        margin: 1%;
+        border: none;
+        background-color: grey;
+        
+    }
+
 </style>
 
     <div class="sidemeny">
@@ -49,7 +56,7 @@
                 <p>Status: @user.Sug_Status</p>
                 <h5> @user.Sug_Overskrift</h5>
                 <p>Frist: @user.Sug_Frist</p>
-                <form method="post" asp-controller="Suggestions">
+                <form method="post" asp-controller="Suggestions" class= "knapper">
                     <input type="submit" value="Edit" asp-action="Edit" />
                     <input type="submit" value="Delete" asp-action="Delete" />
                 </form>

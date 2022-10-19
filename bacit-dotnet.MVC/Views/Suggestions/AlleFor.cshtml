@@ -1,4 +1,4 @@
-  @model bacit_dotnet.MVC.Models.SuggestionsModel
+@model bacit_dotnet.MVC.Models.SuggestionsModel
 <style>
     .forslagsliste{
         border: none; 
@@ -7,7 +7,6 @@
         border-radius: 10px; 
         padding: 5px;
     }
-
     .sidemeny {
         width: 250px;
         position: fixed;
@@ -15,12 +14,10 @@
         left: 25px;
         padding: 8px 0;
     }
-
     .alleforslag{
         list-style: none;
         margin-left: 10%;
     }
-
     .knapper {
         margin: 1%;
         border-width: 1px;
@@ -29,19 +26,24 @@
         background-color: white;
         transition-duration: 0,4s;
         cursor: pointer;
-    
+        position: relative;
+        left: 920px;
+        
     }
-
-    .knapper:hover {
-        background-color: #7D88C7;
+    .knapper2:hover {
+        background-color: #FF5C5C;
         color: white;
-        border: none;
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-
+        border-color: #FF5C5C;
+        
     }
-
+      .knapper1:hover {
+        background-color: #7D7DFF;
+        color: white;
+        border-color: #7D7DFF;
+        
+    }
+   
 </style>
-
     <div class="sidemeny">
         <input type="text" placeholder="Søk" style="height:50px;">
         <p>Status</p>
@@ -55,13 +57,10 @@
             <label for="act"> Act</label> <br> <br>
         <p>Frist</p>
             <input type="date">
-
     </div>
-
     <ul class="alleforslag">
         <p>Månedens forslag</p>
         <p>Alle forslag</p>
-
         @foreach (var user in Model.suggestions)
         {
             <div class="forslagsliste">
@@ -69,8 +68,8 @@
                 <h5> @user.Sug_Overskrift</h5>
                 <p>Frist: @user.Sug_Frist</p>
                 <form method="post" asp-controller="Suggestions" >
-                    <input class= "knapper" type="submit" value="Edit" asp-action="Edit" />
-                    <input class= "knapper" type="submit" value="Delete" asp-action="Delete" />
+                    <input class= "knapper knapper1" type="submit" value="Edit" asp-action="Edit" />
+                    <input class= "knapper knapper2" type="submit" value="Delete" asp-action="Delete" />
                 </form>
             </div>
         

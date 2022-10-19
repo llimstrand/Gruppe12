@@ -23,9 +23,21 @@
 
     .knapper {
         margin: 1%;
+        border-width: 1px;
+        border-radius: 4px;
+        font-size: medium;
+        background-color: white;
+        transition-duration: 0,4s;
+        cursor: pointer;
+    
+    }
+
+    .knapper:hover {
+        background-color: #7D88C7;
+        color: white;
         border: none;
-        background-color: grey;
-        
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
     }
 
 </style>
@@ -56,9 +68,9 @@
                 <p>Status: @user.Sug_Status</p>
                 <h5> @user.Sug_Overskrift</h5>
                 <p>Frist: @user.Sug_Frist</p>
-                <form method="post" asp-controller="Suggestions" class= "knapper">
-                    <input type="submit" value="Edit" asp-action="Edit" />
-                    <input type="submit" value="Delete" asp-action="Delete" />
+                <form method="post" asp-controller="Suggestions" >
+                    <input class= "knapper" type="submit" value="Edit" asp-action="Edit" />
+                    <input class= "knapper" type="submit" value="Delete" asp-action="Delete" />
                 </form>
             </div>
         

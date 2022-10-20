@@ -58,5 +58,15 @@ namespace bacit_dotnet.MVC.Controllers
             Console.WriteLine("Model");
             return View("Save", model);
         }
+
+        [HttpGet]
+
+        public IActionResult Delete(int id)
+        {
+            Console.WriteLine(id);
+            sqlConnector.DeleteSug(id); // Denne metoden sletter data
+            return View("Delete");
+
     }
+}
 }

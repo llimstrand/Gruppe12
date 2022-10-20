@@ -71,6 +71,7 @@
                 <form method="post" asp-controller="Suggestions" >
                     <ul><a class="knapper" href="/Suggestions/Edit?id=@user.Sug_ID">Edit</a></ul>
                     <input class= "knapper" type="submit" value="Edit" asp-action="Edit" />
+                     <ul><a class="knapper" href="/Suggestions/Delete?id=@user.Sug_ID">Delete</a></ul>
                     <input class= "knapper" type="submit" value="Delete" asp-action="Delete" />
 
                 </form>

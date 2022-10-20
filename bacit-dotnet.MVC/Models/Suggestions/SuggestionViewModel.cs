@@ -4,9 +4,12 @@ namespace bacit_dotnet.MVC.Models.Suggestions
 {
     public class SuggestionViewModel
     {
+
+        public string? Sug_ID{get ; set;}
         [Required]
         [MinLength(7, ErrorMessage ="Skriv en ordentlig tittel!")]
         public string Sug_Overskrift { get; set; }
+
         public string Sug_Beskrivelse { get; set; }
         public string Sug_Ansvarlig { get; set; }
         public string Sug_Status { get; set; }

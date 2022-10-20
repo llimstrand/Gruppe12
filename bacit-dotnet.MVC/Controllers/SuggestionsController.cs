@@ -39,11 +39,24 @@ namespace bacit_dotnet.MVC.Controllers
             return View("AlleFor",model);
 
         }
-        public IActionResult Edit()
+        [HttpGet]
+
+        public IActionResult Edit(int id)
         {
+            Console.WriteLine(id);
+            var data = sqlConnector.UpdateSug(id); // Denne metoden henter ut data
+            var model = new SuggestionsModel();
+            model.suggestions = data;
+            return View(model);
 
-            return View();
+        }
 
+        [HttpPost]
+        public IActionResult Update(SuggestionViewModel model){
+            Console.WriteLine("Update");
+            sqlConnector.SetUpSug(model);
+            Console.WriteLine("Model");
+            return View("Save", model);
         }
     }
 }

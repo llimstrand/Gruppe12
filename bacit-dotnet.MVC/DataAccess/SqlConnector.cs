@@ -65,6 +65,13 @@ namespace bacit_dotnet.MVC.DataAccess
             command.CommandText = query;
             return command.ExecuteReader();
         }
+        private MySqlDataReader ReadDatawithID(string query, MySqlConnection conn, int id){
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@id",id);
+            return command.ExecuteReader();
+        }
 
         public void SetSug(SuggestionViewModel model)
         {
@@ -93,6 +100,33 @@ namespace bacit_dotnet.MVC.DataAccess
             command.ExecuteNonQuery(); 
         }
 
+        public void SetUpSug(SuggestionViewModel model){
+               using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
+            connection.Open();
+            Console.WriteLine(model.Sug_Overskrift);
+            var query = "Update suggestions set Sug_Overskrift = @Overskrift, Sug_Beskrivelse = @Beskrivelse, Sug_Ansvarlig = @Ansvarlig, Sug_Status = @Status, Sug_Frist = @Frist, Sug_Varighet = @Varighet where Sug_ID = @id;";
+            UpdateData(query, connection, model);
+            Console.WriteLine("UpdateData");
+            connection.Close();
+        }
+
+        private void UpdateData(string query, MySqlConnection conn, SuggestionViewModel model){
+             Console.WriteLine("Model");
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@Overskrift", model.Sug_Overskrift);
+            command.Parameters.AddWithValue("@Beskrivelse", model.Sug_Beskrivelse);
+            command.Parameters.AddWithValue("@Ansvarlig", model.Sug_Ansvarlig);
+            command.Parameters.AddWithValue("@Status", model.Sug_Status);
+            command.Parameters.AddWithValue("@Frist", model.Sug_Frist);
+            command.Parameters.AddWithValue("@Varighet", model.Sug_Varighet);
+            command.Parameters.AddWithValue("@id", model.Sug_ID);
+            command.ExecuteNonQuery();
+
+        }
+   
+
         public  IEnumerable<Suggestion> FetchSug() {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
@@ -102,7 +136,7 @@ namespace bacit_dotnet.MVC.DataAccess
             while (reader.Read())
             {
                 var user = new Suggestion();
-                Console.WriteLine(reader.GetInt32("Sug_ID"));
+                user.Sug_ID = reader.GetInt32("Sug_ID");
                 user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
                 user.Sug_Beskrivelse = reader.GetString("Sug_Beskrivelse");
                 user.Sug_Ansvarlig = reader.GetString("Sug_Ansvarlig");
@@ -116,5 +150,31 @@ namespace bacit_dotnet.MVC.DataAccess
 
 
         }
+        
+
+         public  IEnumerable<Suggestion> UpdateSug(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Suggestions = new List<Suggestion>();
+            var reader = ReadDatawithID("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions where Sug_ID = @id", connection, id);
+            while (reader.Read())
+            {
+                var user = new Suggestion();
+                user.Sug_ID = reader.GetInt32("Sug_ID");
+                user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
+                user.Sug_Beskrivelse = reader.GetString("Sug_Beskrivelse");
+                user.Sug_Ansvarlig = reader.GetString("Sug_Ansvarlig");
+                user.Sug_Status = reader.GetString("Sug_Status");
+                user.Sug_Frist = reader.GetString("Sug_Frist");
+                user.Sug_Varighet = reader.GetString("Sug_Varighet");
+                Suggestions.Add(user);
+            }
+            connection.Close();
+            return Suggestions;
+
+
+        }
+
     }
 }

@@ -68,7 +68,9 @@
                 <p>Status: @user.Sug_Status</p>
                 <h5> @user.Sug_Overskrift</h5>
                 <p>Frist: @user.Sug_Frist</p>
+                
                 <form method="post" asp-controller="Suggestions" >
+                    <ul><a class="knapper" href="/Suggestions/Edit?id=@user.Sug_ID">Edit</a></ul>
                     <input class= "knapper" type="submit" value="Edit" asp-action="Edit" />
                     <input class= "knapper" type="submit" value="Delete" asp-action="Delete" />
                 </form>

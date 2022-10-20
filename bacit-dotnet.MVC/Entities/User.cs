@@ -10,6 +10,7 @@
 
      public class Suggestion
     {
+        public int Sug_ID {get; set;}
        public string Sug_Overskrift { get; set; }
         public string Sug_Beskrivelse { get; set; }
         public string Sug_Ansvarlig { get; set; }

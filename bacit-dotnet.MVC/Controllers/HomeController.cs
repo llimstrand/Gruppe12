@@ -18,14 +18,7 @@ namespace bacit_dotnet.MVC.Controllers
         public IActionResult Index()
         
         {
-            return new ContentResult() { 
-                Content = @"<html>
-                            <head>
-                            <title>BACIT</title>    
-                            </head>
-                            <body><h1>Forside</h1>
-                            </body> 
-                            </html>", ContentType = "text/html; charset=UTF-8" };
+            return View();
         }
         public IActionResult ViewSug()
         {
@@ -55,19 +48,18 @@ namespace bacit_dotnet.MVC.Controllers
                             </html>", ContentType = "text/html; charset=UTF-8" };
         }
 
-      
-        
-
-        [HttpGet]
+      [HttpGet]
         public IActionResult UserData()
         {
 
-            var data = sqlConnector.GetUsers();
+            /*var data = sqlConnector.GetUsers();
             var model = new UsersModel();
             model.Users = data;
-            return View("Users", model);
+            return View("Users", model);*/
+            return View("Users");
 
         }
+    
         [HttpGet]
         public IActionResult UsingRazor()
         {
@@ -77,5 +69,11 @@ namespace bacit_dotnet.MVC.Controllers
             };
             return View("UsingRazor", model);
         }
+
+        public IActionResult AddEmp()
+        {
+            return View();
+        }
     }
+
 }

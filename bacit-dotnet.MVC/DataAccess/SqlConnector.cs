@@ -1,6 +1,7 @@
 ﻿using bacit_dotnet.MVC.Entities;
 using MySqlConnector;
 using bacit_dotnet.MVC.Models.Suggestions;
+using bacit_dotnet.MVC.Models.Users;
 namespace bacit_dotnet.MVC.DataAccess
 {
     public class SqlConnector : ISqlConnector
@@ -12,22 +13,21 @@ namespace bacit_dotnet.MVC.DataAccess
             this.config = config;
         }
 
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<User> GetEmployee()
         {
 
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
 
-            var reader = ReadData("Select id, name, email, phone from users;", connection);
+            var reader = ReadData("Select Emp_Nr, Emp_Navn, Emp_Passord from employee;", connection);
 
             var users = new List<User>();
             while (reader.Read())
             {
                 var user = new User();
-                user.Id = reader.GetInt32("id");
-                user.Name = reader.GetString(1);
-                user.Email = reader.GetString(2);
-                user.Phone = reader.GetString(3);
+                user.Emp_Nr = reader.GetInt32("Emp_Nr");
+                user.Emp_Navn = reader.GetString(1);
+                user.Emp_Passord = reader.GetString(2);
                 users.Add(user);
             }
             connection.Close();
@@ -174,6 +174,28 @@ namespace bacit_dotnet.MVC.DataAccess
             return Suggestions;
 
 
+        }
+
+        public void SetUsers(UsersViewModel model)
+        {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
+            connection.Open();
+            var query = "Insert into employee(Emp_Nr, Emp_Navn, Emp_Passord) values (@AnsattNummer, @AnsattNavn, @AnsattPassord)";
+            WriteDataUsers(query, connection, model);
+            connection.Close();
+
+        }
+
+        private void WriteDataUsers(string query, MySqlConnection conn, UsersViewModel model)
+        {
+          
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@AnsattNummer", model.Emp_Nr);
+            command.Parameters.AddWithValue("@AnsattNavn", model.Emp_Navn);
+            command.Parameters.AddWithValue("@AnsattPassord", model.Emp_Passord);
+            command.ExecuteNonQuery(); 
         }
 
     }

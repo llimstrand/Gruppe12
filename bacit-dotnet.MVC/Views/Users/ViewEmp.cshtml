@@ -1,0 +1,16 @@
+@model bacit_dotnet.MVC.Models.UsersModel
+
+    <ul>
+        
+        @foreach (var user in Model.Users)
+        {
+            <div>
+                <p>Ansattnummer: @user.Emp_Nr</p>
+                <h5>Navn: @user.Emp_Navn</h5>
+                <p>Passord: @user.Emp_Passord</p>
+         
+            </div>
+
+                 
+        }
+    </ul>

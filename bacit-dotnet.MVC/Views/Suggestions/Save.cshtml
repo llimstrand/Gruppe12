@@ -1,20 +1,107 @@
 @model bacit_dotnet.MVC.Models.Suggestions.SuggestionViewModel
 
 
-<p>Månedens forslag</p>
+<style>
+.forslag {
+box-shadow:  0px 2px 8px 0px #959da5;
+width: 250px;
+height: 350px;
+border-radius: 10px;
+margin: 20px;
+padding: 15px;
+}
 
-<p>Alle forslag</p>
 
-<div style="border: 1px solid black; padding: 20px;">
-<h4> Tittel: @Model.Sug_Overskrift</h4>
-<p> Beskrivelse: @Model.Sug_Beskrivelse</p>
-<p> Ansvarlig: @Model.Sug_Ansvarlig</p>
-<p> Status: @Model.Sug_Status</p>
-<p> Frist: @Model.Sug_Frist</p>
-<p> Varighet: @Model.Sug_Varighet</p>
-<p> Varighet: @Model.Sug_VedleggEn</p>
-<p> Varighet: @Model.Sug_VedleggTo</p>
-<p> Sendt inn: @Model.Sug_Timestamp</p>
+.bakgrunn {
+position: relative;
+width: 900px;
+height: 550px;
+left: 380px;
+border-radius: 10px;
+box-shadow:  0px 2px 8px 0px #959da5;
+padding-right:55px;
+padding-left:50px;
+padding-bottom:50px;
+padding-top: 140px;
+margin-top: 50px;
+}
 
+.bildefor{
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 5px;
+width: 180px;
+height: 190px;
+position:absolute; 
+left: 385px; top:310px;
+  }
+
+  .bildeetter{
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 5px;
+width: 180px;
+height: 190px;
+position:absolute; 
+left:640px; top:310px;
+  }
+
+
+    .tittel{
+position:absolute; 
+left:70px;  
+margin-top: -75px;
+font-size: 20px;
+  }
+
+  .sidemeny {
+        width: 250px;
+        position: fixed;
+        top: 150px;
+        left: 25px;
+        padding: 8px 0;
+    }
+
+    .beskrivelse {
+    float: right; 
+    margin-top: 20px;
+    width: 58%;
+     }
+</style>
+
+
+
+
+<div class= bakgrunn> 
+<div class= tittel><b><h4>@Model.Sug_Overskrift</h4></b></div>
+<div class = beskrivelse> <p><b>Beskrivelse:</b> @Model.Sug_Beskrivelse</p></div>
+<div class= forslag>
+<p> <b>Ansvarlig:</b><br>@Model.Sug_Ansvarlig</p> 
+<p> <b>Status:</b><br>@Model.Sug_Status</p>
+<p> <b>Frist:</b><br>@Model.Sug_Frist</p>
+<p> <b>Varighet:</b><br>@Model.Sug_Varighet</p>
+<p> <b>Sendt inn:</b><br>@Model.Sug_Timestamp</p>
+
+<div class= bildefor>Før bilde @Model.Sug_VedleggEn</div>
+<div class= bildeetter>Etter bilde @Model.Sug_VedleggTo</div>
 
 </div>
+</div>
+
+ <div class="sidemeny">
+        <input type="text" placeholder="Søk" style="height:50px;">
+        <p>Status</p>
+            <input type="checkbox" id="plan" name="plan" value="Plan">
+            <label for="plan"> Plan</label><br>
+            <input type="checkbox" id="do" name="do" value="Do">
+            <label for="do"> Do</label><br>
+            <input type="checkbox" id="study" name="study" value="Study">
+            <label for="study"> Study</label><br>
+            <input type="checkbox" id="act" name="act" value="Act">
+            <label for="act"> Act</label> <br> <br>
+        <p>Frist</p>
+            <input type="date">
+
+    </div>
+
+

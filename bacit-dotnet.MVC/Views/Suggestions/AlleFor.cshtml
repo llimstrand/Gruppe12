@@ -42,6 +42,19 @@
         border-color: #7D7DFF;
         
     }
+
+    .plan {
+    background: #89b747;
+    }
+    .do {
+    background: #f5b669;
+    }
+    .study {
+    background: #9fe4ed;
+    }
+    .act{
+    background: #999999;
+    }
    
 </style>
     <div class="sidemeny">
@@ -64,7 +77,7 @@
         @foreach (var user in Model.suggestions)
         {
             <div class="forslagsliste">
-                <p>Status: @user.Sug_Status</p>
+                <p class="@user.Sug_Status">Status: @user.Sug_Status</p>
                 <h5> @user.Sug_Overskrift</h5>
                 <p>Frist: @user.Sug_Frist</p>
                 

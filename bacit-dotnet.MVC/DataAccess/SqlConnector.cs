@@ -2,6 +2,7 @@
 using MySqlConnector;
 using bacit_dotnet.MVC.Models.Suggestions;
 using bacit_dotnet.MVC.Models.Users;
+using bacit_dotnet.MVC.Models.Teams;
 namespace bacit_dotnet.MVC.DataAccess
 {
     public class SqlConnector : ISqlConnector
@@ -11,6 +12,48 @@ namespace bacit_dotnet.MVC.DataAccess
         public SqlConnector(IConfiguration config)
         {
             this.config = config;
+        }
+        /*Henter alle team*/
+        public  IEnumerable<Team> FetchTeam() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Teams = new List<Team>();
+            var reader = ReadData("select Team_ID, Team_Navn, Team_Leder from team", connection);
+            while (reader.Read())
+            {
+                var user = new Team();
+                user.Team_ID = reader.GetInt32("Team_ID");
+                user.Team_Navn = reader.GetString("Team_Navn");
+                user.Team_Leder = reader.GetString("Team_leder");
+                Teams.Add(user);
+            }
+            connection.Close();
+            return Teams;
+
+
+        }
+       
+        /*Lage ny ansatt*/
+        public void SetTeams(TeamsViewModel model)
+        {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
+            connection.Open();
+            var query = "Insert into team(Team_ID, Team_Navn, Team_Leder) values (@teamnummer, @teamnavn, @teamleder)";
+            Console.WriteLine(query);
+            WriteData(query, connection, model);
+            connection.Close();
+        }
+
+        private void WriteData(string query, MySqlConnection conn, TeamsViewModel model)
+        {
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@teamnummer", model.Team_ID);
+            command.Parameters.AddWithValue("@teamnavn", model.Team_Navn);
+            command.Parameters.AddWithValue("@teamleder", model.Team_Leder);
+            command.ExecuteNonQuery(); 
         }
 
         /*Henter alle ansatte*/

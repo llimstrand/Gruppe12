@@ -45,6 +45,15 @@ namespace bacit_dotnet.MVC.Controllers
         {
             return View();
         }
+        public IActionResult AddTeam()
+        {
+            return View();
+        }
+
+          public IActionResult ViewTeam()
+        {
+            return View();
+        }
         
         
            public IActionResult Privacy()
@@ -59,15 +68,6 @@ namespace bacit_dotnet.MVC.Controllers
                             </html>", ContentType = "text/html; charset=UTF-8" };
         }
     
-        [HttpGet]
-        public IActionResult UsingRazor()
-        {
-            var model = new RazorViewModel
-            {
-                Content = "En time til ørsta rådhus"
-            };
-            return View("UsingRazosr", model);
-        }
     }
 
 }

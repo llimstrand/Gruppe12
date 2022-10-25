@@ -11,4 +11,8 @@ namespace bacit_dotnet.MVC.Models
     {
         public IEnumerable<Suggestion> suggestions { get; set; }
     }
+    public class TeamsModel
+    {
+        public IEnumerable<Team> Teams { get; set; }
+    }
 }

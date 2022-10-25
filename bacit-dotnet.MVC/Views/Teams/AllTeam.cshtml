@@ -1,0 +1,49 @@
+@model bacit_dotnet.MVC.Models.TeamsModel
+<style>
+    .teamliste {
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        border-left: none;
+        border-right: none;
+        padding: 10px;
+        
+    }
+
+    .nytteamknapp {
+        border-radius: 5px;
+        padding: 10px;
+        border: 1px solid #939393;
+        background-color: white;
+        text-decoration: none;
+        color: #525252;
+
+    }
+
+    .nytteam {
+        text-align: right;
+        margin: 40px;
+    }
+
+    .alleteams {
+        list-style: none;
+        margin-left: 15%;
+    }
+
+
+
+</style>
+        <ul class="alleteams">
+            <li class="nytteam">
+                <a href="/Teams/AddTeam" class="nytteamknapp">Legg til nytt team</a>
+            </li>
+            @foreach (var user in Model.Teams)
+            {
+            <li>
+                <div class="teamliste">
+                    <p>  @user.Team_ID</p>
+                    <h5>Team @user.Team_Navn</h5>
+                    <h5>Teamleder: @user.Team_Leder</h5>
+                </div>
+            </li>   
+            }
+        </ul>

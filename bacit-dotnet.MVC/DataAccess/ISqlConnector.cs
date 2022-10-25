@@ -1,6 +1,7 @@
 ﻿using bacit_dotnet.MVC.Entities;
 using bacit_dotnet.MVC.Models.Suggestions;
 using bacit_dotnet.MVC.Models.Users;
+using bacit_dotnet.MVC.Models.Teams;
 
 
 namespace bacit_dotnet.MVC.DataAccess
@@ -14,6 +15,8 @@ namespace bacit_dotnet.MVC.DataAccess
         void SetUpSug(SuggestionViewModel model);
         void SetUsers(UsersViewModel model);
         IEnumerable<User> FetchEmp();
+        void SetTeams(TeamsViewModel model);
+        IEnumerable<Team> FetchTeam();
 
     }
 }

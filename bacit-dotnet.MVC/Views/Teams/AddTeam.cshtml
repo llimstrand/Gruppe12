@@ -1,0 +1,48 @@
+<style>
+    .lageteam {
+        border: 1px solid black;
+        padding: 50px;
+        width: 60%;
+        margin: auto;
+        border-radius: 10px;
+    }
+
+    .sendinn{
+        padding: 15px;
+        background-color: #717e74;
+        border-radius: 5px;
+        color: white;
+        border: none;
+        width: 180px;
+        margin-left: 70%;
+    }
+
+    .button-back {
+       font-size: 17px;
+       background-color: white;
+       border-radius: 20px;
+       border: none;
+       position:relative
+ 
+  }
+  .teaminputs{
+    text-align: center;
+  }
+</style>
+
+<div class="lageteam">
+    <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
+
+    <form action="/Teams/Save" method="post">
+        <ul style="list-style: none;">
+                <li class="teamsinputs">
+                    <input required="required" type="text" name="Team_Navn" placeholder="Teamnavn"/> 
+                </li><br>
+                <li class="teamsinputs">
+                    <input required="required" type="text" name="Team_Leder" placeholder="Teamleder"/> 
+                </li><br>
+                
+                <input type="submit" value="Opprett team" class="sendinn"/>
+        </ul>
+    </form> 
+</div>

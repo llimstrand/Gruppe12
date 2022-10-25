@@ -15,30 +15,34 @@ namespace bacit_dotnet.MVC.Controllers
             _logger = logger;
             this.sqlConnector = sqlConnector;
         }
-        [HttpGet]
-        public IActionResult Index(){
-             return View();
+        
+        public IActionResult AllEmp()
+        {
+            return View();
         }
-
-        [HttpGet]
         public IActionResult AddEmp()
         {
             return View();
         }
-        public IActionResult Save(){
-           
-            var data = sqlConnector.GetEmployee();
+
+         [HttpPost]
+        public IActionResult Save(UsersViewModel model) 
+        {
+            sqlConnector.SetUsers(model);
+            return View("ViewEmp",model); 
+        }
+
+        [HttpGet]
+        public IActionResult ViewEmp()
+        {
+
+            var data = sqlConnector.FetchEmp();
             var model = new UsersModel();
             model.Users = data;
 
-            return View("ViewEmp",model);
-        }
-        [HttpPost]
-        public IActionResult ViewEmp(UsersViewModel model)
-       {   
-           Console.WriteLine("test");
+            return View("AllEmp",model);
 
-            return View("AllEmp");
         }
+        
     }
 }

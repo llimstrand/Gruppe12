@@ -1,1 +1,69 @@
-<h1>Heisann</h1>
+@model bacit_dotnet.MVC.Models.UsersModel
+
+<style>
+    .ansattliste {
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        border-left: none;
+        border-right: none;
+        padding: 10px;
+        
+    }
+
+    .nyansattknapp {
+        border-radius: 5px;
+        padding: 10px;
+        border: 1px solid #939393;
+        background-color: white;
+        text-decoration: none;
+        color: #525252;
+
+    }
+
+    .nyansatt {
+        text-align: right;
+        margin: 40px;
+    }
+
+    .alleansatte {
+        list-style: none;
+        margin-left: 15%;
+    }
+
+    .sidemenyansatt {
+        width: 210px;
+        position: fixed;
+        top: 250px;
+        left: 25px;
+        padding: 8px 0;
+    }
+
+</style>
+        <div class="sidemenyansatt">
+            <input type="text" placeholder="Søk" style="height:50px;"> <br><br>
+            <p>Sorter etter</p>
+            <select> 
+                <option>Alfabetisk A-Å</option> 
+                <option>Mest utførte forslag</option>
+                <option>Minst utførte forslag</option>
+                <option>Mest sendte inn forslag</option>
+                <option>Minst sendte inn forslag</option>    
+            </select>
+        </div>
+
+        <ul class="alleansatte">
+            <li class="nyansatt">
+                <a href="/Users/AddEmp" class="nyansattknapp">Legg til ny ansatt</a>
+            </li>
+            @foreach (var user in Model.Users)
+            {
+            <li>
+                <div class="ansattliste">
+                    <p>Ansattnummer: @user.Emp_Nr</p>
+                    <h5>@user.Emp_Navn</h5>
+                </div>
+            </li>   
+            }
+        </ul>
+  
+  

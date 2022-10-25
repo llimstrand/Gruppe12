@@ -36,6 +36,17 @@ namespace bacit_dotnet.MVC.Controllers
         {
             return View();
         }
+           public IActionResult AddEmp()
+        {
+            return View();
+        }
+
+          public IActionResult ViewEmp()
+        {
+            return View();
+        }
+        
+        
            public IActionResult Privacy()
         {
             return new ContentResult() { 
@@ -47,18 +58,6 @@ namespace bacit_dotnet.MVC.Controllers
                             </body> 
                             </html>", ContentType = "text/html; charset=UTF-8" };
         }
-
-      [HttpGet]
-        public IActionResult UserData()
-        {
-
-            /*var data = sqlConnector.GetUsers();
-            var model = new UsersModel();
-            model.Users = data;
-            return View("Users", model);*/
-            return View("Users");
-
-        }
     
         [HttpGet]
         public IActionResult UsingRazor()
@@ -67,12 +66,7 @@ namespace bacit_dotnet.MVC.Controllers
             {
                 Content = "En time til ørsta rådhus"
             };
-            return View("UsingRazor", model);
-        }
-
-        public IActionResult AddEmp()
-        {
-            return View();
+            return View("UsingRazosr", model);
         }
     }
 

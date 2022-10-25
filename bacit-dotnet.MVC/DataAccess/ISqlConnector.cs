@@ -7,17 +7,13 @@ namespace bacit_dotnet.MVC.DataAccess
 {
     public interface ISqlConnector
     {
-        IEnumerable<User> GetEmployee();
         IEnumerable<Suggestion> FetchSug();
         void SetSug(SuggestionViewModel model);
-         IEnumerable<Suggestion> UpdateSug(int id);
-
+        IEnumerable<Suggestion> UpdateSug(int id);
         void DeleteSug(int id);
-         void SetUpSug(SuggestionViewModel model);
-
-         void SetUsers(UsersViewModel model);
-
-        
+        void SetUpSug(SuggestionViewModel model);
+        void SetUsers(UsersViewModel model);
+        IEnumerable<User> FetchEmp();
 
     }
 }

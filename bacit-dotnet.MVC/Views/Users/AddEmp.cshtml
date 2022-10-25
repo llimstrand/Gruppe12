@@ -1,20 +1,51 @@
-<div>
+<style>
+    .lageansatt {
+        border: 1px solid black;
+        padding: 50px;
+        width: 60%;
+        margin: auto;
+        border-radius: 10px;
+    }
+
+    .sendinn{
+        padding: 15px;
+        background-color: #717e74;
+        border-radius: 5px;
+        color: white;
+        border: none;
+        width: 180px;
+        margin-left: 70%;
+    }
+
+    .button-back {
+       font-size: 17px;
+       background-color: white;
+       border-radius: 20px;
+       border: none;
+       position:relative
+ 
+  }
+  .ansattinputs{
+    text-align: center;
+  }
+</style>
+
+<div class="lageansatt">
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
 
     <form action="/Users/Save" method="post">
         <ul style="list-style: none;">
-                <li>
-                    <input required="required" type="number" name="Emp_Nr" placeholder="Ansattnummer" class="ansattnummer"/> 
+                <li class="ansattinputs">
+                    <input required="required" type="number" name="Emp_Nr" placeholder="Ansattnummer"/> 
                 </li><br>
-                <li>
-                    <input required="required" type="text" name="Emp_Navn" placeholder="Navn" class="ansattnavn"/> 
+                <li class="ansattinputs">
+                    <input required="required" type="text" name="Emp_Navn" placeholder="Navn"/> 
                 </li><br>
-                <li>
-                    <input required="required" type="password" name="Emp_Passord" placeholder="Passord" class="ansattpassord"/> 
+                <li class="ansattinputs">
+                    <input required="required" type="password" name="Emp_Passord" placeholder="Passord"/> 
                 </li><br>
                 
-                <input type="submit" value="Send inn" class="sendinn"/>
+                <input type="submit" value="Opprett ansatt" class="sendinn"/>
         </ul>
     </form> 
-
 </div>

@@ -68,6 +68,9 @@
             <label for="study"> Study</label><br>
             <input type="checkbox" id="act" name="act" value="Act">
             <label for="act"> Act</label> <br> <br>
+
+
+
         <p>Frist</p>
             <input type="date">
     </div>
@@ -77,7 +80,7 @@
         @foreach (var user in Model.suggestions)
         {
             <div class="forslagsliste">
-                <p class="@user.Sug_Status">Status: @user.Sug_Status</p>
+                <p class="@user.Sug_Status" >Status: @user.Sug_Status</p>
                 <h5> @user.Sug_Overskrift</h5>
                 <p>Frist: @user.Sug_Frist</p>
                 
@@ -92,3 +95,4 @@
         
         }
     </ul>
+

@@ -18,7 +18,10 @@ namespace bacit_dotnet.MVC.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var data = sqlConnector.FetchEmp();
+            var model = new UsersModel();
+            model.Users = data;
+            return View(model);
         }
 
         [HttpPost]

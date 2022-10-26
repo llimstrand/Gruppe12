@@ -62,12 +62,12 @@
                 nav{
                     top: 0;
                     position: absolute;
-                    
+                     word-break: break-all;
                 }
         </style>
         
         
-        <nav id="navb"  class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav  class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -114,5 +114,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+
+    
 </body>
 </html>

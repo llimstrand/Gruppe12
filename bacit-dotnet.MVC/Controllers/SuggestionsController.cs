@@ -67,6 +67,7 @@ namespace bacit_dotnet.MVC.Controllers
             sqlConnector.DeleteSug(id); // Denne metoden sletter data
             return View("Delete");
 
+        }
+        
     }
-}
 }

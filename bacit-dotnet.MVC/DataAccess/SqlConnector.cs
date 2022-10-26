@@ -13,7 +13,7 @@ namespace bacit_dotnet.MVC.DataAccess
             this.config = config;
         }
 
-        /*Henter alle ansatte*/
+            /*Henter alle ansatte*/
         public  IEnumerable<User> FetchEmp() {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
@@ -33,29 +33,51 @@ namespace bacit_dotnet.MVC.DataAccess
 
 
         }
-       
-        /*Lage ny ansatt*/
-        public void SetUsers(UsersViewModel model)
+        public IEnumerable<User> GetEmployee()
         {
-            using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
+
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
-            var query = "Insert into employee(Emp_Nr, Emp_Navn, Emp_Passord) values (@ansattnummer, @ansattnavn, @ansattpassord)";
-            Console.WriteLine(query);
-            WriteData(query, connection, model);
+
+            var reader = ReadData("Select Emp_Nr, Emp_Navn, Emp_Passord from employee;", connection);
+
+            var users = new List<User>();
+            while (reader.Read())
+            {
+                var user = new User();
+                user.Emp_Nr = reader.GetInt32("Emp_Nr");
+                user.Emp_Navn = reader.GetString(1);
+                user.Emp_Passord = reader.GetString(2);
+                users.Add(user);
+            }
             connection.Close();
+            return users;
         }
 
-        private void WriteData(string query, MySqlConnection conn, UsersViewModel model)
+        public IEnumerable<Suggestion> GetSuggestions()
         {
-            using var command = conn.CreateCommand();
-            command.CommandType = System.Data.CommandType.Text;
-            command.CommandText = query;
-            command.Parameters.AddWithValue("@ansattnummer", model.Emp_Nr);
-            command.Parameters.AddWithValue("@ansattnavn", model.Emp_Navn);
-            command.Parameters.AddWithValue("@ansattpassord", model.Emp_Passord);
-            command.ExecuteNonQuery(); 
+
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var reader = ReadData("Select Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions;", connection);
+
+            var suggestions = new List<Suggestion>();
+            while (reader.Read())
+            {
+                var suggestion = new Suggestion();
+                suggestion.Sug_Overskrift = reader.GetString(1);
+                suggestion.Sug_Beskrivelse = reader.GetString(2);
+                suggestion.Sug_Ansvarlig = reader.GetString(3);
+                suggestion.Sug_Status = reader.GetString(4);
+                suggestion.Sug_Frist = reader.GetString(5);
+                suggestion.Sug_Varighet = reader.GetString(6);
+                suggestions.Add(suggestion);
+            }
+            connection.Close();
+            return suggestions;
         }
-        
+
         private MySqlDataReader ReadData(string query, MySqlConnection conn)
         {
             using var command = conn.CreateCommand();
@@ -71,7 +93,6 @@ namespace bacit_dotnet.MVC.DataAccess
             return command.ExecuteReader();
         }
 
-        /*Lage nytt forslag*/
         public void SetSug(SuggestionViewModel model)
         {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
@@ -82,7 +103,16 @@ namespace bacit_dotnet.MVC.DataAccess
             connection.Close();
 
         }
+        public void SetSaveSug(SuggestionViewModel model)
+        {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
+            connection.Open();
+            var query = "Insert into suggestions(Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet, Sug_Timestamp) values (@Overskrift, @Beskrivelse, @Ansvarlig, @Status, @Frist, @Varighet, @Timestamp)";
+            Console.WriteLine(query);
+            WriteData(query, connection, model);
+            connection.Close();
 
+        }
         private void WriteData(string query, MySqlConnection conn, SuggestionViewModel model)
         {
           
@@ -136,7 +166,7 @@ namespace bacit_dotnet.MVC.DataAccess
 
         }
    
-        /*henter alle forslag*/
+
         public  IEnumerable<Suggestion> FetchSug() {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
@@ -157,7 +187,6 @@ namespace bacit_dotnet.MVC.DataAccess
             }
             connection.Close();
             return Suggestions;
-
 
         }
         
@@ -185,15 +214,56 @@ namespace bacit_dotnet.MVC.DataAccess
 
 
         }
+        public  IEnumerable<Suggestion> SaveSug(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
 
+            var Suggestions = new List<Suggestion>();
+            var reader = ReadDatawithID("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions where Sug_ID = @id", connection, id);
+            while (reader.Read())
+            {
+                var user = new Suggestion();
+                user.Sug_ID = reader.GetInt32("Sug_ID");
+                user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
+                user.Sug_Beskrivelse = reader.GetString("Sug_Beskrivelse");
+                user.Sug_Ansvarlig = reader.GetString("Sug_Ansvarlig");
+                user.Sug_Status = reader.GetString("Sug_Status");
+                user.Sug_Frist = reader.GetString("Sug_Frist");
+                user.Sug_Varighet = reader.GetString("Sug_Varighet");
+                Suggestions.Add(user);
+            }
+            connection.Close();
+            return Suggestions;
+
+
+        }
+
+        public void SetUsers(UsersViewModel model)
+        {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
+            connection.Open();
+            var query = "Insert into employee(Emp_Nr, Emp_Navn, Emp_Passord) values (@AnsattNummer, @AnsattNavn, @AnsattPassord)";
+            WriteDataUsers(query, connection, model);
+            connection.Close();
+
+        }
+
+        private void WriteDataUsers(string query, MySqlConnection conn, UsersViewModel model)
+        {
+          
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@AnsattNummer", model.Emp_Nr);
+            command.Parameters.AddWithValue("@AnsattNavn", model.Emp_Navn);
+            command.Parameters.AddWithValue("@AnsattPassord", model.Emp_Passord);
+            command.ExecuteNonQuery(); 
+        }
           public  void DeleteSug(int id) {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
             DeleteData("Delete from Suggestions where Sug_ID = @id", connection, id);
             connection.Close();
-
-
-
         }
 
     }

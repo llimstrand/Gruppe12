@@ -14,6 +14,8 @@ namespace bacit_dotnet.MVC.DataAccess
         void SetUpSug(SuggestionViewModel model);
         void SetUsers(UsersViewModel model);
         IEnumerable<User> FetchEmp();
+        IEnumerable<Suggestion> SaveSug(int id);
+        void SetSaveSug(SuggestionViewModel model);
 
     }
 }

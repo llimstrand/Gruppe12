@@ -1,4 +1,5 @@
 @model bacit_dotnet.MVC.Models.SuggestionsModel
+
 <style>
     .forslagsliste{
         border: none; 
@@ -71,24 +72,21 @@
         <p>Frist</p>
             <input type="date">
     </div>
+
+
     <ul class="alleforslag">
         <p>Månedens forslag</p>
         <p>Alle forslag</p>
         @foreach (var user in Model.suggestions)
+    
         {
-            <div class="forslagsliste">
+            <div class="forslagsliste" onclick="location.href='Save?id=@user.Sug_ID';" style="cursor: pointer;"> 
                 <p class="@user.Sug_Status">Status: @user.Sug_Status</p>
                 <h5> @user.Sug_Overskrift</h5>
                 <p>Frist: @user.Sug_Frist</p>
                 
-                <form method="post" asp-controller="Suggestions" >
-                    <ul><a class="knapper" href="/Suggestions/Edit?id=@user.Sug_ID">Edit</a></ul>
-                    <input class= "knapper" type="submit" value="Edit" asp-action="Edit" />
-                     <ul><a class="knapper" href="/Suggestions/Delete?id=@user.Sug_ID">Delete</a></ul>
-                    <input class= "knapper" type="submit" value="Delete" asp-action="Delete" />
-
-                </form>
-            </div>
-        
-        }
+            </div> 
+            // location.href='save' gjør classen "clickable" så du sendes videre til "savecshtml"
+            // Må få den til å definere id? slik at når du trykker på "forslag1" så får du kun opp det forlsaget og ikke alle
+        } 
     </ul>

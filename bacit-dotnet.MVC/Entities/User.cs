@@ -21,4 +21,10 @@
 
         public DateTime Sug_Timestamp {get; set;}
     }
+    public class Team
+    {
+        public int Team_ID {get; set;}
+       public string Team_Navn { get; set; }
+        public string Team_Leder { get; set; }
+    }
 }

@@ -1,0 +1,111 @@
+<style>
+    .lageteam {
+        border: 1px solid black;
+        padding: 45px;
+        width: 60%;
+        margin: auto;
+        border-radius: 10px;
+    }
+
+    .sendinn{
+        padding: 15px;
+        background-color: #717e74;
+        border-radius: 5px;
+        color: white;
+        border: none;
+        width: 180px;
+        margin-left: 36%;
+        margin-right: 36%;
+    }
+
+    .sendinn:hover {
+        background-color: #91a194;
+        border: none;
+    }
+
+    .button-back:hover {
+        text-decoration: underline grey;
+    }
+
+    .button-back {
+       font-size: 17px;
+       background-color: white;
+       border-radius: 20px;
+       position:relative;
+       border: none;
+  }
+
+    #team {
+       
+        text-align: center;
+       
+        font-size: 20px;
+        outline: none;
+        margin-left: 26%;
+        margin-right: 26%;
+        margin-top: 5%;
+        
+        
+    }
+
+    #teaminn {
+       
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    #Leder {
+        text-align: center;
+        margin-top: 2%;
+        margin-bottom: 8%;
+        font-size: 20px;
+        margin-left: 26%;
+        margin-right: 26%;
+        
+    }
+
+    #Lederinn {
+        
+        padding-left: 5%;
+        padding-right: 5%;
+       
+    }
+
+  .teaminputs{
+    text-align: center;
+  }
+
+  #teamnavn {
+    margin-right: 60%;
+    font-size: medium;
+
+  }
+
+  #teamleder {
+    margin-right: 60%;
+    font-size: medium;
+  }
+
+
+</style>
+
+<div class="lageteam">
+    <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" /> 
+
+    <form action="/Teams/Save" method="post">
+        <ul style="list-style: none;">
+                
+                <li ID=team class="teamsinputs">
+                    <p id=teamnavn >Teamnavn</p>
+                    <input Id=teaminn id=team required="required" type="text" name="Team_Navn" placeholder="Teamnavn"/> 
+                </li><br>
+
+                <li ID=Leder class="teamsinputs">
+                    <p Id=teamleder >Teamleder</p>
+                    <input ID=Lederinn required="required" type="text" name="Team_Leder" placeholder="Teamleder"/> 
+                </li><br>
+                
+                <input type="submit" value="Opprett team" class="sendinn"/>
+        </ul>
+    </form> 
+</div>

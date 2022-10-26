@@ -14,7 +14,14 @@
         color: white;
         border: none;
         width: 180px;
-        margin-left: 70%;
+        margin-left: 36%;
+        margin-right: 36%;
+        margin-top: 5%;
+    }
+
+    .sendinn:hover {
+        background-color: #91a194;
+        border: none;
     }
 
     .button-back {
@@ -23,10 +30,35 @@
        border-radius: 20px;
        border: none;
        position:relative
- 
+  }
+
+  .button-back:hover {
+    text-decoration: underline grey;
   }
   .ansattinputs{
     text-align: center;
+    margin-top: 1%;
+        font-size: 20px;
+        margin-left: 26%;
+        margin-right: 26%;
+        padding-left: 5%;
+        padding-right: 5%;
+
+  }
+
+  #empnr {
+    font-size: medium;
+    margin-right: 54%;
+  }
+
+  #empnavn {
+    font-size: medium;
+    margin-right: 64%;
+  }
+  
+  #emppassord {
+  font-size: medium;
+  margin-right: 74%;
   }
 </style>
 
@@ -36,12 +68,15 @@
     <form action="/Users/Save" method="post">
         <ul style="list-style: none;">
                 <li class="ansattinputs">
+                    <p Id=empnr>Ansattnummer</p>
                     <input required="required" type="number" name="Emp_Nr" placeholder="Ansattnummer"/> 
                 </li><br>
                 <li class="ansattinputs">
+                    <p Id=empnavn>Ansattnavn</p>
                     <input required="required" type="text" name="Emp_Navn" placeholder="Navn"/> 
                 </li><br>
                 <li class="ansattinputs">
+                    <p Id=emppassord>Passord</p>
                     <input required="required" type="password" name="Emp_Passord" placeholder="Passord"/> 
                 </li><br>
                 

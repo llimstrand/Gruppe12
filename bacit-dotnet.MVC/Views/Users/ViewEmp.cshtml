@@ -8,6 +8,7 @@
         margin: auto;
         border-radius: 10px;
         box-shadow: 5px 10px 18px #888888; 
+        margin-top:20px;
     }
     .ansattknapp {
         width: 130px;
@@ -20,6 +21,8 @@
         width: 260px;
         column-gap: 0;
         font-size: 10px;
+        color: grey; opacity: 50%;
+
     }
     .button-back {
        font-size: 17px;
@@ -29,17 +32,37 @@
        position:relative;
        margin-left: 90%;
   }
+  
+    .litenInfo {
+       font-size: 8px;
+       margin-top: -10px;
+  }
+
+  .profilbilde {
+    border: 3px solid #878787;
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+    float: right;
+    margin-top: -30px;
+    margin-right: 20px;
+
+   
+
+}
 </style>
+
 <div class="enkeltansatt"> 
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
-
     <h3><b>@Model.Emp_Navn</b></h3>
-    <p> Ansattnummer: @Model.Emp_Nr Ansattpassord: @Model.Emp_Passord</p>
+    <p><div class= litenInfo> Ansattnummer: @Model.Emp_Nr </div></p>
+
+    <div class="profilbilde"></div>
 
     <div class="ansattknapper">
-        <input type="button" value="Se ansattstatistikk"  class="ansattknapp">
-        <input type="button" value="Bytt team"  class="ansattknapp">
-        <input type="button" value="Rediger ansatt"  class="ansattknapp">
-        <input type="button" value="Slett ansatt"  class="ansattknapp">
+        <input type="button" value="SE ANSATTSTATESTIKK"  class="ansattknapp">
+        <input type="button" value="BYTT TEAM"  class="ansattknapp">
+        <input type="button" value="REDIGER ANSATT"  class="ansattknapp">
+       <input type="button" value="SLETT ANSATT"  class="ansattknapp">
     </div>
 </div>

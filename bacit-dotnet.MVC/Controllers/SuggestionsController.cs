@@ -24,26 +24,39 @@ namespace bacit_dotnet.MVC.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public IActionResult Save(SuggestionViewModel model) 
-        {
-            sqlConnector.SetSug(model);
-            return View(model);
-        }
-
         [HttpGet]
         public IActionResult ViewSug()
         {
 
-            var data = sqlConnector.FetchSug();
+            var data = sqlConnector.FetchSug(); //henter alle forslag og sier at de skal vises på AlleFor
             var model = new SuggestionsModel();
             model.suggestions = data;
 
             return View("AlleFor",model);
 
         }
-        [HttpGet]
 
+        [HttpPost]
+        public IActionResult Save(SuggestionViewModel model) 
+        {
+            sqlConnector.SetSug(model);
+            var data = sqlConnector.FetchSug(); // Denne metoden henter ut data
+            var models = new SuggestionsModel();
+            models.suggestions = data;
+            return View(models);
+        }
+       
+        [HttpGet]
+         public IActionResult Save(int id) 
+        {
+            Console.WriteLine(id);
+            var data = sqlConnector.SaveSug(id); // Henter ut data med id
+            var model = new SuggestionsModel();
+            model.suggestions = data;
+            return View(model);
+        }
+       
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             Console.WriteLine(id);
@@ -59,17 +72,32 @@ namespace bacit_dotnet.MVC.Controllers
             Console.WriteLine("Update");
             sqlConnector.SetUpSug(model);
             Console.WriteLine("Model");
-            return View("Save", model);
+            int id = 0;
+            string? stringid = model.Sug_ID;
+            
+               Boolean idcheck = string.IsNullOrEmpty(stringid); //hvis id er null/tom skal den returnere feilmelding
+                if(!idcheck){
+                id = Int32.Parse(stringid);
+                Console.WriteLine(id);
+                } else{
+                    Console.WriteLine("Sug_Id is empty or Null");
+                }
+                
+    
+            var data = sqlConnector.UpdateSug(id); //hvis forslaget har en id skal forslaget vises
+            var result = new SuggestionsModel();
+            result.suggestions = data;
+            return View("Save", result);
         }
 
         [HttpGet]
-
         public IActionResult Delete(int id)
         {
             Console.WriteLine(id);
             sqlConnector.DeleteSug(id); // Denne metoden sletter data
             return View("Delete");
 
+        }
+        
     }
-}
 }

@@ -1,4 +1,4 @@
-@model bacit_dotnet.MVC.Models.Suggestions.SuggestionViewModel
+@model bacit_dotnet.MVC.Models.SuggestionsModel
 
 
 <style>
@@ -44,15 +44,15 @@ width: 180px;
 height: 190px;
 position:absolute; 
 left:640px; top:310px;
-  }
+}
 
 
-    .tittel{
+.tittel{
 position:absolute; 
 left:70px;  
 margin-top: -75px;
 font-size: 20px;
-  }
+}
 
   .sidemeny {
         width: 250px;
@@ -71,20 +71,26 @@ font-size: 20px;
 
 
 
-
+@foreach(var user in  Model.suggestions){
 <div class= bakgrunn> 
-<div class= tittel><b><h4>@Model.Sug_Overskrift</h4></b></div>
-<div class = beskrivelse> <p><b>Beskrivelse:</b> @Model.Sug_Beskrivelse</p></div>
+<div class= tittel><b><h4>@user.Sug_Overskrift</h4></b></div>
+<div class = beskrivelse> <p><b>Beskrivelse:</b> @user.Sug_Beskrivelse</p></div>
 <div class= forslag>
-<p> <b>Ansvarlig:</b><br>@Model.Sug_Ansvarlig</p> 
-<p> <b>Status:</b><br>@Model.Sug_Status</p>
-<p> <b>Frist:</b><br>@Model.Sug_Frist</p>
-<p> <b>Varighet:</b><br>@Model.Sug_Varighet</p>
-<p> <b>Sendt inn:</b><br>@Model.Sug_Timestamp</p>
+<p> <b>Ansvarlig:</b><br>@user.Sug_Ansvarlig</p> 
+<p> <b>Status:</b><br>@user.Sug_Status</p>
+<p> <b>Frist:</b><br>@user.Sug_Frist</p>
+<p> <b>Varighet:</b><br>@user.Sug_Varighet</p>
+<p> <b>Sendt inn:</b><br>@user.Sug_Timestamp</p>
 
-<div class= bildefor>Før bilde @Model.Sug_VedleggEn</div>
-<div class= bildeetter>Etter bilde @Model.Sug_VedleggTo</div>
+<div class= bildefor>Før bilde @user.Sug_VedleggEn</div>
+<div class= bildeetter>Etter bilde @user.Sug_VedleggTo</div>
 
+<form method="post" asp-controller="Suggestions" >
+<ul><a class="knapper" href="/Suggestions/Edit?id=@user.Sug_ID">Edit</a></ul> 
+<ul><a class="knapper" href="/Suggestions/Delete?id=@user.Sug_ID">Delete</a></ul>
+
+
+</form>
 </div>
 </div>
 
@@ -104,4 +110,4 @@ font-size: 20px;
 
     </div>
 
-
+}

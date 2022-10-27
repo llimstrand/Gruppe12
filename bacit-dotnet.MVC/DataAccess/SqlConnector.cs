@@ -34,7 +34,7 @@ namespace bacit_dotnet.MVC.DataAccess
 
         }
        
-        /*Lage ny ansatt*/
+        /*Lage nytt team*/
         public void SetTeams(TeamsViewModel model)
         {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
@@ -54,6 +54,17 @@ namespace bacit_dotnet.MVC.DataAccess
             command.Parameters.AddWithValue("@teamnavn", model.Team_Navn);
             command.Parameters.AddWithValue("@teamleder", model.Team_Leder);
             command.ExecuteNonQuery(); 
+        }
+
+        /*Lage ny ansatt*/
+        public void SetUsers(UsersViewModel model)
+        {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
+            connection.Open();
+            var query = "Insert into employee(Emp_Nr, Emp_Navn, Emp_Passord) values (@AnsattNummer, @AnsattNavn, @AnsattPassord)";
+            WriteDataUsers(query, connection, model);
+            connection.Close();
+
         }
 
         /*Henter alle ansatte*/
@@ -76,29 +87,19 @@ namespace bacit_dotnet.MVC.DataAccess
 
 
         }
-       
-        /*Lage ny ansatt*/
-        public void SetUsers(UsersViewModel model)
-        {
-            using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
-            connection.Open();
-            var query = "Insert into employee(Emp_Nr, Emp_Navn, Emp_Passord) values (@ansattnummer, @ansattnavn, @ansattpassord)";
-            Console.WriteLine(query);
-            WriteData(query, connection, model);
-            connection.Close();
-        }
 
-        private void WriteData(string query, MySqlConnection conn, UsersViewModel model)
+        private void WriteDataUsers(string query, MySqlConnection conn, UsersViewModel model)
         {
+          
             using var command = conn.CreateCommand();
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = query;
-            command.Parameters.AddWithValue("@ansattnummer", model.Emp_Nr);
-            command.Parameters.AddWithValue("@ansattnavn", model.Emp_Navn);
-            command.Parameters.AddWithValue("@ansattpassord", model.Emp_Passord);
+            command.Parameters.AddWithValue("@AnsattNummer", model.Emp_Nr);
+            command.Parameters.AddWithValue("@AnsattNavn", model.Emp_Navn);
+            command.Parameters.AddWithValue("@AnsattPassord", model.Emp_Passord);
             command.ExecuteNonQuery(); 
         }
-        
+
         private MySqlDataReader ReadData(string query, MySqlConnection conn)
         {
             using var command = conn.CreateCommand();
@@ -106,6 +107,7 @@ namespace bacit_dotnet.MVC.DataAccess
             command.CommandText = query;
             return command.ExecuteReader();
         }
+
         private MySqlDataReader ReadDatawithID(string query, MySqlConnection conn, int id){
             using var command = conn.CreateCommand();
             command.CommandType = System.Data.CommandType.Text;
@@ -114,6 +116,55 @@ namespace bacit_dotnet.MVC.DataAccess
             return command.ExecuteReader();
         }
 
+        /*Henter alle forslag*/
+        public  IEnumerable<Suggestion> FetchSug() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Suggestions = new List<Suggestion>();
+            var reader = ReadData("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions", connection);
+            while (reader.Read())
+            {
+                var user = new Suggestion();
+                user.Sug_ID = reader.GetInt32("Sug_ID");
+                user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
+                user.Sug_Beskrivelse = reader.GetString("Sug_Beskrivelse");
+                user.Sug_Ansvarlig = reader.GetString("Sug_Ansvarlig");
+                user.Sug_Status = reader.GetString("Sug_Status");
+                user.Sug_Frist = reader.GetString("Sug_Frist");
+                user.Sug_Varighet = reader.GetString("Sug_Varighet");
+                Suggestions.Add(user);
+            }
+            connection.Close();
+            return Suggestions;
+
+        }
+
+         /*Hente et enkelt forslag*/
+        public  IEnumerable<Suggestion> SaveSug(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Suggestions = new List<Suggestion>();
+            var reader = ReadDatawithID("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions where Sug_ID = @id", connection, id);
+            while (reader.Read())
+            {
+                var user = new Suggestion();
+                user.Sug_ID = reader.GetInt32("Sug_ID");
+                user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
+                user.Sug_Beskrivelse = reader.GetString("Sug_Beskrivelse");
+                user.Sug_Ansvarlig = reader.GetString("Sug_Ansvarlig");
+                user.Sug_Status = reader.GetString("Sug_Status");
+                user.Sug_Frist = reader.GetString("Sug_Frist");
+                user.Sug_Varighet = reader.GetString("Sug_Varighet");
+                Suggestions.Add(user);
+            }
+            connection.Close();
+            return Suggestions;
+
+
+        }
+        
         /*Lage nytt forslag*/
         public void SetSug(SuggestionViewModel model)
         {
@@ -142,6 +193,7 @@ namespace bacit_dotnet.MVC.DataAccess
             command.ExecuteNonQuery(); 
         }
 
+        /*Oppdaterer forslagsverdier*/
         public void SetUpSug(SuggestionViewModel model){
                using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
             connection.Open();
@@ -168,43 +220,7 @@ namespace bacit_dotnet.MVC.DataAccess
 
         }
 
-
-        private void DeleteData(string query, MySqlConnection conn, int id){
-             Console.WriteLine("Model");
-            using var command = conn.CreateCommand();
-            command.CommandType = System.Data.CommandType.Text;
-            command.CommandText = query;
-            command.Parameters.AddWithValue("@id", id);
-            command.ExecuteNonQuery();
-
-        }
-   
-        /*henter alle forslag*/
-        public  IEnumerable<Suggestion> FetchSug() {
-            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
-            connection.Open();
-
-            var Suggestions = new List<Suggestion>();
-            var reader = ReadData("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions", connection);
-            while (reader.Read())
-            {
-                var user = new Suggestion();
-                user.Sug_ID = reader.GetInt32("Sug_ID");
-                user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
-                user.Sug_Beskrivelse = reader.GetString("Sug_Beskrivelse");
-                user.Sug_Ansvarlig = reader.GetString("Sug_Ansvarlig");
-                user.Sug_Status = reader.GetString("Sug_Status");
-                user.Sug_Frist = reader.GetString("Sug_Frist");
-                user.Sug_Varighet = reader.GetString("Sug_Varighet");
-                Suggestions.Add(user);
-            }
-            connection.Close();
-            return Suggestions;
-
-
-        }
-        
-
+        /*sende inn det redigerte forslaget*/
          public  IEnumerable<Suggestion> UpdateSug(int id) {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
@@ -229,14 +245,22 @@ namespace bacit_dotnet.MVC.DataAccess
 
         }
 
+        private void DeleteData(string query, MySqlConnection conn, int id){
+             Console.WriteLine("Model");
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@id", id);
+            command.ExecuteNonQuery();
+
+        }
+
+        /*Sletter et forslag*/
           public  void DeleteSug(int id) {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
             DeleteData("Delete from Suggestions where Sug_ID = @id", connection, id);
             connection.Close();
-
-
-
         }
 
     }

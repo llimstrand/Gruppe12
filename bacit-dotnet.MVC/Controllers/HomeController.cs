@@ -20,10 +20,6 @@ namespace bacit_dotnet.MVC.Controllers
         {
             return View();
         }
-        public IActionResult ViewSug()
-        {
-            return View();
-        }
          public IActionResult MitTeam()
         {
            return View();
@@ -35,38 +31,7 @@ namespace bacit_dotnet.MVC.Controllers
            public IActionResult MinProf()
         {
             return View();
-        }
-           public IActionResult AddEmp()
-        {
-            return View();
-        }
-
-          public IActionResult ViewEmp()
-        {
-            return View();
-        }
-        public IActionResult AddTeam()
-        {
-            return View();
-        }
-
-          public IActionResult ViewTeam()
-        {
-            return View();
-        }
-        
-        
-           public IActionResult Privacy()
-        {
-            return new ContentResult() { 
-                Content = @"<html>
-                            <head>
-                            <title>BACIT</title>    
-                            </head>
-                            <body><h1>?</h1>
-                            </body> 
-                            </html>", ContentType = "text/html; charset=UTF-8" };
-        }
+        } 
     
     }
 

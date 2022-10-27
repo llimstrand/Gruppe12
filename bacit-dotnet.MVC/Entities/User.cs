@@ -28,23 +28,4 @@
         public string Team_Leder { get; set; }
     }
 
-     class Create
-{
-    public enum Filter { Plan, Do, Study, Act }
-    public string Name { get; set; }
-    public int Age { get; set; }
-    public Job Porm { get; set; }
-
-    public Create(string name, int age, Job porm)
-    {
-        Name = name;
-        Age = age;
-        Porm = porm;
-    }
-
-    public override string ToString()
-    {
-        return string.Format("Name: {0} - Age {1} - {2}", Name, Age, Porm);
-    }
-}
 }

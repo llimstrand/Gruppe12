@@ -80,17 +80,13 @@
     <ul class="alleforslag">
         <p>Månedens forslag</p>
         <p>Alle forslag</p>
-        @foreach (var user in Model.suggestions)
-    
+        @foreach (var user in Model.suggestions) 
         {
-            <div class="forslagsliste">
-                <p class="@user.Sug_Status" >Status: @user.Sug_Status</p>
             <div class="forslagsliste" onclick="location.href='Save?id=@user.Sug_ID';" style="cursor: pointer;"> 
                 <p class="@user.Sug_Status">Status: @user.Sug_Status</p>
 
                 <h5> @user.Sug_Overskrift</h5>
                 <p>Frist: @user.Sug_Frist</p>
-                
             </div> 
             // location.href='save' gjør classen "clickable" så du sendes videre til "savecshtml"
         } 

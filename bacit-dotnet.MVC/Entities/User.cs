@@ -27,4 +27,5 @@
        public string Team_Navn { get; set; }
         public string Team_Leder { get; set; }
     }
+
 }

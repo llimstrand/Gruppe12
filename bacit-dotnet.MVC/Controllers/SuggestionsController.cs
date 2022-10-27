@@ -18,33 +18,45 @@ namespace bacit_dotnet.MVC.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var data = sqlConnector.FetchEmp();
+            var model = new UsersModel();
+            model.Users = data;
+            return View(model);
         }
-
-        [HttpPost]
-        public IActionResult Save(SuggestionViewModel model) 
-        {
-            sqlConnector.SetSaveSug(model);
-            var data = sqlConnector.FetchSug(); // Denne metoden henter ut data
-            var models = new SuggestionsModel();
-            models.suggestions = data;
-            return View(models);
-        }
-    
 
         [HttpGet]
         public IActionResult ViewSug()
         {
 
-            var data = sqlConnector.FetchSug();
+            var data = sqlConnector.FetchSug(); //henter alle forslag og sier at de skal vises på AlleFor
             var model = new SuggestionsModel();
             model.suggestions = data;
 
             return View("AlleFor",model);
 
         }
-        [HttpGet]
 
+        [HttpPost]
+        public IActionResult Save(SuggestionViewModel model) 
+        {
+            sqlConnector.SetSug(model);
+            var data = sqlConnector.FetchSug(); // Denne metoden henter ut data
+            var models = new SuggestionsModel();
+            models.suggestions = data;
+            return View(models);
+        }
+       
+        [HttpGet]
+         public IActionResult Save(int id) 
+        {
+            Console.WriteLine(id);
+            var data = sqlConnector.SaveSug(id); // Henter ut data med id
+            var model = new SuggestionsModel();
+            model.suggestions = data;
+            return View(model);
+        }
+       
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             Console.WriteLine(id);
@@ -55,16 +67,6 @@ namespace bacit_dotnet.MVC.Controllers
 
         }
 
-        [HttpGet]
-         public IActionResult Save(int id) 
-        {
-            Console.WriteLine(id);
-            var data = sqlConnector.SaveSug(id); // Få den til å hente ut data med id
-            var model = new SuggestionsModel();
-            model.suggestions = data;
-            return View(model);
-        }
-
         [HttpPost]
         public IActionResult Update(SuggestionViewModel model){
             Console.WriteLine("Update");
@@ -73,7 +75,7 @@ namespace bacit_dotnet.MVC.Controllers
             int id = 0;
             string? stringid = model.Sug_ID;
             
-               Boolean idcheck = string.IsNullOrEmpty(stringid);
+               Boolean idcheck = string.IsNullOrEmpty(stringid); //hvis id er null/tom skal den returnere feilmelding
                 if(!idcheck){
                 id = Int32.Parse(stringid);
                 Console.WriteLine(id);
@@ -82,14 +84,13 @@ namespace bacit_dotnet.MVC.Controllers
                 }
                 
     
-            var data = sqlConnector.UpdateSug(id);
+            var data = sqlConnector.UpdateSug(id); //hvis forslaget har en id skal forslaget vises
             var result = new SuggestionsModel();
             result.suggestions = data;
             return View("Save", result);
         }
 
         [HttpGet]
-
         public IActionResult Delete(int id)
         {
             Console.WriteLine(id);

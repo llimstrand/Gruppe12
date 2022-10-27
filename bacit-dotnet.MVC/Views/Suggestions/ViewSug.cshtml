@@ -16,9 +16,33 @@
         padding: 8px 0;
     }
 
-    .alleforslag{
+    .alleforslag {
         list-style: none;
         margin-left: 10%;
+    }
+
+    .knapper {
+        margin: 1%;
+        border-width: 1px;
+        border-radius: 4px;
+        font-size: medium;
+        background-color: white;
+        transition-duration: 0,4s;
+        cursor: pointer;
+        position: relative;
+        left: 920px; 
+    }
+
+    .knapper2:hover {
+        background-color: #FF5C5C;
+        color: white;
+        border-color: #FF5C5C; 
+    }
+
+      .knapper1:hover {
+        background-color: #7D7DFF;
+        color: white;
+        border-color: #7D7DFF;
     }
 
 </style>
@@ -36,7 +60,7 @@
             <label for="act"> Act</label> <br> <br>
         <p>Frist</p>
             <input type="date">
-
+           
     </div>
 
     <ul class="alleforslag">
@@ -49,9 +73,6 @@
                 <p>@user.Sug_Status</p>
                 <h5> @user.Sug_Overskrift</h5>
                 <p>Frist: @user.Sug_Frist</p>
-         
-            </div>
-
-                 
+            </div>      
         }
     </ul>

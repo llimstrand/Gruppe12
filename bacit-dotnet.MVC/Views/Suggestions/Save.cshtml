@@ -2,57 +2,58 @@
 
 
 <style>
+
 .forslag {
-box-shadow:  0px 2px 8px 0px #959da5;
-width: 250px;
-height: 350px;
-border-radius: 10px;
-margin: 20px;
-padding: 15px;
-}
+        box-shadow:  0px 2px 8px 0px #959da5;
+        width: 250px;
+        height: 350px;
+        border-radius: 10px;
+        margin: 20px;
+        padding: 15px;
+   }
 
 
 .bakgrunn {
-position: relative;
-width: 900px;
-height: 550px;
-left: 380px;
-border-radius: 10px;
-box-shadow:  0px 2px 8px 0px #959da5;
-padding-right:55px;
-padding-left:50px;
-padding-bottom:50px;
-padding-top: 140px;
-margin-top: 50px;
-}
+        position: relative;
+        width: 900px;
+        height: 550px;
+        left: 380px;
+        border-radius: 10px;
+        box-shadow:  0px 2px 8px 0px #959da5;
+        padding-right:55px;
+        padding-left:50px;
+        padding-bottom:50px;
+        padding-top: 140px;
+        margin-top: 50px;
+   }
 
 .bildefor{
-border: 1px solid #ddd;
-border-radius: 4px;
-padding: 5px;
-width: 180px;
-height: 190px;
-position:absolute; 
-left: 385px; top:310px;
-  }
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 180px;
+        height: 190px;
+        position:absolute; 
+        left: 385px; top:310px;
+   }
 
   .bildeetter{
-border: 1px solid #ddd;
-border-radius: 4px;
-padding: 5px;
-width: 180px;
-height: 190px;
-position:absolute; 
-left:640px; top:310px;
-}
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 180px;
+        height: 190px;
+        position:absolute; 
+        left:640px; top:310px; 
+   }
 
 
 .tittel{
-position:absolute; 
-left:70px;  
-margin-top: -75px;
-font-size: 20px;
-}
+        position:absolute; 
+        left:70px;  
+        margin-top: -75px;
+        font-size: 20px;
+   }
 
   .sidemeny {
         width: 250px;
@@ -63,10 +64,61 @@ font-size: 20px;
     }
 
     .beskrivelse {
-    float: right; 
-    margin-top: 20px;
-    width: 58%;
+        float: right; 
+        margin-top: 20px;
+        width: 58%;
      }
+
+     .knapper {
+        border-width: 2px;
+        border-radius: 6px;
+        color: black;
+        font-size: medium;
+        background-color: white;
+        transition-duration: 0,4s;
+        cursor: pointer;
+        position: relative;
+        left: 600px;
+        float: left;
+        clear: none; 
+        margin-left: 4%;
+        margin-right: 4%;
+        padding-left: 7%;
+        padding-right: 7%;
+        -webkit-appearance: none; 
+    }
+
+    .knapper1:hover {
+        
+        color: black;
+        border-color:  #1c2287;  
+        border-radius: 6px;
+        border width: 2px;
+        background-color: #ced0f2;
+    }
+
+    .knapper2:hover {
+        
+        color: black;
+        border-color: #942519;
+        border-radius: 6px;
+        border-width: 2px;
+        background-color: #f7dad7;
+    }  
+
+     .bildefor {
+        border: none;
+    }
+
+     .bildeetter {
+        border: none;
+    }
+
+    #beskrivelse {
+        position: relative;
+        left: 1%;
+    }
+
 </style>
 
 
@@ -74,7 +126,7 @@ font-size: 20px;
 @foreach(var user in  Model.suggestions){
 <div class= bakgrunn> 
 <div class= tittel><b><h4>@user.Sug_Overskrift</h4></b></div>
-<div class = beskrivelse> <p><b>Beskrivelse:</b> @user.Sug_Beskrivelse</p></div>
+<textarea ID=beskrivelse class = beskrivelse> Beskrivelse: @user.Sug_Beskrivelse </textarea>
 <div class= forslag>
 <p> <b>Ansvarlig:</b><br>@user.Sug_Ansvarlig</p> 
 <p> <b>Status:</b><br>@user.Sug_Status</p>
@@ -86,8 +138,8 @@ font-size: 20px;
 <div class= bildeetter>Etter bilde @user.Sug_VedleggTo</div>
 
 <form method="post" asp-controller="Suggestions" >
-<ul><a class="knapper" href="/Suggestions/Edit?id=@user.Sug_ID">Edit</a></ul> 
-<ul><a class="knapper" href="/Suggestions/Delete?id=@user.Sug_ID">Delete</a></ul>
+<button class="knapper knapper1" href="/Suggestions/Edit?id=@user.Sug_ID">Edit</button> 
+<button class="knapper knapper2" href="/Suggestions/Delete?id=@user.Sug_ID">Delete</button>
 
 
 </form>

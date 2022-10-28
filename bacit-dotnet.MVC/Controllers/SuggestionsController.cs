@@ -42,8 +42,6 @@ namespace bacit_dotnet.MVC.Controllers
             Console.WriteLine(model.Emp_Nr);
             Console.WriteLine(model.Executor_Nr);
             sqlConnector.SetSug(model);
-            sqlConnector.SetProposer(model);
-            sqlConnector.SetExecutor(model);
             var data = sqlConnector.FetchSug(); // Denne metoden henter ut data
             var models = new SuggestionsModel();
             models.suggestions = data;

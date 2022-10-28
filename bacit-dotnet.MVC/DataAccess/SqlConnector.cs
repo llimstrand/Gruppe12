@@ -253,7 +253,6 @@ namespace bacit_dotnet.MVC.DataAccess
         }
 
         private void DeleteData(string query, MySqlConnection conn, int id){
-             Console.WriteLine("Model");
             using var command = conn.CreateCommand();
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = query;
@@ -266,7 +265,9 @@ namespace bacit_dotnet.MVC.DataAccess
           public  void DeleteSug(int id) {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
-            DeleteData("Delete from Suggestions where Sug_ID = @id", connection, id);
+            DeleteData("Delete from executor where Sug_ID = @id", connection,id);
+            DeleteData("Delete from proposer where Sug_ID = @id", connection, id);
+            DeleteData("Delete from suggestions where Sug_ID = @id", connection, id);
             connection.Close();
         }
 

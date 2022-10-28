@@ -19,7 +19,7 @@
         public byte[] Sug_VedleggEn { get; set; }
         public byte[] Sug_VedleggTo { get; set; }
 
-        public DateTime Sug_Timestamp {get; set;}
+        public string Sug_Timestamp {get; set;}
     }
     public class Team
     {

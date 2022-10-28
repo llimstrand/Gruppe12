@@ -122,9 +122,11 @@ namespace bacit_dotnet.MVC.DataAccess
             connection.Open();
 
             var Suggestions = new List<Suggestion>();
-            var reader = ReadData("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions", connection);
+            var reader = ReadData("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet, Sug_TimeStamp from suggestions", connection);
             while (reader.Read())
             {
+                DateTime date = reader.GetDateTime("Sug_Timestamp");
+
                 var user = new Suggestion();
                 user.Sug_ID = reader.GetInt32("Sug_ID");
                 user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
@@ -133,6 +135,9 @@ namespace bacit_dotnet.MVC.DataAccess
                 user.Sug_Status = reader.GetString("Sug_Status");
                 user.Sug_Frist = reader.GetString("Sug_Frist");
                 user.Sug_Varighet = reader.GetString("Sug_Varighet");
+                user.Sug_Timestamp = date.ToString("D");
+
+            
                 Suggestions.Add(user);
             }
             connection.Close();
@@ -146,9 +151,10 @@ namespace bacit_dotnet.MVC.DataAccess
             connection.Open();
 
             var Suggestions = new List<Suggestion>();
-            var reader = ReadDatawithID("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions where Sug_ID = @id", connection, id);
+            var reader = ReadDatawithID("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet, Sug_TimeStamp from suggestions where Sug_ID = @id", connection, id);
             while (reader.Read())
-            {
+            {   
+                DateTime date = reader.GetDateTime("Sug_Timestamp");
                 var user = new Suggestion();
                 user.Sug_ID = reader.GetInt32("Sug_ID");
                 user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
@@ -157,6 +163,7 @@ namespace bacit_dotnet.MVC.DataAccess
                 user.Sug_Status = reader.GetString("Sug_Status");
                 user.Sug_Frist = reader.GetString("Sug_Frist");
                 user.Sug_Varighet = reader.GetString("Sug_Varighet");
+                user.Sug_Timestamp = date.ToString("D");
                 Suggestions.Add(user);
             }
             connection.Close();

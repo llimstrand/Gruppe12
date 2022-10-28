@@ -58,12 +58,12 @@
             @foreach (var user in Model.Users)
             {
             <li>
-                <div class="ansattliste">
+                <div class="ansattliste" onclick="location.href='Save?id=@user.Emp_Nr';" style="cursor: pointer;"> 
                     <p>Ansattnummer: @user.Emp_Nr</p>
                     <h5>@user.Emp_Navn</h5>
                 </div>
             </li>   
             }
         </ul>
-  
+ 
   

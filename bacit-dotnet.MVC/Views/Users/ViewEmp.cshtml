@@ -1,4 +1,4 @@
-@model bacit_dotnet.MVC.Models.Users.UsersViewModel
+@model bacit_dotnet.MVC.Models.UsersModel
 
 <style>
     .enkeltansatt{
@@ -52,10 +52,11 @@
 }
 </style>
 
+@foreach(var users in Model.Users){
 <div class="enkeltansatt"> 
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
-    <h3><b>@Model.Emp_Navn</b></h3>
-    <p><div class= litenInfo> Ansattnummer: @Model.Emp_Nr </div></p>
+    <h3><b>@users.Emp_Navn</b></h3>
+    <p><div class= litenInfo> Ansattnummer: @users.Emp_Nr </div></p>
 
     <div class="profilbilde"></div>
 
@@ -65,4 +66,6 @@
         <input type="button" value="REDIGER ANSATT"  class="ansattknapp">
        <input type="button" value="SLETT ANSATT"  class="ansattknapp">
     </div>
-</div>
+</div>}
+ 
+ 

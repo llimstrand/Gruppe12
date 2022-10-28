@@ -56,6 +56,7 @@ namespace bacit_dotnet.MVC.DataAccess
             command.ExecuteNonQuery(); 
         }
 
+
         /*Lage ny ansatt*/
         public void SetUsers(UsersViewModel model)
         {
@@ -69,6 +70,46 @@ namespace bacit_dotnet.MVC.DataAccess
 
         /*Henter alle ansatte*/
         public  IEnumerable<User> FetchEmp() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Users = new List<User>();
+            var reader = ReadData("select Emp_Nr, Emp_Navn, Emp_Passord from employee", connection);
+            while (reader.Read())
+            {
+                var user = new User();
+                user.Emp_Nr = reader.GetInt32("Emp_Nr");
+                user.Emp_Navn = reader.GetString("Emp_Navn");
+                user.Emp_Passord = reader.GetString("Emp_Passord");
+                Users.Add(user);
+            }
+            connection.Close();
+            return Users;
+
+
+        }
+
+         public  IEnumerable<User> FetchEmpByID(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Users = new List<User>();
+            var reader = ReadDatawithID("select Emp_Nr, Emp_Navn, Emp_Passord from employee where Emp_Nr = @id", connection, id);
+            while (reader.Read())
+            {
+                var user = new User();
+                user.Emp_Nr = reader.GetInt32("Emp_Nr");
+                user.Emp_Navn = reader.GetString("Emp_Navn");
+                user.Emp_Passord = reader.GetString("Emp_Passord");
+                Users.Add(user);
+            }
+            connection.Close();
+            return Users;
+
+
+        }
+
+         public  IEnumerable<User> ViewEmp(int id) {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
 

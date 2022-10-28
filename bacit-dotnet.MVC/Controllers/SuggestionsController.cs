@@ -15,7 +15,7 @@ namespace bacit_dotnet.MVC.Controllers
             _logger = logger;
             this.sqlConnector = sqlConnector;
         }
-
+ 
         public IActionResult Index()
         {
             var data = sqlConnector.FetchEmp();

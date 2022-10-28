@@ -14,10 +14,12 @@ namespace bacit_dotnet.MVC.DataAccess
         IEnumerable<User> FetchEmp();
         IEnumerable<Suggestion> FetchSug();
         IEnumerable<Suggestion> SaveSug(int id);
+          IEnumerable<User> ViewEmp(int id);
         void SetSug(SuggestionViewModel model);
          void SetUpSug(SuggestionViewModel model);
         IEnumerable<Suggestion> UpdateSug(int id);
         void DeleteSug(int id);
+        IEnumerable<User> FetchEmpByID(int id);
 
     }
 }

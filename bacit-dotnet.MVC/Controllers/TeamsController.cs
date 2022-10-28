@@ -21,13 +21,18 @@ namespace bacit_dotnet.MVC.Controllers
             return View();
         }
         public IActionResult AddTeam()
-        {
-            return View();
+        { 
+            var data = sqlConnector.FetchEmp();
+            var model = new UsersModel();
+            model.Users = data;
+            return View(model);
         }
 
          [HttpPost]
         public IActionResult Save(TeamsViewModel model) 
-        {
+        {   
+            Console.WriteLine(model.Team_ID);
+           
             sqlConnector.SetTeams(model);
             return View("ViewTeam",model); 
         }

@@ -82,8 +82,8 @@
 
 
      <li>
-        <label for="Emp_Navn">Hvem sitt forslag var det?</label> <br>
-        <select id="DropDownList1" name="Emp_Navn" required> 
+        <label for="Emp_Nr">Hvem sitt forslag var det?</label> <br>
+        <select id="DropDownList1" name="Emp_Nr" required> 
        @foreach (var user in Model.Users){
             <option value= "@user.Emp_Nr">@user.Emp_Navn</option>
        }
@@ -91,6 +91,15 @@
      
         </select>
     </li><br>
+    
+                <li>
+                        <label for="Executor_Nr">Hvem utførte forslaget?</label> <br>
+                        <select id="DropDownList2" name="Executor_Nr" required> 
+                            @foreach (var user in Model.Users){
+                                    <option value= "@user.Executor_Nr">@user.Emp_Navn</option>
+                            }
+                        </select>
+                </li><br>
 
     <li>
         <label for="Sug_Status">Status for forslaget</label> <br>

@@ -2,7 +2,6 @@
 
 
 <style>
-
 .forslag {
         box-shadow:  0px 2px 8px 0px #959da5;
         width: 250px;
@@ -134,15 +133,16 @@
 <p> <b>Varighet:</b><br>@user.Sug_Varighet</p>
 <p> <b>Sendt inn:</b><br>@user.Sug_Timestamp</p>
 
+
 <div class= bildefor>Før bilde @user.Sug_VedleggEn</div>
 <div class= bildeetter>Etter bilde @user.Sug_VedleggTo</div>
 
-<form method="post" asp-controller="Suggestions" >
-<button class="knapper knapper1" href="/Suggestions/Edit?id=@user.Sug_ID">Edit</button> 
-<button class="knapper knapper2" href="/Suggestions/Delete?id=@user.Sug_ID">Delete</button>
+<div>
+<a class="knapper knapper1" href="/Suggestions/Edit?id=@user.Sug_ID">Edit</a> 
+<a class="knapper knapper2" href="/Suggestions/Delete?id=@user.Sug_ID">Delete</a>
 
 
-</form>
+</div>
 </div>
 </div>
 

@@ -5,7 +5,9 @@ namespace bacit_dotnet.MVC.Models.Suggestions
     public class SuggestionViewModel
     {
 
-        public string? Sug_ID{get ; set;}
+        public Int32 Sug_ID{get ; set;}
+        public string? Emp_Nr{get; set;}
+        public string? Executor_Nr{get; set;}
         [Required]
         [MinLength(7, ErrorMessage ="Skriv en ordentlig tittel!")]
         public string Sug_Overskrift { get; set; }
@@ -21,6 +23,9 @@ namespace bacit_dotnet.MVC.Models.Suggestions
         public DateTime Sug_Timestamp {get; set;}
 
         public SuggestionViewModel(){
+            Random random = new Random();
+            int randomNumber = random.Next();
+            this.Sug_ID = randomNumber;
             this.Sug_Timestamp = DateTime.Now;
         }
         

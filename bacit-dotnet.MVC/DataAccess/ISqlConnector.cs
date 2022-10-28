@@ -20,6 +20,8 @@ namespace bacit_dotnet.MVC.DataAccess
         IEnumerable<Suggestion> UpdateSug(int id);
         void DeleteSug(int id);
         IEnumerable<User> FetchEmpByID(int id);
+        void SetProposer(SuggestionViewModel model);
+        void SetExecutor(SuggestionViewModel model);
 
     }
 }

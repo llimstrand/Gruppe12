@@ -38,7 +38,9 @@ namespace bacit_dotnet.MVC.Controllers
 
         [HttpPost]
         public IActionResult Save(SuggestionViewModel model) 
-        {
+        {   
+            Console.WriteLine(model.Emp_Nr);
+            Console.WriteLine(model.Executor_Nr);
             sqlConnector.SetSug(model);
             var data = sqlConnector.FetchSug(); // Denne metoden henter ut data
             var models = new SuggestionsModel();
@@ -72,18 +74,8 @@ namespace bacit_dotnet.MVC.Controllers
             Console.WriteLine("Update");
             sqlConnector.SetUpSug(model);
             Console.WriteLine("Model");
-            int id = 0;
-            string? stringid = model.Sug_ID;
+            int id =  model.Sug_ID;
             
-               Boolean idcheck = string.IsNullOrEmpty(stringid); //hvis id er null/tom skal den returnere feilmelding
-                if(!idcheck){
-                id = Int32.Parse(stringid);
-                Console.WriteLine(id);
-                } else{
-                    Console.WriteLine("Sug_Id is empty or Null");
-                }
-                
-    
             var data = sqlConnector.UpdateSug(id); //hvis forslaget har en id skal forslaget vises
             var result = new SuggestionsModel();
             result.suggestions = data;

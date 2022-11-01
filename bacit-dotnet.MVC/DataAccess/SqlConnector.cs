@@ -164,7 +164,7 @@ namespace bacit_dotnet.MVC.DataAccess
             connection.Open();
 
             var Suggestions = new List<Suggestion>();
-            var reader = ReadData("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions", connection);
+            var reader = ReadData("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions ORDER BY Sug_Timestamp DESC", connection);
             while (reader.Read())
             {
 
@@ -203,7 +203,7 @@ namespace bacit_dotnet.MVC.DataAccess
                 user.Sug_Status = reader.GetString("Sug_Status");
                 user.Sug_Frist = reader.GetString("Sug_Frist");
                 user.Sug_Varighet = reader.GetString("Sug_Varighet");
-                user.Sug_Timestamp = date.ToString("D");
+                user.Sug_Timestamp = date.ToString("g");
                 Suggestions.Add(user);
             }
             connection.Close();

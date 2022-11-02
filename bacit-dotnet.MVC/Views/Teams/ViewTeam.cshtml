@@ -1,4 +1,4 @@
-@model bacit_dotnet.MVC.Models.Teams.TeamsViewModel
+@model bacit_dotnet.MVC.Models.TeamsModel
 <style>
     .enkeltteam{
         border: none;
@@ -29,11 +29,12 @@
        margin-left: 90%;
   }
 </style>
+@foreach (var team in Model.Teams){
 <div class="enkeltteam"> 
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
 
-    <h3><b>@Model.Team_Navn</b></h3>
-    <p> Teamleder: @Model.Team_Leder</p>
+    <h3><b>@team.Team_Navn</b></h3>
+    <p> Teamleder: @team.Team_Leder</p>
 
     <div class="teamknapper">
         <input type="button" value="Se ansattstatistikk"  class="teamknapp">
@@ -41,4 +42,4 @@
         <input type="button" value="Rediger ansatt"  class="teamknapp">
         <input type="button" value="Slett ansatt"  class="teamknapp">
     </div>
-</div>
+</div> }

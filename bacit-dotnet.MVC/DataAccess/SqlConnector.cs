@@ -35,7 +35,7 @@ namespace bacit_dotnet.MVC.DataAccess
         }
        
         /*Lage nytt team*/
-        public void SetTeams(TeamsViewModel model)
+        public void SetTeam(TeamsViewModel model)
         {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
             connection.Open();
@@ -43,7 +43,31 @@ namespace bacit_dotnet.MVC.DataAccess
             Console.WriteLine(query);
             WriteData(query, connection, model);
             connection.Close();
-        }
+        } 
+
+          public IEnumerable<Team> ViewTeams(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+          
+            var Users = new List<Team>();
+            var reader = ReadDatawithID("select Team_ID, Team_Navn, Team_Leder from team where Team_ID = @id", connection, id);
+            while (reader.Read())
+          
+            {
+                var user = new Team();
+                user.Team_ID = reader.GetInt32("Team_ID");
+                user.Team_Navn = reader.GetString("Team_Navn");
+                user.Team_Leder = reader.GetString("Team_Leder");
+         
+                Users.Add(user);
+            
+            }
+            connection.Close();
+            return Users;
+           }
+          
+          
+        
 
         private void WriteData(string query, MySqlConnection conn, TeamsViewModel model)
         {
@@ -127,8 +151,9 @@ namespace bacit_dotnet.MVC.DataAccess
             connection.Close();
             return Users;
 
+         }
 
-        }
+      
 
         private void WriteDataUsers(string query, MySqlConnection conn, UsersViewModel model)
         {

@@ -11,6 +11,8 @@ namespace bacit_dotnet.MVC.DataAccess
         IEnumerable<Team> FetchTeam();
         void SetTeam(TeamsViewModel model);
         IEnumerable<Team> ViewTeams(int id);
+        void DeleteTeam(int id);
+
       
         void SetUsers(UsersViewModel model);
         IEnumerable<User> FetchEmp();

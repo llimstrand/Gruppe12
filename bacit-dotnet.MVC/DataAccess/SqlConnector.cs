@@ -66,7 +66,17 @@ namespace bacit_dotnet.MVC.DataAccess
             return Users;
            }
           
-          
+
+        
+
+            public  void DeleteTeam(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+            DeleteData("Delete from team where Team_ID = @id", connection, id);
+            connection.Close();
+
+
+        }
         
 
         private void WriteData(string query, MySqlConnection conn, TeamsViewModel model)

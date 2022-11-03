@@ -29,17 +29,17 @@
        margin-left: 90%;
   }
 </style>
-@foreach (var team in Model.Teams){
+@foreach (var user in Model.Teams){
 <div class="enkeltteam"> 
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
 
-    <h3><b>@team.Team_Navn</b></h3>
-    <p> Teamleder: @team.Team_Leder</p>
+    <h3><b>@user.Team_Navn</b></h3>
+    <p> Teamleder: @user.Team_Leder</p>
 
     <div class="teamknapper">
-        <input type="button" value="Se ansattstatistikk"  class="teamknapp">
-        <input type="button" value="Bytt team"  class="teamknapp">
-        <input type="button" value="Rediger ansatt"  class="teamknapp">
-        <input type="button" value="Slett ansatt"  class="teamknapp">
+        <a type="button" class="teamknapp">Se ansattstatistikk</a>
+        <a type="button" class="teamknapp">Bytt team</a>
+        <a type="button" class="teamknapp">Rediger ansatt</a>
+        <a type="button" href="/Teams/Delete?id=@user.Team_ID"   class="teamknapp">Slett team</a>
     </div>
 </div> }

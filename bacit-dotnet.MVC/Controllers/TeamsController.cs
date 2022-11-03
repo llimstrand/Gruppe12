@@ -71,7 +71,18 @@ namespace bacit_dotnet.MVC.Controllers
             sqlConnector.SetTeam(model);
             return View(model); 
         }
-        
-        
+
+                
+        [HttpGet]
+
+        public IActionResult Delete(int id)
+        {
+            Console.WriteLine(id);
+            sqlConnector.DeleteTeam(id); // Denne metoden sletter data
+            return View("DeleteTeam");
+
+         }
     }
 }
+        
+        

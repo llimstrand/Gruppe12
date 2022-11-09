@@ -41,8 +41,8 @@
   .profilbilde {
     border: 3px solid #878787;
     border-radius: 50%;
-    height: 300px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
     float: right;
     margin-top: -30px;
     margin-right: 20px;
@@ -58,15 +58,17 @@
     <h3><b>@users.Emp_Navn</b></h3>
     <p><div class= litenInfo> Ansattnummer: @users.Emp_Nr </div></p>
 
+
+
     <div class="profilbilde"></div>
 
     <div class="ansattknapper">
         <input type="button" value="SE ANSATTSTATESTIKK"  class="ansattknapp">
         <input type="button" value="BYTT TEAM"  class="ansattknapp">
-        <input type="button" value="REDIGER ANSATT"  class="ansattknapp">
-       <a href="/Users/Delete?id=@users.Emp_Nr"> <input type="button" value="SLETT ANSATT" class="ansattknapp"></a>
-       
+        <a  href="/Users/Edit?id=@users.Emp_Nr"> <input type="button" value="REDIGER ANSATT"  class="ansattknapp"></a> 
+       <input type="button" value="SLETT ANSATT"  class="ansattknapp">
     </div>
-</div>}
- 
+</div>  
+}
+
  

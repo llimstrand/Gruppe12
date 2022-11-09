@@ -12,13 +12,15 @@ namespace bacit_dotnet.MVC.DataAccess
         void SetTeam(TeamsViewModel model);
         IEnumerable<Team> ViewTeams(int id);
         void DeleteTeam(int id);
+        IEnumerable<Team> UpdateTeam(int id);
+         void SetUpTeam(TeamsViewModel model);
 
-      
         void SetUsers(UsersViewModel model);
         IEnumerable<User> FetchEmp();
+        void DeleteEmp(int id);
         IEnumerable<Suggestion> FetchSug();
         IEnumerable<Suggestion> SaveSug(int id);
-          IEnumerable<User> ViewEmp(int id);
+        IEnumerable<User> ViewEmp(int id);
         void SetSug(SuggestionViewModel model);
          void SetUpSug(SuggestionViewModel model);
         IEnumerable<Suggestion> UpdateSug(int id);

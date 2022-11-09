@@ -49,7 +49,7 @@ namespace bacit_dotnet.MVC.DataAccess
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
           
-            var Users = new List<Team>();
+            var teams = new List<Team>();
             var reader = ReadDatawithID("select Team_ID, Team_Navn, Team_Leder from team where Team_ID = @id", connection, id);
             while (reader.Read())
           
@@ -59,11 +59,11 @@ namespace bacit_dotnet.MVC.DataAccess
                 user.Team_Navn = reader.GetString("Team_Navn");
                 user.Team_Leder = reader.GetString("Team_Leder");
          
-                Users.Add(user);
+                teams.Add(user);
             
             }
             connection.Close();
-            return Users;
+            return teams;
            }
           
 
@@ -74,6 +74,50 @@ namespace bacit_dotnet.MVC.DataAccess
             connection.Open();
             DeleteData("Delete from team where Team_ID = @id", connection, id);
             connection.Close();
+
+
+        }
+
+            public void SetUpTeam(TeamsViewModel model){
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
+            connection.Open();
+            Console.WriteLine(model.Team_Navn);
+            var query = "Update team set Team_Navn = @Navn, Team_Leder = @Leder where Team_ID = @id;";
+            UpdateTeamData(query, connection, model);
+            Console.WriteLine("UpdateData");
+            connection.Close();
+        }
+
+        private void UpdateTeamData(string query, MySqlConnection conn, TeamsViewModel model){
+             Console.WriteLine("Model");
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@Navn", model.Team_Navn);
+            command.Parameters.AddWithValue("@Leder", model.Team_Leder);
+            command.Parameters.AddWithValue("@Id", model.Team_ID);
+            command.ExecuteNonQuery();
+
+        }
+
+
+                public  IEnumerable<Team> UpdateTeam(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var teams = new List<Team>();
+            var reader = ReadDatawithID("select Team_ID, Team_navn, Team_Leder from team where Team_ID = @id", connection, id);
+            while (reader.Read())
+            {
+                var user = new Team();
+                user.Team_ID = reader.GetInt32("Team_ID");
+                user.Team_Navn = reader.GetString("Team_Navn");
+                user.Team_Leder = reader.GetString("Team_Leder");
+            
+                teams.Add(user);
+            }
+            connection.Close();
+            return teams;
 
 
         }
@@ -162,6 +206,15 @@ namespace bacit_dotnet.MVC.DataAccess
             return Users;
 
          }
+
+         public void DeleteEmp(int id) {
+           using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+           connection.Open();
+           DeleteData("Delete from employee where Emp_nr = @id", connection, id);
+           connection.Close();
+ 
+ 
+       }
 
       
 

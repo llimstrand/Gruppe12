@@ -41,7 +41,10 @@ namespace bacit_dotnet.MVC.Controllers
         public IActionResult Save(UsersViewModel model) 
         {
             sqlConnector.SetUsers(model);
-            return View("ViewEmp",model); 
+            var data = sqlConnector.FetchEmpByID(model.Emp_Nr);
+            var models = new UsersModel();
+            models.Users = data;
+            return View("ViewEmp",models); 
         }
 
         [HttpGet]

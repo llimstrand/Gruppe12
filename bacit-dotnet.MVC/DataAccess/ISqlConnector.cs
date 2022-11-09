@@ -9,7 +9,11 @@ namespace bacit_dotnet.MVC.DataAccess
     public interface ISqlConnector
     {
         IEnumerable<Team> FetchTeam();
-        void SetTeams(TeamsViewModel model);
+        void SetTeam(TeamsViewModel model);
+        IEnumerable<Team> ViewTeams(int id);
+        void DeleteTeam(int id);
+
+      
         void SetUsers(UsersViewModel model);
         IEnumerable<User> FetchEmp();
         IEnumerable<Suggestion> FetchSug();

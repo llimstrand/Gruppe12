@@ -22,6 +22,8 @@ namespace bacit_dotnet.MVC.DataAccess
         IEnumerable<User> FetchEmpByID(int id);
         void SetProposer(SuggestionViewModel model);
         void SetExecutor(SuggestionViewModel model);
+        IEnumerable<User> UpdateEmp(int id);
+        void SetUpEmp(UsersViewModel model);
 
     }
 }

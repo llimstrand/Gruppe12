@@ -28,7 +28,7 @@ namespace bacit_dotnet.MVC.Controllers
         [HttpGet]
         public IActionResult Save(int id) 
         {
-            
+
             Console.WriteLine(id);
             var data = sqlConnector.FetchEmpByID(id);
             var model = new UsersModel();
@@ -63,5 +63,29 @@ namespace bacit_dotnet.MVC.Controllers
             return View(model); 
         }
         
+        [HttpGet]
+
+        public IActionResult Edit(int id)
+        {
+            Console.WriteLine(id);
+            var data = sqlConnector.UpdateEmp(id); 
+            var model = new UsersModel();
+            model.Users = data;
+            return View(model);
+        }
+
+    [HttpPost]
+        public IActionResult Update(UsersViewModel model){
+            Console.WriteLine("Updates");
+            sqlConnector.SetUpEmp(model);
+            Console.WriteLine("Model");
+            Console.WriteLine(model.Emp_Nr);
+            int id = model.Emp_Nr;
+            Console.WriteLine(id);
+            var data = sqlConnector.UpdateEmp(id);
+            var result = new UsersModel();
+            result.Users = data;
+            return View("ViewEmp", result);}
+
     }
 }

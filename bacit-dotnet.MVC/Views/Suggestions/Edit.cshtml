@@ -1,4 +1,21 @@
-@model bacit_dotnet.MVC.Models.SuggestionsModel
+@model dynamic
+
+<style>
+ .knapp {
+       padding: 15px;
+        background-color: #717e74;
+        border-radius: 5px;
+        color: white;
+        border: none;
+        width: 180px;
+        text-decoration: none;
+    }
+
+    .knapp:hover {
+        color: black;
+        background-color: #ced0f2;
+    }
+</style>
 
 @foreach(var user in  Model.suggestions){
 <div class="lageforslag">
@@ -20,6 +37,26 @@
         <label for="Sug_Ansvarlig">Hvem er ansvarlig for at dette blir gjort?</label> <br>
         <input required="required" type="text" name="Sug_Ansvarlig" placeholder="Forslagsansvarlig" Value=@user.Sug_Ansvarlig />
     </li><br>
+     <li>
+        <label for="Emp_Nr">Hvem sitt forslag var det?</label> <br>
+        <select id="DropDownList1" name="Emp_Nr" required> 
+       @foreach (var user in Model.Users){
+            <option value= "@user.Emp_Nr">@user.Emp_Navn</option>
+       }
+
+     
+        </select>
+    </li><br>
+    
+                <li>
+                        <label for="Executor_Nr">Hvem utførte forslaget?</label> <br>
+                        <select id="DropDownList2" name="Executor_Nr" required> 
+                            @foreach (var user in Model.Users){
+                                    <option value= "@user.Executor_Nr">@user.Emp_Navn</option>
+                            }
+                        </select>
+                </li><br>
+
     <li>
         <label for="Sug_Status">Status for forslaget</label> <br>
         <select name="Sug_Status" required> 
@@ -50,7 +87,7 @@
         <input type="byte" name="Sug_VedleggTo" />
     </li><br>
     <li>
-        <input type="submit" value="Send inn" class="sendinn"/>
+        <a class="knapp" href="/Suggestions/Save?id=@user.Sug_ID">Send Inn</a>
     </li><br>
      </div>
 </ul>

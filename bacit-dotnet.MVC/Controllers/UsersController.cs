@@ -65,6 +65,14 @@ namespace bacit_dotnet.MVC.Controllers
             sqlConnector.SetUsers(model);
             return View(model); 
         }
+
+        public IActionResult Delete(int id)
+       {
+           Console.WriteLine(id);
+           sqlConnector.DeleteEmp(id); // Denne metoden sletter data
+           return View("DeleteEmp");
+ 
+        }
         
         [HttpGet]
 

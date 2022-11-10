@@ -37,6 +37,7 @@ namespace bacit_dotnet.MVC.DataAccess
         IEnumerable<User> FetchStatEmpPr();
         IEnumerable<Team> FetchStatTeamEx();
         IEnumerable<Team> FetchStatTeamPr();
+        void SetMember(TeamsViewModel model);
 
     }
 }

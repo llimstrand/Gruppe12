@@ -1,0 +1,15 @@
+@model dynamic
+
+<form action="/Teams/Lagre" method="post">
+        @foreach(var User in Model.Teams){                 
+    <input required="required" type="hidden" name="Team_ID" value=@User.Team_ID /> <br>
+        }
+        
+    <label for="Emp_Nr">Hvem er med i teamet?</label> <br>
+        <select id="DropDownList2" name="Emp_Nr" required> 
+                @foreach (var user in Model.Users){
+                    <option value= "@user.Emp_Nr">@user.Emp_Navn</option>
+                }
+        </select>
+        <input type="submit" value="Legg til medlem" class="sendinn"/>
+</form>

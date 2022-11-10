@@ -93,7 +93,7 @@
 <div class="lageteam">
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" /> 
 
-    <form action="/Teams/Save" method="post">
+    <form action="/Teams/Lagre" method="post">
         <ul style="list-style: none;">
                 
                 <li ID=team class="teamsinputs">
@@ -106,14 +106,7 @@
                     <input ID=Lederinn required="required" type="text" name="Team_Leder" placeholder="Teamleder"/> 
                 </li><br>
                 
-                <li>
-                        <label for="Emp_Nr">Hvem er med i teamet?</label> <br>
-                        <select id="DropDownList2" name="Emp_Nr" required> 
-                            @foreach (var user in Model.Users){
-                                    <option value= "@user.Emp_Nr">@user.Emp_Navn</option>
-                            }
-                        </select>
-                </li><br>
+                
 
                 <input type="submit" value="Opprett team" class="sendinn"/>
         </ul>

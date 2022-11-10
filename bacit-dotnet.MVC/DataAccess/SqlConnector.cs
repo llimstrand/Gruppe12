@@ -639,5 +639,28 @@ public  IEnumerable<Proposer> FetchProposer() {
             connection.Close();
             return Teams;
         }
+
+        public void SetMember(TeamsViewModel model)
+        {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
+            connection.Open();
+            var query = "insert into member(Emp_Nr, Team_ID) values (@ansattnummer, @teamid)";
+            Console.WriteLine(query);
+            WriteMember(query, connection, model);
+            connection.Close();
+
+        }
+
+        private void WriteMember(string query, MySqlConnection conn, TeamsViewModel model)
+        {
+          
+            Console.WriteLine(model.Emp_Nr);
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@ansattnummer", model.Emp_Nr);
+            command.Parameters.AddWithValue("@teamid", model.Team_ID);
+            command.ExecuteNonQuery(); 
+        }
     }
 }

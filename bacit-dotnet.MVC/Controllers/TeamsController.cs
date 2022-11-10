@@ -2,6 +2,7 @@ using bacit_dotnet.MVC.Models;
 using bacit_dotnet.MVC.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using bacit_dotnet.MVC.Models.Teams;
+using System.Dynamic;
 
 namespace bacit_dotnet.MVC.Controllers
 {
@@ -39,21 +40,34 @@ namespace bacit_dotnet.MVC.Controllers
             return View("ViewTeam", model); 
         }
 
-        
-        
-        
-        
-        
         [HttpPost]
         public IActionResult Save(TeamsViewModel model) 
         {   
             Console.WriteLine(model.Team_ID);
-
             sqlConnector.SetTeam(model);
             var data = sqlConnector.ViewTeams(model.Team_ID);
             var models = new TeamsModel();
             models.Teams = data;
             return View("ViewTeam",models); 
+        }
+
+        [HttpPost]
+        public IActionResult Lagre(TeamsViewModel model) 
+        {   
+            Console.WriteLine(model.Team_ID);
+            sqlConnector.SetMember(model);
+            var data = sqlConnector.ViewTeams(model.Team_ID);
+            var models = new TeamsModel();
+            models.Teams = data;
+            return View("ViewTeam",models); 
+        }
+
+        public IActionResult AddMember(int id, TeamsViewModel model)
+        { 
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Teams = sqlConnector.ViewTeams(id); ;
+            mymodel.Users = sqlConnector.FetchEmp();
+            return View(mymodel);
         }
 
         [HttpGet]

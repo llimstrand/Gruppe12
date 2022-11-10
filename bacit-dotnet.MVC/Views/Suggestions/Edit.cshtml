@@ -1,5 +1,22 @@
 @model dynamic
 
+<style>
+ .knapp {
+       padding: 15px;
+        background-color: #717e74;
+        border-radius: 5px;
+        color: white;
+        border: none;
+        width: 180px;
+        text-decoration: none;
+    }
+
+    .knapp:hover {
+        color: black;
+        background-color: #ced0f2;
+    }
+</style>
+
 @foreach(var user in  Model.suggestions){
 <div class="lageforslag">
 <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
@@ -70,7 +87,7 @@
         <input type="byte" name="Sug_VedleggTo" />
     </li><br>
     <li>
-        <input type="submit" value="Send inn" class="sendinn"/>
+        <a class="knapp" href="/Suggestions/Save?id=@user.Sug_ID">Send Inn</a>
     </li><br>
      </div>
 </ul>

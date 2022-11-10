@@ -28,6 +28,10 @@ namespace bacit_dotnet.MVC.DataAccess
         void SetExecutor(SuggestionViewModel model);
         IEnumerable<User> UpdateEmp(int id);
         void SetUpEmp(UsersViewModel model);
+        IEnumerable<User> FetchStatEmpEx();
+        IEnumerable<User> FetchStatEmpPr();
+        IEnumerable<Team> FetchStatTeamEx();
+        IEnumerable<Team> FetchStatTeamPr();
 
     }
 }

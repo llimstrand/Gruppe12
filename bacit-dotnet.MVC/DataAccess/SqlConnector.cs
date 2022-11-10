@@ -430,8 +430,75 @@ namespace bacit_dotnet.MVC.DataAccess
             }
             connection.Close();
             return users;
+        }
+         public  IEnumerable<User> FetchStatEmpEx() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
 
+            var Users = new List<User>();
+            var reader = ReadData("SELECT executor.Emp_Nr, employee.Emp_Navn, COUNT(executor.Emp_Nr) AS Antall_Forslag FROM executor, employee WHERE executor.Emp_Nr = employee.Emp_Nr GROUP BY executor.Emp_Nr ORDER BY Antall_Forslag DESC", connection);
+            while (reader.Read())
+            {
+                var user = new User();
+                user.Executor_Nr = reader.GetInt32("Emp_Nr");
+                user.Emp_Navn = reader.GetString("Emp_Navn");
+                user.Antall_Forslag = reader.GetInt32("Antall_Forslag");
+                Users.Add(user);
+            }
+            connection.Close();
+            return Users;
+        }
 
+         public  IEnumerable<User> FetchStatEmpPr() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Users = new List<User>();
+            var reader = ReadData("SELECT proposer.Emp_Nr, employee.Emp_Navn, COUNT(proposer.Emp_Nr) AS Antall_Forslag FROM proposer, employee WHERE proposer.Emp_Nr = employee.Emp_Nr GROUP BY proposer.Emp_Nr ORDER BY Antall_Forslag DESC", connection);
+            while (reader.Read())
+            {
+                var user = new User();
+                user.Emp_Nr = reader.GetInt32("Emp_Nr");
+                user.Emp_Navn = reader.GetString("Emp_Navn");
+                user.Antall_Pr_Forslag = reader.GetInt32("Antall_Forslag");
+                Users.Add(user);
+            }
+            connection.Close();
+            return Users;
+        }
+
+        public  IEnumerable<Team> FetchStatTeamEx() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Teams = new List<Team>();
+            var reader = ReadData("SELECT team.Team_Navn, COUNT(executor.Emp_Nr) AS Antall_Utf_Forslag FROM executor, employee, team, member WHERE executor.Emp_Nr = employee.Emp_Nr AND employee.Emp_Nr = member.Emp_Nr AND member.Team_ID = team.Team_ID GROUP BY team.Team_Navn ORDER BY Antall_Utf_Forslag DESC", connection);
+            while (reader.Read())
+            {
+                var user = new Team();
+                user.Team_Navn = reader.GetString("Team_Navn");
+                user.Antall_Forslag = reader.GetInt32("Antall_Utf_Forslag");
+                Teams.Add(user);
+            }
+            connection.Close();
+            return Teams;
+        }
+
+        public  IEnumerable<Team> FetchStatTeamPr() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Teams = new List<Team>();
+            var reader = ReadData("SELECT team.Team_Navn, COUNT(proposer.Emp_Nr) AS Antall_Utf_Forslag FROM proposer, employee, team, member WHERE proposer.Emp_Nr = employee.Emp_Nr AND employee.Emp_Nr = member.Emp_Nr AND member.Team_ID = team.Team_ID GROUP BY team.Team_Navn ORDER BY Antall_Utf_Forslag DESC", connection);
+            while (reader.Read())
+            {
+                var user = new Team();
+                user.Team_Navn = reader.GetString("Team_Navn");
+                user.Antall_Pr_Forslag = reader.GetInt32("Antall_Utf_Forslag");
+                Teams.Add(user);
+            }
+            connection.Close();
+            return Teams;
         }
     }
 }

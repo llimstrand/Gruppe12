@@ -15,4 +15,7 @@ namespace bacit_dotnet.MVC.Models
     {
         public IEnumerable<Team> Teams { get; set; }
     }
+    public class ProposerModel{
+        public IEnumerable<Proposer> Proposers {get; set;}
+    }
 }

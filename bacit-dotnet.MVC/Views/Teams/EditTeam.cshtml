@@ -1,0 +1,12 @@
+@model bacit_dotnet.MVC.Models.TeamsModel
+
+  @foreach(var User in Model.Teams){
+ <form action="/Teams/Update" method="post">
+         <input required="required" type="hidden" name="Team_ID" value=@User.Team_ID /> <br>
+         <input required="required" type="text" name="Team_Navn" value=@User.Team_Navn /> <br>
+         <input required="hidden" type="text" name="Team_Leder" value=@User.Team_Leder /> <br>
+         <input type="submit" value="Send inn" class="sendinn"/>
+  <br>
+  </form>
+
+    }

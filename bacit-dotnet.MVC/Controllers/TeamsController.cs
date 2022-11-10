@@ -47,10 +47,13 @@ namespace bacit_dotnet.MVC.Controllers
         [HttpPost]
         public IActionResult Save(TeamsViewModel model) 
         {   
-            Console.WriteLine(model.Team_ID);
+            //Console.WriteLine(model.Team_ID);
            
             sqlConnector.SetTeam(model);
-            return View("ViewTeam",model); 
+             var data = sqlConnector.ViewTeams(model.Team_ID);
+             var models = new TeamsModel();
+             models.Teams = data;
+            return View("ViewTeam",models); 
         }
 
         [HttpGet]

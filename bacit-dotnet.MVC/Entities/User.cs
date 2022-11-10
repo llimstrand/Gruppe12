@@ -8,6 +8,9 @@
         public string? Emp_ExNavn { get; set; }
         public string? Emp_PrNavn { get; set; }
         public string Emp_Passord { get; set; }
+        public int Antall_Forslag { get; set; }
+        public int Antall_Pr_Forslag { get; set; }
+
 
     }
     public class Proposer{
@@ -32,8 +35,13 @@
     public class Team
     {
         public int Team_ID {get; set;}
-       public string Team_Navn { get; set; }
+        public string Team_Navn { get; set; }
         public string Team_Leder { get; set; }
+        public int Executor_Nr { get; set; }
+        public int Antall_Forslag { get; set; }
+        public int Antall_Pr_Forslag { get; set; }
+        
+     
     }
 
 }

@@ -2,6 +2,7 @@
 using bacit_dotnet.MVC.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using bacit_dotnet.MVC.Models;
+using System.Dynamic;
 
 namespace bacit_dotnet.MVC.Controllers
 {
@@ -44,10 +45,11 @@ namespace bacit_dotnet.MVC.Controllers
             sqlConnector.SetSug(model);
             sqlConnector.SetProposer(model);
             sqlConnector.SetExecutor(model);
-            var data = sqlConnector.FetchSug(); // Denne metoden henter ut data
+            var data = sqlConnector.FetchSug(); //henter alle forslag og sier at de skal vises på AlleFor
             var models = new SuggestionsModel();
             models.suggestions = data;
-            return View(models);
+
+            return View("AlleFor",models);
         }
        
         [HttpGet]
@@ -55,19 +57,24 @@ namespace bacit_dotnet.MVC.Controllers
         {
             Console.WriteLine(id);
             var data = sqlConnector.SaveSug(id); // Henter ut data med id
-            var model = new SuggestionsModel();
-            model.suggestions = data;
-            return View(model);
+            dynamic mymodel = new ExpandoObject();
+            mymodel.suggestions = sqlConnector.SaveSug(id);
+            mymodel.Proposers = sqlConnector.FetchProByID(id);
+            mymodel.Users = sqlConnector.FetchExByID(id);
+            
+            return View("Save", mymodel);
         }
        
         [HttpGet]
         public IActionResult Edit(int id)
         {
             Console.WriteLine(id);
-            var data = sqlConnector.UpdateSug(id); // Denne metoden henter ut data
-            var model = new SuggestionsModel();
-            model.suggestions = data;
-            return View(model);
+             // Denne metoden henter ut data
+            dynamic mymodel = new ExpandoObject();
+            mymodel.suggestions = sqlConnector.UpdateSug(id); ;
+            mymodel.Users = sqlConnector.FetchEmp();
+            
+            return View(mymodel);
 
         }
 
@@ -81,7 +88,7 @@ namespace bacit_dotnet.MVC.Controllers
             var data = sqlConnector.UpdateSug(id); //hvis forslaget har en id skal forslaget vises
             var result = new SuggestionsModel();
             result.suggestions = data;
-            return View("Save", result);
+            return View("AlleFor", result);
         }
 
         [HttpGet]

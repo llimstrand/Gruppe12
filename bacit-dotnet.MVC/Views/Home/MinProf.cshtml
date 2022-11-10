@@ -22,6 +22,13 @@
         border: none;
         width: 180px;
         float: right;
+        text-align: center;
+        text-decoration: none;
+    }
+.sendinn:hover{
+        
+        background-color: #5F6961;
+        color: white;
     }
 .profilbilde {
     border: 3px solid #878787;
@@ -64,7 +71,7 @@
             <input type="button" value="Hjelp" class="instillinger"/>
         </li> <br> <br>
         <li>
-            <input type="submit" value="Logg ut" class="sendinn"/>
+            <a  class="sendinn" asp-area="" asp-controller="Home" asp-action="Index">Logg ut</a>
         </li>
     </ul>
 </div>

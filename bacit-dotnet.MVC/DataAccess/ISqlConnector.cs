@@ -13,6 +13,7 @@ namespace bacit_dotnet.MVC.DataAccess
         void SetUsers(UsersViewModel model);
         IEnumerable<User> FetchEmp();
         IEnumerable<Suggestion> FetchSug();
+        IEnumerable<Proposer> FetchProposer();
         IEnumerable<Suggestion> SaveSug(int id);
           IEnumerable<User> ViewEmp(int id);
         void SetSug(SuggestionViewModel model);
@@ -20,6 +21,8 @@ namespace bacit_dotnet.MVC.DataAccess
         IEnumerable<Suggestion> UpdateSug(int id);
         void DeleteSug(int id);
         IEnumerable<User> FetchEmpByID(int id);
+        IEnumerable<Proposer> FetchProByID(int id);
+        IEnumerable<User> FetchExByID(int id);
         void SetProposer(SuggestionViewModel model);
         void SetExecutor(SuggestionViewModel model);
 

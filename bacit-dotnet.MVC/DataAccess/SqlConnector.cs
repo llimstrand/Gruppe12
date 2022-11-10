@@ -62,7 +62,7 @@ namespace bacit_dotnet.MVC.DataAccess
         {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
             connection.Open();
-            var query = "Insert into employee(Emp_Nr, Emp_Navn, Emp_Passord) values (@AnsattNummer, @AnsattNavn, @AnsattPassord)";
+            var query = "Insert into employee(Emp_Nr, Emp_Navn, Emp_Passord) values (@ansattnummer, @ansattnavn, @ansattpassord)";
             WriteDataUsers(query, connection, model);
             connection.Close();
 
@@ -102,6 +102,44 @@ namespace bacit_dotnet.MVC.DataAccess
                 user.Emp_Nr = reader.GetInt32("Emp_Nr");
                 user.Emp_Navn = reader.GetString("Emp_Navn");
                 user.Emp_Passord = reader.GetString("Emp_Passord");
+                user.Executor_Nr = reader.GetInt32("Emp_Nr");
+                Users.Add(user);
+            }
+            connection.Close();
+            return Users;
+
+
+        }
+        public  IEnumerable<Proposer> FetchProByID(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Users = new List<Proposer>();
+            var reader = ReadDatawithID("Select proposer.Emp_Nr, employee.Emp_Navn from proposer inner join employee where Sug_ID = @id and proposer.Emp_Nr = employee.Emp_Nr", connection, id);
+            while (reader.Read())
+            {
+                var user = new Proposer();
+                user.Emp_Nr = reader.GetInt32("Emp_Nr");
+                user.Emp_PrNavn = reader.GetString("Emp_Navn");
+                Console.WriteLine(user.Emp_Nr);
+                Users.Add(user);
+            }
+            connection.Close();
+            return Users;
+
+
+        }
+        public  IEnumerable<User> FetchExByID(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Users = new List<User>();
+            var reader = ReadDatawithID("Select executor.Emp_Nr, employee.Emp_Navn from executor inner join employee where Sug_ID = @id and executor.Emp_Nr = employee.Emp_Nr", connection, id);
+            while (reader.Read())
+            {
+                var user = new User();
+                user.Executor_Nr = reader.GetInt32("Emp_Nr");
+                user.Emp_ExNavn = reader.GetString("Emp_Navn");
                 Users.Add(user);
             }
             connection.Close();
@@ -136,9 +174,9 @@ namespace bacit_dotnet.MVC.DataAccess
             using var command = conn.CreateCommand();
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = query;
-            command.Parameters.AddWithValue("@AnsattNummer", model.Emp_Nr);
-            command.Parameters.AddWithValue("@AnsattNavn", model.Emp_Navn);
-            command.Parameters.AddWithValue("@AnsattPassord", model.Emp_Passord);
+            command.Parameters.AddWithValue("@ansattnummer", model.Emp_Nr);
+            command.Parameters.AddWithValue("@ansattnavn", model.Emp_Navn);
+            command.Parameters.AddWithValue("@ansattpassord", model.Emp_Passord);
             command.ExecuteNonQuery(); 
         }
 
@@ -184,6 +222,27 @@ namespace bacit_dotnet.MVC.DataAccess
             return Suggestions;
 
         }
+public  IEnumerable<Proposer> FetchProposer() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var proposers = new List<Proposer>();
+            var reader = ReadData("Select proposer.Emp_Nr, employee.Emp_Navn from proposer inner join employee where proposer.Emp_Nr = employee.Emp_Nr", connection);
+            while (reader.Read())
+            {
+
+                var propose = new Proposer();
+                propose.Emp_Nr = reader.GetInt32("Emp_Nr");
+                propose.Emp_PrNavn = reader.GetString("Emp_Navn");
+                
+
+            
+                proposers.Add(propose);
+            }
+            connection.Close();
+            return proposers;
+
+        }
 
          /*Hente et enkelt forslag*/
         public  IEnumerable<Suggestion> SaveSug(int id) {
@@ -206,6 +265,7 @@ namespace bacit_dotnet.MVC.DataAccess
                 user.Sug_Timestamp = date.ToString("g");
                 Suggestions.Add(user);
             }
+           
             connection.Close();
             return Suggestions;
 
@@ -247,7 +307,13 @@ namespace bacit_dotnet.MVC.DataAccess
             connection.Open();
             Console.WriteLine(model.Sug_Overskrift);
             var query = "Update suggestions set Sug_Overskrift = @Overskrift, Sug_Beskrivelse = @Beskrivelse, Sug_Ansvarlig = @Ansvarlig, Sug_Status = @Status, Sug_Frist = @Frist, Sug_Varighet = @Varighet where Sug_ID = @id;";
+            Console.WriteLine(model.Emp_Nr);
+            var query2= "Update proposer set Emp_Nr = @ansattnummer where Sug_ID = @id;";
+            Console.WriteLine(model.Emp_Nr);
+            var query3= "Update executor set Emp_Nr = @executornummer where Sug_ID = @id;";
             UpdateData(query, connection, model);
+            UpdateProposer(query2, connection, model);
+            UpdateExecutor(query3, connection, model);
             Console.WriteLine("UpdateData");
             connection.Close();
         }
@@ -263,6 +329,26 @@ namespace bacit_dotnet.MVC.DataAccess
             command.Parameters.AddWithValue("@Status", model.Sug_Status);
             command.Parameters.AddWithValue("@Frist", model.Sug_Frist);
             command.Parameters.AddWithValue("@Varighet", model.Sug_Varighet);
+            command.Parameters.AddWithValue("@id", model.Sug_ID);
+            command.ExecuteNonQuery();
+
+        }
+        private void UpdateProposer(string query2, MySqlConnection conn, SuggestionViewModel model){
+             Console.WriteLine("Model");
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query2;
+            command.Parameters.AddWithValue("@ansattnummer", model.Emp_Nr);
+            command.Parameters.AddWithValue("@id", model.Sug_ID);
+            command.ExecuteNonQuery();
+
+        }
+         private void UpdateExecutor(string query3, MySqlConnection conn, SuggestionViewModel model){
+             Console.WriteLine("Model");
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query3;
+            command.Parameters.AddWithValue("@executornummer", model.Executor_Nr);
             command.Parameters.AddWithValue("@id", model.Sug_ID);
             command.ExecuteNonQuery();
 
@@ -338,7 +424,7 @@ namespace bacit_dotnet.MVC.DataAccess
         {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
             connection.Open();
-            var query = "insert into executor(Emp_Nr, Sug_ID) values (@ansattnummer, @forslagsid)";
+            var query = "insert into executor(Emp_Nr, Sug_ID) values (@executornummer, @forslagsid)";
             Console.WriteLine(query);
             WriteExecutor(query, connection, model);
             connection.Close();
@@ -352,7 +438,7 @@ namespace bacit_dotnet.MVC.DataAccess
             using var command = conn.CreateCommand();
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = query;
-            command.Parameters.AddWithValue("@ansattnummer", model.Executor_Nr);
+            command.Parameters.AddWithValue("@executornummer", model.Executor_Nr);
             command.Parameters.AddWithValue("@forslagsid", model.Sug_ID);
             command.ExecuteNonQuery(); 
         }

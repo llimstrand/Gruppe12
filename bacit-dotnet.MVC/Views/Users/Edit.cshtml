@@ -1,0 +1,12 @@
+@model bacit_dotnet.MVC.Models.UsersModel
+
+  @foreach(var User in Model.Users){
+ <form action="/Users/Update" method="post">
+         <input required="required" type="hidden" name="Emp_Nr" value=@User.Emp_Nr /> <br>
+         <input required="required" type="text" name="Emp_Navn" value=@User.Emp_Navn /> <br>
+         <input required="hidden" type="text" name="Emp_passord" value=@User.Emp_Passord /> <br>
+              <input type="submit" value="Send inn" class="sendinn"/>
+  <br>
+  </form>
+
+    }

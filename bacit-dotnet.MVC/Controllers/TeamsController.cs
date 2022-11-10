@@ -28,12 +28,28 @@ namespace bacit_dotnet.MVC.Controllers
             return View(model);
         }
 
-         [HttpPost]
+        
+        [HttpGet]
+        public IActionResult Save(int id) 
+        {   
+            var data = sqlConnector.ViewTeams(id); // Henter ut data med id
+            var model = new TeamsModel();
+            model.Teams = data;
+          
+            return View("ViewTeam", model); 
+        }
+
+        
+        
+        
+        
+        
+        [HttpPost]
         public IActionResult Save(TeamsViewModel model) 
         {   
             Console.WriteLine(model.Team_ID);
            
-            sqlConnector.SetTeams(model);
+            sqlConnector.SetTeam(model);
             return View("ViewTeam",model); 
         }
 
@@ -48,6 +64,50 @@ namespace bacit_dotnet.MVC.Controllers
             return View("AllTeam",model);
 
         }
-        
+
+           [HttpPost]
+        public IActionResult ViewTeam(TeamsViewModel model) 
+        {
+            sqlConnector.SetTeam(model);
+            return View(model); 
+        }
+
+                
+        [HttpGet]
+
+        public IActionResult Delete(int id)
+        {
+            Console.WriteLine(id);
+            sqlConnector.DeleteTeam(id); // Denne metoden sletter data
+            return View("DeleteTeam");
+
+         }
+
+          [HttpGet]
+
+        public IActionResult Edit(int id)
+        {
+            Console.WriteLine(id);
+            var data = sqlConnector.UpdateTeam(id); // Denne metoden henter ut data
+            var model = new TeamsModel();
+            model.Teams = data;
+            return View("EditTeam",model);
     }
-}
+
+     [HttpPost]
+        public IActionResult Update(TeamsViewModel model){
+            Console.WriteLine("Update");
+            sqlConnector.SetUpTeam(model);
+            Console.WriteLine("Model");
+            Console.WriteLine(model.Team_ID);
+            int id = model.Team_ID;
+            Console.WriteLine(id);
+            var data = sqlConnector.UpdateTeam(id);
+            var result = new TeamsModel();
+            result.Teams = data;
+            return View("ViewTeam", result); 
+    }
+ }
+ }
+        
+        

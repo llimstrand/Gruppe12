@@ -80,7 +80,7 @@
             @foreach (var user in Model.Teams)
             {
             <li>
-                <div class="teamliste">
+                <div class="teamliste" onclick="location.href='Save?id=@user.Team_ID';" style="cursor: pointer;">
                     <h5>Team @user.Team_Navn</h5>
                     <p>Teamleder: @user.Team_Leder</p>
                     <p class="med"><b class="antmedlemmer"> 6</b><br> <div class="medlemmer">MEDLEMMER</div></p>

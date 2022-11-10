@@ -35,7 +35,7 @@ namespace bacit_dotnet.MVC.DataAccess
         }
        
         /*Lage nytt team*/
-        public void SetTeams(TeamsViewModel model)
+        public void SetTeam(TeamsViewModel model)
         {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
             connection.Open();
@@ -43,7 +43,85 @@ namespace bacit_dotnet.MVC.DataAccess
             Console.WriteLine(query);
             WriteData(query, connection, model);
             connection.Close();
+        } 
+
+          public IEnumerable<Team> ViewTeams(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+          
+            var teams = new List<Team>();
+            var reader = ReadDatawithID("select Team_ID, Team_Navn, Team_Leder from team where Team_ID = @id", connection, id);
+            while (reader.Read())
+          
+            {
+                var user = new Team();
+                user.Team_ID = reader.GetInt32("Team_ID");
+                user.Team_Navn = reader.GetString("Team_Navn");
+                user.Team_Leder = reader.GetString("Team_Leder");
+         
+                teams.Add(user);
+            
+            }
+            connection.Close();
+            return teams;
+           }
+          
+
+        
+
+            public  void DeleteTeam(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+            DeleteData("Delete from team where Team_ID = @id", connection, id);
+            connection.Close();
+
+
         }
+
+            public void SetUpTeam(TeamsViewModel model){
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
+            connection.Open();
+            Console.WriteLine(model.Team_Navn);
+            var query = "Update team set Team_Navn = @Navn, Team_Leder = @Leder where Team_ID = @id;";
+            UpdateTeamData(query, connection, model);
+            Console.WriteLine("UpdateData");
+            connection.Close();
+        }
+
+        private void UpdateTeamData(string query, MySqlConnection conn, TeamsViewModel model){
+             Console.WriteLine("Model");
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@Navn", model.Team_Navn);
+            command.Parameters.AddWithValue("@Leder", model.Team_Leder);
+            command.Parameters.AddWithValue("@Id", model.Team_ID);
+            command.ExecuteNonQuery();
+
+        }
+
+
+                public  IEnumerable<Team> UpdateTeam(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var teams = new List<Team>();
+            var reader = ReadDatawithID("select Team_ID, Team_navn, Team_Leder from team where Team_ID = @id", connection, id);
+            while (reader.Read())
+            {
+                var user = new Team();
+                user.Team_ID = reader.GetInt32("Team_ID");
+                user.Team_Navn = reader.GetString("Team_Navn");
+                user.Team_Leder = reader.GetString("Team_Leder");
+            
+                teams.Add(user);
+            }
+            connection.Close();
+            return teams;
+
+
+        }
+        
 
         private void WriteData(string query, MySqlConnection conn, TeamsViewModel model)
         {
@@ -165,8 +243,18 @@ namespace bacit_dotnet.MVC.DataAccess
             connection.Close();
             return Users;
 
+         }
 
-        }
+         public void DeleteEmp(int id) {
+           using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+           connection.Open();
+           DeleteData("Delete from employee where Emp_nr = @id", connection, id);
+           connection.Close();
+ 
+ 
+       }
+
+      
 
         private void WriteDataUsers(string query, MySqlConnection conn, UsersViewModel model)
         {
@@ -443,5 +531,46 @@ public  IEnumerable<Proposer> FetchProposer() {
             command.ExecuteNonQuery(); 
         }
 
+            public void SetUpEmp(UsersViewModel model){
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
+            connection.Open();
+            Console.WriteLine(model.Emp_Navn);
+            var query = "Update employee set Emp_navn = @ansattnavn, Emp_Nr = @ansattnummer, Emp_passord = @ansattpassord where Emp_Nr = @Ansattnummer;";
+            UpdateEmpData(query, connection, model);
+            Console.WriteLine("UpdateData");
+            connection.Close();
+        }
+
+          private void UpdateEmpData(string query, MySqlConnection conn, UsersViewModel model){
+             Console.WriteLine("Model");
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@Ansattnummer", model.Emp_Nr);
+            command.Parameters.AddWithValue("@Ansattnavn", model.Emp_Navn);
+            command.Parameters.AddWithValue("@Ansattpassord", model.Emp_Passord);
+            command.ExecuteNonQuery();
+
+        }
+
+        public  IEnumerable<User> UpdateEmp(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var users = new List<User>();
+            var reader = ReadDatawithID("select Emp_Nr, Emp_navn, Emp_passord from employee where Emp_Nr = @id", connection, id);
+            while (reader.Read())
+            {
+                var user = new User();
+                user.Emp_Nr = reader.GetInt32("Emp_Nr");
+                user.Emp_Navn = reader.GetString("Emp_navn");
+                user.Emp_Passord = reader.GetString("Emp_passord");
+                users.Add(user);
+            }
+            connection.Close();
+            return users;
+
+
+        }
     }
 }

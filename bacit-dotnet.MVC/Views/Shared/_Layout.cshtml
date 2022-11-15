@@ -78,12 +78,12 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Suggestions" asp-action="ViewSug">Alle forslag</a>
+                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Suggestions" asp-action="AllSug">Alle forslag</a>
                         </li>
                         <li class="nav-item">
                             <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Stat" asp-action="ViewStatEmpEx">Statistikk</a>
                         </li>
-                        <a id="nordic" class="navbar-brand" asp-area="" asp-controller="Suggestions" asp-action="ViewSug">NordicDoor</a> 
+                        <a id="nordic" class="navbar-brand" asp-area="" asp-controller="Suggestions" asp-action="AllSug">NordicDoor</a> 
                 <button  class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -94,7 +94,7 @@
                             <a id="minprof" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MinProf">Min profil</a>
                         </li>
                         <li class="nav-item">
-                            <button id="knapp" ><a class="nav-link text-dark" asp-area="" asp-controller="suggestions" asp-action="">Send inn forslag</a></button>
+                            <button id="knapp" ><a class="nav-link text-dark" asp-area="" asp-controller="suggestions" asp-action="AddSug">Send inn forslag</a></button>
                         </li>
                     </ul>
                 </div>

@@ -17,7 +17,7 @@ namespace bacit_dotnet.MVC.Controllers
             this.sqlConnector = sqlConnector;
         }
  
-        public IActionResult Index()
+        public IActionResult AddSug()
         {
             var data = sqlConnector.FetchEmp();
             var model = new UsersModel();
@@ -26,14 +26,14 @@ namespace bacit_dotnet.MVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewSug()
+        public IActionResult AllSug()
         {
 
             var data = sqlConnector.FetchSug(); //henter alle forslag og sier at de skal vises på AlleFor
             var model = new SuggestionsModel();
             model.suggestions = data;
 
-            return View("AlleFor",model);
+            return View(model);
 
         }
 
@@ -49,7 +49,7 @@ namespace bacit_dotnet.MVC.Controllers
             var models = new SuggestionsModel();
             models.suggestions = data;
 
-            return View("AlleFor",models);
+            return View("AllSug",models);
         }
        
         [HttpGet]
@@ -62,7 +62,7 @@ namespace bacit_dotnet.MVC.Controllers
             mymodel.Proposers = sqlConnector.FetchProByID(id);
             mymodel.Users = sqlConnector.FetchExByID(id);
             
-            return View("Save", mymodel);
+            return View("ViewSug", mymodel);
         }
        
         [HttpGet]
@@ -90,7 +90,7 @@ namespace bacit_dotnet.MVC.Controllers
             models.suggestions = sqlConnector.SaveSug(id);
             models.Proposers = sqlConnector.FetchProByID(id);
             models.Users = sqlConnector.FetchExByID(id);
-            return View("Save", models);
+            return View("ViewSug", models);
         }
 
         [HttpGet]
@@ -99,6 +99,18 @@ namespace bacit_dotnet.MVC.Controllers
             Console.WriteLine(id);
             sqlConnector.DeleteSug(id); // Denne metoden sletter data
             return View("Delete");
+
+        }
+
+        [HttpGet]
+        public IActionResult AllSugAct()
+        {
+
+            var data = sqlConnector.FetchSugByAct(); //henter alle forslag og sier at de skal vises på AlleFor
+            var model = new SuggestionsModel();
+            model.suggestions = data;
+
+            return View(model);
 
         }
         

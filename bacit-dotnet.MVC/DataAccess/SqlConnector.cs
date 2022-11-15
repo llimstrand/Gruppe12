@@ -684,5 +684,30 @@ public  IEnumerable<Proposer> FetchProposer() {
             connection.Close();
             return teams;
            }
+        public  IEnumerable<Suggestion> FetchSugByAct() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Suggestions = new List<Suggestion>();
+            var reader = ReadData("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions where Sug_Status = 'act' ORDER BY Sug_Timestamp DESC", connection);
+            while (reader.Read())
+            {
+
+                var user = new Suggestion();
+                user.Sug_ID = reader.GetInt32("Sug_ID");
+                user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
+                user.Sug_Beskrivelse = reader.GetString("Sug_Beskrivelse");
+                user.Sug_Ansvarlig = reader.GetString("Sug_Ansvarlig");
+                user.Sug_Status = reader.GetString("Sug_Status");
+                user.Sug_Frist = reader.GetString("Sug_Frist");
+                user.Sug_Varighet = reader.GetString("Sug_Varighet");
+
+            
+                Suggestions.Add(user);
+            }
+            connection.Close();
+            return Suggestions;
+
+        }
     }
 }

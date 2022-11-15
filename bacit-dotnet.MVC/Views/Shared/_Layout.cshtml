@@ -14,19 +14,27 @@
         <style>
                 #knapp {
                     background-color: white;
-                    border-radius: 5%;
-                    border-width: 2px;
-                    border-color: black;
-                    position: fixed;
-                    top: 9%;
-                    left: 85%;
+                    border-radius: 5px;
+                    border: 2px solid #adadad;
+                    position: absolute;
+                    top: 44%;
+                    left: 86%;
+                    width: 170px;
+                    height: 57px;
                     
                 }
+
                 #knapp:hover {
-                    border-color: #adadad;
-                    border-radius: 5%;
-                    border-width: 2px;
+                    border-color: black;
                 }
+                 #minprof {
+                    top:8%;
+                    left:92%;
+                    width:100px;
+                    height:45px;
+                    position: absolute; 
+                    z-index: 2;                    
+                 }
                 
              
               .border-bottom {                  
@@ -45,28 +53,18 @@
                 #meny:hover {
                    text-decoration: underline grey;
                 }
-                #meny:visited{
-                    text-decoration: underline grey;
-                }
 
                 #nordic {
-                    margin-left: 26%; /* css til Nordicdoor */
-                    margin-right: 26%;
+                    margin-left: 44%; /* css til Nordicdoor */
+                    position: absolute;
+                    font-size: medium;
+                    bottom: 70%;
                 }
 
                 #nordic:hover {
                     text-decoration: underline grey;
                 }
-                #minprof {
-                    top:2%;
-                    left:67%;
-                    width:100px;
-                    height:45px;
-                    position: fixed; /* css til minprofil knapp */
-                    z-index: 2;
-                    left: 85%;
-                    
-                 }
+               
                 #minprof:hover {
                     text-decoration: underline grey; /* css til minprofil knapp */
                 } 
@@ -83,9 +81,6 @@
                             <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Suggestions" asp-action="ViewSug">Alle forslag</a>
                         </li>
                         <li class="nav-item">
-                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MitTeam">Mitt team</a>
-                        </li>
-                        <li class="nav-item">
                             <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Stat" asp-action="ViewStatEmpEx">Statistikk</a>
                         </li>
                         <a id="nordic" class="navbar-brand" asp-area="" asp-controller="Suggestions" asp-action="ViewSug">NordicDoor</a> 
@@ -95,11 +90,11 @@
                 </button>
 
                         </li> 
-                        <li  class="nav-item">
+                        <li >
                             <a id="minprof" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MinProf">Min profil</a>
                         </li>
-                        <li id="knapp" class="nav-item">
-                            <button id="knapp" ><a class="nav-link text-dark" asp-area="" asp-controller="suggestions" asp-action="">Legg til forslag</a></button>
+                        <li class="nav-item">
+                            <button id="knapp" ><a class="nav-link text-dark" asp-area="" asp-controller="suggestions" asp-action="">Send inn forslag</a></button>
                         </li>
                     </ul>
                 </div>

@@ -7,6 +7,7 @@
         border-left: none;
         border-right: none;
         padding: 10px;
+        column-count: 3;
         
     }
 
@@ -17,7 +18,10 @@
         background-color: white;
         text-decoration: none;
         color: #525252;
-
+    }
+    .nyansattknapp:hover {
+        border-color: black;
+        color: black;
     }
 
     .nyansatt {
@@ -36,6 +40,18 @@
         top: 250px;
         left: 25px;
         padding: 8px 0;
+    }
+    .ansatt{
+        font-size: large;
+    }
+    .pil {
+        text-align: right;
+        font-size: 20px;
+    }
+    .teamnavn{
+        font-size: small;
+        color: #7B7B7B;
+        text-align: center;
     }
 
 </style>
@@ -59,8 +75,9 @@
             {
             <li>
                 <div class="ansattliste" onclick="location.href='Save?id=@user.Emp_Nr';" style="cursor: pointer;"> 
-                    <p>Ansattnummer: @user.Emp_Nr</p>
-                    <h5>@user.Emp_Navn</h5>
+                    <p class="ansatt">@user.Emp_Navn</p> 
+                    <p class="teamnavn"> Team Navn</p>
+                    <p class="pil"> > </p>       
                 </div>
             </li>   
             }

@@ -13,17 +13,23 @@
        <style>
                 #knapp {
                     background-color: white;
-                    border-radius: 5%;
-                    border-width: 2px;
-                    border-color: black;
-                    position: fixed;
-                    left: 85%
+                    border-radius: 5px;
+                    border: 2px solid #adadad;
+                    position: absolute;
+                    top: 44%;
+                    left: 86%;
+                    width: 140px;
+                    height: 57px;
                 }
+                .admtil {
+                    top:8%;
+                    left:86%;
+                    position: absolute; 
+                    color: #7b7b7b;                    
+                 }
 
                 #knapp:hover{
-                    background-color: pink;
-                    border-color: pink;
-                    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+                    border-color: black;
                 }
 
               .border-top {
@@ -41,9 +47,7 @@
                }
                 #meny {
                     width: 100%;
-                    font-size: large;
-
-                    
+                    font-size: large;                   
                 }
 
                  #meny:hover {
@@ -51,12 +55,13 @@
                     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
                     border-radius: 5%;
                     width: 100%;
-                    
                 }
 
                 #nordic {
-                    margin-left: 20%;
-                    margin-right: 20%;
+                    margin-left: 44%; /* css til Nordicdoor */
+                    position: absolute;
+                    font-size: medium;
+                    bottom: 70%;
                 }
         </style>
         
@@ -85,7 +90,7 @@
                             <button id="knapp"><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdmProfile">Min Profil</a></button>
                         </li>
                         <li>
-                            <p>Administratortilgang</p>
+                            <p class="admtil">Administratortilgang</p>
                         </li>
                     </ul>
                 </div>

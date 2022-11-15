@@ -72,10 +72,6 @@
        
     }
 
-  .teaminputs{
-    text-align: center;
-  }
-
   #teamnavn {
     margin-right: 60%;
     font-size: medium;
@@ -86,14 +82,17 @@
     margin-right: 60%;
     font-size: medium;
   }
-
+h3{
+    text-align: center;
+}
 
 </style>
 
 <div class="lageteam">
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" /> 
+    <h3>Nytt team</h3>
 
-    <form action="/Teams/Lagre" method="post">
+    <form action="/Teams/Save" method="post">
         <ul style="list-style: none;">
                 
                 <li ID=team class="teamsinputs">
@@ -105,7 +104,6 @@
                     <p Id=teamleder >Teamleder</p>
                     <input ID=Lederinn required="required" type="text" name="Team_Leder" placeholder="Teamleder"/> 
                 </li><br>
-                
                 
 
                 <input type="submit" value="Opprett team" class="sendinn"/>

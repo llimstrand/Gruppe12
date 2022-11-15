@@ -74,7 +74,7 @@
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
     <div class="kolonne">
         @foreach (var user in Model.Teams){
-            <h3><b>@user.Team_Navn</b></h3>
+            <h3><b>Team @user.Team_Navn</b></h3>
             <p> Teamleder: @user.Team_Leder</p>
 
         <div class="teamknapper">

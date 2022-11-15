@@ -42,6 +42,7 @@
         public int Antall_Forslag { get; set; }
         public int Antall_Pr_Forslag { get; set; }
         public string Emp_Navn { get; set; }
+        public int Antall_Medlemmer { get; set; }
         
      
     }

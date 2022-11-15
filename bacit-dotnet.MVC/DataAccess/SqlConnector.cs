@@ -19,13 +19,14 @@ namespace bacit_dotnet.MVC.DataAccess
             connection.Open();
 
             var Teams = new List<Team>();
-            var reader = ReadData("select Team_ID, Team_Navn, Team_Leder from team", connection);
+            var reader = ReadData("SELECT team.Team_ID, team.Team_Navn, team.Team_Leder, member.Team_ID, COUNT(member.Emp_Nr) AS Antall_Medlemmer FROM team, member where team.Team_ID = member.Team_ID GROUP BY team.Team_Navn ORDER BY team.Team_Navn", connection);
             while (reader.Read())
             {
                 var user = new Team();
                 user.Team_ID = reader.GetInt32("Team_ID");
                 user.Team_Navn = reader.GetString("Team_Navn");
                 user.Team_Leder = reader.GetString("Team_leder");
+                user.Antall_Medlemmer = reader.GetInt32("Antall_Medlemmer");
                 Teams.Add(user);
             }
             connection.Close();

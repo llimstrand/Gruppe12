@@ -662,5 +662,26 @@ public  IEnumerable<Proposer> FetchProposer() {
             command.Parameters.AddWithValue("@teamid", model.Team_ID);
             command.ExecuteNonQuery(); 
         }
+
+         public IEnumerable<Team> ViewMembers(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+          
+            var teams = new List<Team>();
+            var reader = ReadDatawithID("Select employee.Emp_Navn, member.Emp_Nr, team.Team_ID from member, employee, team where employee.Emp_Nr = member.Emp_Nr and member.Team_ID = team.Team_ID and team.Team_ID = @id", connection, id);
+            while (reader.Read())
+          
+            {
+                var user = new Team();
+                user.Team_ID = reader.GetInt32("Team_ID");
+                user.Emp_Nr = reader.GetInt32("Emp_Nr");
+                user.Emp_Navn = reader.GetString("Emp_Navn");
+         
+                teams.Add(user);
+            
+            }
+            connection.Close();
+            return teams;
+           }
     }
 }

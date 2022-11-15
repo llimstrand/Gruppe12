@@ -7,22 +7,43 @@
         margin: auto;
         border-radius: 10px;
         box-shadow: 5px 10px 18px #888888; 
-        
     }
     .kolonne{
-    column-count: 2;
+        column-count: 2;
     }
     .teamknapp {
-        width: 130px;
-        height: 130px;
-        border: 1px solid #878787;
+        width: 120px;
+        height: 120px;
+        border: 1px solid #b8b8b8;
         background-color: white;
+        text-align: center;
+        padding-top: 34%;
+
+
     }
     .teamknapper {
         column-count: 2;
-        width: 260px;
+        width: 240px;
         column-gap: 0;
+        
+        
+    }
+    
+    .teamknapp:hover {
+        color: black;
+
+    }
+
+    .tekst {
+        text-decoration: none;
+        color: grey;
         font-size: 10px;
+        text-align: center;
+       
+    }
+
+    .tekst:hover {
+        color: black
     }
     .button-back {
        font-size: 17px;
@@ -32,6 +53,7 @@
        position:relative;
        margin-left: 90%;
   }
+
   .medlemmer{
          border-top: 1px solid #e5e5e5;
         border-bottom: 1px solid #e5e5e5;
@@ -55,14 +77,16 @@
             <h3><b>@user.Team_Navn</b></h3>
             <p> Teamleder: @user.Team_Leder</p>
 
-            <div class="teamknapper">
-                <a type="button" class="teamknapp">Se ansattstatistikk</a>
-                <a type="button" href="/Teams/AddMember?id=@user.Team_ID" class="teamknapp">Legg til medlemmer</a>
-                <a href="/Teams/Edit?id=@user.Team_ID" type="button" class="teamknapp">Rediger ansatt</a>
-                <a type="button" href="/Teams/Delete?id=@user.Team_ID"class="teamknapp">Slett team</a>   
-            </div>
+        <div class="teamknapper">
+        <div class="teamknapp" ><a class="tekst">SE ANSATTSTATISTIKK</a></div>
+        <div class="teamknapp" ><a class="tekst" href="/Teams/AddMember?id=@user.Team_ID">LEGG TIL MEDLEMMER</a></div>
+        <div class="teamknapp" ><a class="tekst" href="/Teams/Edit?id=@user.Team_ID" >REDIGER TEAM</a></div>
+        <div class="teamknapp" ><a class="tekst" href="/Teams/Delete?id=@user.Team_ID" >SLETT TEAM</a></div>
+         
+    </div>
+
         }
-        <br> <br><p>Medlemmer:</p>
+        <br> <br> <p>Medlemmer:</p>
         <div class="scroll">
             @foreach (var users in Model.Users){
                     <div class="medlemmer" value="@users.Emp_Nr"> @users.Emp_Navn</div>  

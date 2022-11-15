@@ -86,9 +86,11 @@ namespace bacit_dotnet.MVC.Controllers
             int id =  model.Sug_ID;
             
             var data = sqlConnector.UpdateSug(id); //hvis forslaget har en id skal forslaget vises
-            var result = new SuggestionsModel();
-            result.suggestions = data;
-            return View("AlleFor", result);
+            dynamic models = new ExpandoObject();
+            models.suggestions = sqlConnector.SaveSug(id);
+            models.Proposers = sqlConnector.FetchProByID(id);
+            models.Users = sqlConnector.FetchExByID(id);
+            return View("Save", models);
         }
 
         [HttpGet]

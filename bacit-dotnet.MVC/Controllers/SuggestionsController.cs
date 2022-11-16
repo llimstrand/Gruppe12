@@ -103,15 +103,43 @@ namespace bacit_dotnet.MVC.Controllers
         }
 
         [HttpGet]
+        public IActionResult AllSugPlan()
+        {
+
+            var data = sqlConnector.FetchSugByPlan(); //henter alle forslag og sier at de skal vises på AlleFor
+            var model = new SuggestionsModel();
+            model.suggestions = data;
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AllSugDo()
+        {
+
+            var data = sqlConnector.FetchSugByDo(); //henter alle forslag og sier at de skal vises på AlleFor
+            var model = new SuggestionsModel();
+            model.suggestions = data;
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AllSugStudy()
+        {
+
+            var data = sqlConnector.FetchSugByStudy(); //henter alle forslag og sier at de skal vises på AlleFor
+            var model = new SuggestionsModel();
+            model.suggestions = data;
+            return View("AllSugStudy",model);
+        }
+
+        [HttpGet]
         public IActionResult AllSugAct()
         {
 
             var data = sqlConnector.FetchSugByAct(); //henter alle forslag og sier at de skal vises på AlleFor
             var model = new SuggestionsModel();
             model.suggestions = data;
-
             return View(model);
-
         }
         
     }

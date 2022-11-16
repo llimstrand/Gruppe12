@@ -17,7 +17,7 @@ namespace bacit_dotnet.MVC.Controllers
             this.sqlConnector = sqlConnector;
         }
  
-        public IActionResult Index()
+        public IActionResult AddSug()
         {
             var data = sqlConnector.FetchEmp();
             var model = new UsersModel();
@@ -26,14 +26,14 @@ namespace bacit_dotnet.MVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewSug()
+        public IActionResult AllSug()
         {
 
             var data = sqlConnector.FetchSug(); //henter alle forslag og sier at de skal vises på AlleFor
             var model = new SuggestionsModel();
             model.suggestions = data;
 
-            return View("AlleFor",model);
+            return View(model);
 
         }
 
@@ -49,7 +49,7 @@ namespace bacit_dotnet.MVC.Controllers
             var models = new SuggestionsModel();
             models.suggestions = data;
 
-            return View("AlleFor",models);
+            return View("AllSug",models);
         }
        
         [HttpGet]
@@ -62,7 +62,7 @@ namespace bacit_dotnet.MVC.Controllers
             mymodel.Proposers = sqlConnector.FetchProByID(id);
             mymodel.Users = sqlConnector.FetchExByID(id);
             
-            return View("Save", mymodel);
+            return View("ViewSug", mymodel);
         }
        
         [HttpGet]
@@ -86,9 +86,11 @@ namespace bacit_dotnet.MVC.Controllers
             int id =  model.Sug_ID;
             
             var data = sqlConnector.UpdateSug(id); //hvis forslaget har en id skal forslaget vises
-            var result = new SuggestionsModel();
-            result.suggestions = data;
-            return View("AlleFor", result);
+            dynamic models = new ExpandoObject();
+            models.suggestions = sqlConnector.SaveSug(id);
+            models.Proposers = sqlConnector.FetchProByID(id);
+            models.Users = sqlConnector.FetchExByID(id);
+            return View("ViewSug", models);
         }
 
         [HttpGet]
@@ -98,6 +100,46 @@ namespace bacit_dotnet.MVC.Controllers
             sqlConnector.DeleteSug(id); // Denne metoden sletter data
             return View("Delete");
 
+        }
+
+        [HttpGet]
+        public IActionResult AllSugPlan()
+        {
+
+            var data = sqlConnector.FetchSugByPlan(); //henter alle forslag og sier at de skal vises på AlleFor
+            var model = new SuggestionsModel();
+            model.suggestions = data;
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AllSugDo()
+        {
+
+            var data = sqlConnector.FetchSugByDo(); //henter alle forslag og sier at de skal vises på AlleFor
+            var model = new SuggestionsModel();
+            model.suggestions = data;
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AllSugStudy()
+        {
+
+            var data = sqlConnector.FetchSugByStudy(); //henter alle forslag og sier at de skal vises på AlleFor
+            var model = new SuggestionsModel();
+            model.suggestions = data;
+            return View("AllSugStudy",model);
+        }
+
+        [HttpGet]
+        public IActionResult AllSugAct()
+        {
+
+            var data = sqlConnector.FetchSugByAct(); //henter alle forslag og sier at de skal vises på AlleFor
+            var model = new SuggestionsModel();
+            model.suggestions = data;
+            return View(model);
         }
         
     }

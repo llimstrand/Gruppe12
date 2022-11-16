@@ -72,10 +72,6 @@
        
     }
 
-  .teaminputs{
-    text-align: center;
-  }
-
   #teamnavn {
     margin-right: 60%;
     font-size: medium;
@@ -86,12 +82,15 @@
     margin-right: 60%;
     font-size: medium;
   }
-
+h3{
+    text-align: center;
+}
 
 </style>
 
 <div class="lageteam">
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" /> 
+    <h3>Nytt team</h3>
 
     <form action="/Teams/Save" method="post">
         <ul style="list-style: none;">
@@ -106,14 +105,6 @@
                     <input ID=Lederinn required="required" type="text" name="Team_Leder" placeholder="Teamleder"/> 
                 </li><br>
                 
-                <li>
-                        <label for="Emp_Nr">Hvem er med i teamet?</label> <br>
-                        <select id="DropDownList2" name="Emp_Nr" required> 
-                            @foreach (var user in Model.Users){
-                                    <option value= "@user.Emp_Nr">@user.Emp_Navn</option>
-                            }
-                        </select>
-                </li><br>
 
                 <input type="submit" value="Opprett team" class="sendinn"/>
         </ul>

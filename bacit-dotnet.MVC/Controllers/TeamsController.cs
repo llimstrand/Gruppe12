@@ -2,6 +2,7 @@ using bacit_dotnet.MVC.Models;
 using bacit_dotnet.MVC.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using bacit_dotnet.MVC.Models.Teams;
+using System.Dynamic;
 
 namespace bacit_dotnet.MVC.Controllers
 {
@@ -32,28 +33,43 @@ namespace bacit_dotnet.MVC.Controllers
         [HttpGet]
         public IActionResult Save(int id) 
         {   
+            Console.WriteLine(id);
             var data = sqlConnector.ViewTeams(id); // Henter ut data med id
-            var model = new TeamsModel();
+            dynamic model = new ExpandoObject();
+            model.Teams = sqlConnector.ViewTeams(id);
+            model.Users = sqlConnector.ViewMembers(id);
             model.Teams = data;
           
             return View("ViewTeam", model); 
+
         }
 
-        
-        
-        
-        
-        
+
         [HttpPost]
         public IActionResult Save(TeamsViewModel model) 
         {   
-            Console.WriteLine(model.Team_ID);
-
             sqlConnector.SetTeam(model);
-            var data = sqlConnector.ViewTeams(model.Team_ID);
-            var models = new TeamsModel();
-            models.Teams = data;
-            return View("ViewTeam",models); 
+            dynamic models = new ExpandoObject(); // dynamisk modell
+            models.Teams = sqlConnector.ViewTeams(model.Team_ID);//Henter team 
+            models.Users = sqlConnector.ViewMembers(model.Team_ID);//Henter Users 
+            return View("ViewTeam",models); // sender modellen til ViewTeams
+        }
+
+        [HttpPost]
+        public IActionResult Lagre(TeamsViewModel model){
+            sqlConnector.SetMember(model); // Denne at jeg setter medlemmet
+            dynamic models = new ExpandoObject(); // dynamisk modell
+            models.Teams = sqlConnector.ViewTeams(model.Team_ID);//Henter team 
+            models.Users = sqlConnector.ViewMembers(model.Team_ID);//Henter Users 
+            return View("ViewTeam", models); // sender modellen til ViewTeams
+        }
+
+        public IActionResult AddMember(int id, TeamsViewModel model)
+        { 
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Teams = sqlConnector.ViewTeams(id); ;
+            mymodel.Users = sqlConnector.FetchEmp();
+            return View(mymodel);
         }
 
         [HttpGet]
@@ -95,21 +111,21 @@ namespace bacit_dotnet.MVC.Controllers
             var model = new TeamsModel();
             model.Teams = data;
             return View("EditTeam",model);
-    }
+        }
 
-     [HttpPost]
-        public IActionResult Update(TeamsViewModel model){
-            Console.WriteLine("Update");
-            sqlConnector.SetUpTeam(model);
-            Console.WriteLine("Model");
-            Console.WriteLine(model.Team_ID);
-            int id = model.Team_ID;
-            Console.WriteLine(id);
-            var data = sqlConnector.UpdateTeam(id);
-            var result = new TeamsModel();
-            result.Teams = data;
-            return View("ViewTeam", result); 
-    }
+        [HttpPost]
+            public IActionResult Update(TeamsViewModel model){
+                Console.WriteLine("Update");
+                sqlConnector.SetUpTeam(model);
+                Console.WriteLine("Model");
+                Console.WriteLine(model.Team_ID);
+                int id = model.Team_ID;
+                Console.WriteLine(id);
+                var data = sqlConnector.UpdateTeam(id);
+                var result = new TeamsModel();
+                result.Teams = data;
+                return View("ViewTeam", result); 
+        }
  }
  }
         

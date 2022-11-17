@@ -2,7 +2,7 @@
 using bacit_dotnet.MVC.Models.Suggestions;
 using bacit_dotnet.MVC.Models.Users;
 using bacit_dotnet.MVC.Models.Teams;
-
+using System.Data;
 
 namespace bacit_dotnet.MVC.DataAccess
 {
@@ -43,6 +43,7 @@ namespace bacit_dotnet.MVC.DataAccess
         IEnumerable<Suggestion> FetchSugByDo();
         IEnumerable<Suggestion> FetchSugByStudy();
         IEnumerable<Suggestion> FetchSugByAct();
+        IDbConnection GetDbConnection();
 
     }
 }

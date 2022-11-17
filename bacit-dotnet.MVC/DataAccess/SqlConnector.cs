@@ -3,6 +3,8 @@ using MySqlConnector;
 using bacit_dotnet.MVC.Models.Suggestions;
 using bacit_dotnet.MVC.Models.Users;
 using bacit_dotnet.MVC.Models.Teams;
+using System.Data;
+using System.Data.Common;
 namespace bacit_dotnet.MVC.DataAccess
 {
     public class SqlConnector : ISqlConnector
@@ -12,6 +14,11 @@ namespace bacit_dotnet.MVC.DataAccess
         public SqlConnector(IConfiguration config)
         {
             this.config = config;
+        }
+        
+        public IDbConnection GetDbConnection()
+        {
+            return new MySqlConnection(config.GetConnectionString("MariaDb"));
         }
         /*Henter alle team*/
         public  IEnumerable<Team> FetchTeam() {

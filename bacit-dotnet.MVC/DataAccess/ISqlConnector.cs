@@ -40,6 +40,8 @@ namespace bacit_dotnet.MVC.DataAccess
         void SetMember(TeamsViewModel model);
         IEnumerable<Team> ViewMembers(int id);
         IEnumerable<Suggestion> FetchSugByAct();
-
+        void DeleteMemb(int id);
+        IEnumerable<User> FetchEmpByTeamID(int id);
+        void DeleteMember(int id);
     }
 }

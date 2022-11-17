@@ -91,8 +91,13 @@
             @foreach (var users in Model.Users){
                     <div class="medlemmer" value="@users.Emp_Nr"> @users.Emp_Navn</div>  
             }
-        </div>
     </div>
+    @foreach(var user in Model.Teams){
+        <a class="tekst" href="/Teams/EditMemb?id=@user.Team_ID" >Fjern medlemmer</a>
+    }
+     
+
 </div> 
+
 
 

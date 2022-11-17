@@ -98,5 +98,6 @@ namespace bacit_dotnet.MVC.Controllers
             result.Users = data;
             return View("ViewEmp", result);}
 
+ 
     }
 }

@@ -1,0 +1,41 @@
+@model dynamic
+
+
+<style>
+
+.scroll{
+        list-style:none;
+}
+.fjernKnapp{
+       border-radius: 3px;
+        border: 1px solid black;
+        color: black;
+        font-size: medium;
+        cursor: pointer;
+        position: relative;
+        margin: 4%;
+        margin-left: 2%;
+        text-decoration:none;
+        padding: 2px;
+        
+    }
+
+    .fjernKnapp:hover {
+        color: black;
+        background-color: #f7dad7;
+    }   
+ 
+
+</style>
+<h5> Fjern medlemmer fra dette teamet </h5>
+
+ <p>Medlemmer:</p>
+
+        <div class="scroll">
+            @foreach (var users in Model.Users){
+                   <li> <div class="medlemmer" value="@users.Emp_Nr?"> @users.Emp_Navn  <a class="fjernKnapp" href="/Teams/DeleteMemb?id=@users.Emp_Nr" >Fjern</a></div>  </li>
+                           
+
+            }
+            
+    </div>

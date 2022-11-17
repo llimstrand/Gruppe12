@@ -75,8 +75,6 @@ namespace bacit_dotnet.MVC.DataAccess
             connection.Open();
             DeleteData("Delete from team where Team_ID = @id", connection, id);
             connection.Close();
-
-
         }
 
             public void SetUpTeam(TeamsViewModel model){
@@ -709,5 +707,42 @@ public  IEnumerable<Proposer> FetchProposer() {
             return Suggestions;
 
         }
+
+            public  void DeleteMemb(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+            DeleteData("Delete from member where Emp_Nr = ansattnummer", connection, id);
+            connection.Close();
+        }
+
+          public  IEnumerable<User> FetchEmpByTeamID(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Teams = new List<User>();
+            var reader = ReadDatawithID("SELECT member.Emp_Nr, employee.Emp_Navn, employee.Emp_Passord, member.Team_ID FROM employee, member, team where member.Team_ID = @id and member.Emp_Nr = employee.Emp_Nr group by member.Emp_Nr;", connection,id);
+            while (reader.Read())
+            {
+                var user = new User();
+                user.Emp_Nr = reader.GetInt32("Emp_Nr");
+                user.Emp_Navn = reader.GetString("Emp_Navn");
+                user.Emp_Passord = reader.GetString("Emp_Passord");
+                user.Executor_Nr = reader.GetInt32("Emp_Nr");
+                Teams.Add(user);
+            }
+            connection.Close();
+            return Teams;
+        }
+
+
+            public  void DeleteMember(int id) {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+            DeleteData("Delete from member where Emp_Nr = @id", connection, id);
+            connection.Close();
+
+
+        }
+
     }
 }

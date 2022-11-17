@@ -126,6 +126,30 @@ namespace bacit_dotnet.MVC.Controllers
                 result.Teams = data;
                 return View("ViewTeam", result); 
         }
+        public IActionResult EditMemb(int id)
+        {
+            dynamic model = new ExpandoObject();
+            model.Teams = sqlConnector.ViewTeams(id); ;
+            model.Users = sqlConnector.FetchEmpByTeamID(id);
+            return View(model);
+        }
+
+
+        [HttpGet]
+
+        public IActionResult DeleteMemb(int id)
+        {
+            Console.WriteLine(id);
+            sqlConnector.DeleteMember(id); // Denne metoden sletter data
+            dynamic model = new ExpandoObject();
+            model.Teams = sqlConnector.ViewTeams(id);
+            model.Users = sqlConnector.ViewMembers(id);
+            return View("ViewTeam", model);
+
+         }
+
+        
+  
  }
  }
         

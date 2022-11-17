@@ -124,23 +124,35 @@
 
 
 
-@foreach(var user in  Model.suggestions){
-<div class= bakgrunn> 
-    <div>
-        <div ID="status" class = "@user.Sug_Status">@user.Sug_Status</div><div class= "tittel">@user.Sug_Overskrift</div> 
-    </div>
-    <div class = "beskrivelse"> Beskrivelse: @user.Sug_Beskrivelse </div>
+     @foreach (var user in  Model.suggestions)
+     {
+     <div class= bakgrunn> 
+        <div>
+            <div ID="status" class = "@user.Sug_Status">
+            @user.Sug_Status
+            </div><div class= "tittel">@user.Sug_Overskrift
+            </div> 
+        </div>
+        <div class = "beskrivelse"> Beskrivelse: @user.Sug_Beskrivelse 
+        </div>
     
-    <div class= "forslag">
-        <p> <b>Ansvarlig:</b><br>@user.Sug_Ansvarlig</p> 
+     <div class= "forslag">
+        <p> <b>Ansvarlig:</b><br>@user.Sug_Ansvarlig
+        </p> 
+        
+
+
 
         @foreach (var users in Model.Proposers)
         {
-        <p> <b>Sendt inn av:</b><div value = "@users.Emp_Nr">@users.Emp_PrNavn</div></p>
+        <p> <b>Sendt inn av:</b><div value = "@users.Emp_Nr"> @users.Emp_PrNavn
+         </div></p>
         }
+      
         @foreach (var users in Model.Users)
         {
-         <p> <b>Utført av:</b><div value = "@users.Executor_Nr">@users.Emp_ExNavn</div></p> 
+         <p> <b>Utført av:</b><div value = "@users.Executor_Nr"> @users.Emp_ExNavn
+         </div></p> 
         }
 
         <p> <b>Frist:</b><br>@user.Sug_Frist</p>
@@ -156,24 +168,4 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-=======
-
- <div class="sidemeny">
-        <input type="text" placeholder="Søk" style="height:50px;">
-        <p>Status</p>
-            <input type="checkbox" id="plan" name="plan" value="Plan">
-            <label for="plan"> PLAN</label><br>
-            <input type="checkbox" id="do" name="do" value="Do">
-            <label for="do"> DO</label><br>
-            <input type="checkbox" id="study" name="study" value="Study">
-            <label for="study"> STUDY</label><br>
-            <input type="checkbox" id="act" name="act" value="Act">
-            <label for="act"> ACT</label> <br> <br>
-        <p>Frist</p>
-            <input type="date">
-
-    </div>
-
->>>>>>> c2d1f58b90a857e90ada03a19453954b204b6e80
 }

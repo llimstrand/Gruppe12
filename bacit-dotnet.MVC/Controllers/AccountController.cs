@@ -44,18 +44,18 @@ namespace bacit_dotnet.MVC.Controllers
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+          
+            Console.WriteLine();
             
-            if (ModelState.IsValid)
-            {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 
-                
+                Console.WriteLine(result.Succeeded);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    return RedirectToLocal(nameof(SuggestionsController.AllSug), "Suggestions", null);
+                    return RedirectToAction(nameof(SuggestionsController.AllSug), "Suggestions", null);
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -71,7 +71,7 @@ namespace bacit_dotnet.MVC.Controllers
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return View(model);
                 }
-            }
+            
 
             // If we got this far, something failed, redisplay form
             return View(model);
@@ -95,8 +95,7 @@ namespace bacit_dotnet.MVC.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
-            {
+          
                 var user = new IdentityUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true, LockoutEnabled = false,LockoutEnd = null };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -118,9 +117,10 @@ namespace bacit_dotnet.MVC.Controllers
 
 
                     return RedirectToLocal(returnUrl);
-                }
-                AddErrors(result);
-            }
+                }else
+                { AddErrors(result);  }
+                
+            
 
             // If we got this far, something failed, redisplay form
             return View(model);

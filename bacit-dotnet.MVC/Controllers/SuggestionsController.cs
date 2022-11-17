@@ -61,7 +61,7 @@ namespace bacit_dotnet.MVC.Controllers
             mymodel.suggestions = sqlConnector.SaveSug(id);
             mymodel.Proposers = sqlConnector.FetchProByID(id);
             mymodel.Users = sqlConnector.FetchExByID(id);
-            
+            Console.WriteLine(mymodel);
             return View("ViewSug", mymodel);
         }
        

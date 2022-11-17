@@ -3,6 +3,8 @@ using MySqlConnector;
 using bacit_dotnet.MVC.Models.Suggestions;
 using bacit_dotnet.MVC.Models.Users;
 using bacit_dotnet.MVC.Models.Teams;
+using System.Data;
+using System.Data.Common;
 namespace bacit_dotnet.MVC.DataAccess
 {
     public class SqlConnector : ISqlConnector
@@ -12,6 +14,11 @@ namespace bacit_dotnet.MVC.DataAccess
         public SqlConnector(IConfiguration config)
         {
             this.config = config;
+        }
+        
+        public IDbConnection GetDbConnection()
+        {
+            return new MySqlConnection(config.GetConnectionString("MariaDb"));
         }
         /*Henter alle team*/
         public  IEnumerable<Team> FetchTeam() {
@@ -682,6 +689,81 @@ public  IEnumerable<Proposer> FetchProposer() {
             connection.Close();
             return teams;
            }
+        public  IEnumerable<Suggestion> FetchSugByPlan() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Suggestions = new List<Suggestion>();
+            var reader = ReadData("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions where Sug_Status = 'plan' ORDER BY Sug_Timestamp DESC", connection);
+            while (reader.Read())
+            {
+
+                var user = new Suggestion();
+                user.Sug_ID = reader.GetInt32("Sug_ID");
+                user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
+                user.Sug_Beskrivelse = reader.GetString("Sug_Beskrivelse");
+                user.Sug_Ansvarlig = reader.GetString("Sug_Ansvarlig");
+                user.Sug_Status = reader.GetString("Sug_Status");
+                user.Sug_Frist = reader.GetString("Sug_Frist");
+                user.Sug_Varighet = reader.GetString("Sug_Varighet");
+
+            
+                Suggestions.Add(user);
+            }
+            connection.Close();
+            return Suggestions;
+
+        }
+        public  IEnumerable<Suggestion> FetchSugByDo() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Suggestions = new List<Suggestion>();
+            var reader = ReadData("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions where Sug_Status = 'do' ORDER BY Sug_Timestamp DESC", connection);
+            while (reader.Read())
+            {
+
+                var user = new Suggestion();
+                user.Sug_ID = reader.GetInt32("Sug_ID");
+                user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
+                user.Sug_Beskrivelse = reader.GetString("Sug_Beskrivelse");
+                user.Sug_Ansvarlig = reader.GetString("Sug_Ansvarlig");
+                user.Sug_Status = reader.GetString("Sug_Status");
+                user.Sug_Frist = reader.GetString("Sug_Frist");
+                user.Sug_Varighet = reader.GetString("Sug_Varighet");
+
+            
+                Suggestions.Add(user);
+            }
+            connection.Close();
+            return Suggestions;
+
+        }
+        public  IEnumerable<Suggestion> FetchSugByStudy() {
+            using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
+            connection.Open();
+
+            var Suggestions = new List<Suggestion>();
+            var reader = ReadData("select Sug_ID, Sug_Overskrift, Sug_Beskrivelse, Sug_Ansvarlig, Sug_Status, Sug_Frist, Sug_Varighet from suggestions where Sug_Status = 'study' ORDER BY Sug_Timestamp DESC", connection);
+            while (reader.Read())
+            {
+
+                var user = new Suggestion();
+                user.Sug_ID = reader.GetInt32("Sug_ID");
+                user.Sug_Overskrift = reader.GetString("Sug_Overskrift");
+                user.Sug_Beskrivelse = reader.GetString("Sug_Beskrivelse");
+                user.Sug_Ansvarlig = reader.GetString("Sug_Ansvarlig");
+                user.Sug_Status = reader.GetString("Sug_Status");
+                user.Sug_Frist = reader.GetString("Sug_Frist");
+                user.Sug_Varighet = reader.GetString("Sug_Varighet");
+
+            
+                Suggestions.Add(user);
+            }
+            connection.Close();
+            return Suggestions;
+
+        }
         public  IEnumerable<Suggestion> FetchSugByAct() {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();

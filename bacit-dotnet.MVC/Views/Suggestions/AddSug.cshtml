@@ -1,42 +1,85 @@
-@model dynamic
+﻿@model bacit_dotnet.MVC.Models.UsersModel
+<style> 
+    .lageforslag {
+        border: 1px solid black;
+        padding: 50px;
+        width: 60%;
+        margin: auto;
+        border-radius: 10px;
+    }
+    .tittel {
+        border: none;
+        border-bottom: 1px solid black;
+        font-size: 30px;
+        text-align: center;
+        display: block;
+        margin : 0 auto;
+    }
+    .inputs{
+        column-count: 2;
+    }
 
-<style>
- .knapp {
-       padding: 15px;
+    .sendinn{
+        padding: 15px;
         background-color: #717e74;
         border-radius: 5px;
         color: white;
         border: none;
         width: 180px;
-        text-decoration: none;
     }
 
-    .knapp:hover {
-        color: black;
-        background-color: #ced0f2;
+    .sendinn:hover {
+        background-color: #91a194;
+        border: none;
     }
+
+     .plan {
+    background: #f5ebad;
+    }
+    .do {
+    background: #b3f5ad;
+    }
+    .study {
+    background: #f9e4ed;
+    }
+    .act{
+    background: #add1f5;
+    }
+
+    .button-back {
+       font-size: 17px;
+       background-color: white;
+       border-radius: 20px;
+       border: none;
+       position:relative
+ 
+  }
+
+  .button-back:hover {
+    text-decoration: underline grey;
+    border: none;
+  }
+
 </style>
-
-@foreach(var user in  Model.suggestions){
 <div class="lageforslag">
 <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
 
-<form action="/suggestions/update" method="post">
+<form action="/suggestions/save" method="post">
 <ul style="list-style: none;">
-        <input type="hidden" name="Sug_ID" value=@user.Sug_ID />
-
     <li>
-        <input required="required" type="text" name="Sug_Overskrift" placeholder="Tittel" class="tittel" value=@user.Sug_Overskrift /> 
+        <input required="required" type="text" name="Sug_Overskrift" placeholder="Tittel" class="tittel"/> 
     </li><br>
     <div class="inputs">
     <li>
         <label for="Sug_Beskrivelse">Hva går forslaget ut på? </label> <br>
-        <textarea required="required"  type="text" name="Sug_Beskrivelse" placeholder="Beskriv forslag her..." class="beskrivelse" >@user.Sug_Beskrivelse</textarea> 
+        <textarea required="required"  type="text" name="Sug_Beskrivelse" placeholder="Beskriv forslag her..." class="beskrivelse"></textarea> 
     </li><br>
     <li>
         <label for="Sug_Ansvarlig">Hvem er ansvarlig for at dette blir gjort?</label> <br>
-        <input required="required" type="text" name="Sug_Ansvarlig" placeholder="Forslagsansvarlig" Value=@user.Sug_Ansvarlig />
+        <input required="required" type="text" name="Sug_Ansvarlig" placeholder="Forslagsansvarlig" />
     </li><br>
+
+
      <li>
         <label for="Emp_Nr">Hvem sitt forslag var det?</label> <br>
         <select id="DropDownList1" name="Emp_Nr" required> 
@@ -61,15 +104,15 @@
         <label for="Sug_Status">Status for forslaget</label> <br>
         <select name="Sug_Status" required> 
         <option value="">Ingen</option>
-        <option value="plan">PLAN</option> 
-        <option value="do">DO</option>
-        <option value="study">STUDY</option>
-        <option value="act">ACT</option>
+        <option value="plan" class="plan">PLAN</option> 
+        <option value="do" class="do">DO</option>
+        <option value="study" class="study">STUDY</option>
+        <option value="act" class="act">ACT</option>
         </select>
     </li><br>
     <li>
         <label for="Sug_Frist">Når skal dette være gjort?</label> <br>
-        <input required="required" type="text" name="Sug_Frist" placeholder="Frist" Value=@user.Sug_Frist />
+        <input required="required" type="text" name="Sug_Frist" placeholder="Frist" />
     </li><br>
     <li>
         <label for="Sug_Varighet">Hva er varigheten på forslaget?</label> <br>
@@ -92,5 +135,7 @@
      </div>
 </ul>
 </form> 
+
+
+
 </div>
-}

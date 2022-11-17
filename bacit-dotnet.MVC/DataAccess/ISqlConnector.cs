@@ -2,7 +2,7 @@
 using bacit_dotnet.MVC.Models.Suggestions;
 using bacit_dotnet.MVC.Models.Users;
 using bacit_dotnet.MVC.Models.Teams;
-
+using System.Data;
 
 namespace bacit_dotnet.MVC.DataAccess
 {
@@ -39,9 +39,14 @@ namespace bacit_dotnet.MVC.DataAccess
         IEnumerable<Team> FetchStatTeamPr();
         void SetMember(TeamsViewModel model);
         IEnumerable<Team> ViewMembers(int id);
+        IEnumerable<Suggestion> FetchSugByPlan();
+        IEnumerable<Suggestion> FetchSugByDo();
+        IEnumerable<Suggestion> FetchSugByStudy();
         IEnumerable<Suggestion> FetchSugByAct();
-        void DeleteMemb(int id);
+         IDbConnection GetDbConnection();
+          void DeleteMemb(int id);
         IEnumerable<User> FetchEmpByTeamID(int id);
         void DeleteMember(int id);
+
     }
 }

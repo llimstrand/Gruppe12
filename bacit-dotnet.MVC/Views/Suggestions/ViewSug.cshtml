@@ -17,7 +17,7 @@
         position: relative;
         width: 900px;
         height: 650px;
-        left: 380px;
+        left: 220px;
         border-radius: 10px;
         box-shadow:  0px 2px 8px 0px #959da5;
         padding-right:55px;
@@ -119,6 +119,15 @@
         border-radius: 5px;
         padding: 10px;
     }
+    .button-back {
+       font-size: 17px;
+       border-radius: 20px;
+       border: none;
+       position:absolute;
+       left: 780px;
+       top: 50px;
+  }
+  
 
 </style>
 
@@ -127,6 +136,7 @@
      @foreach (var user in  Model.suggestions)
      {
      <div class= bakgrunn> 
+        <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
         <div>
             <div ID="status" class = "@user.Sug_Status">
             @user.Sug_Status
@@ -140,8 +150,6 @@
         <p> <b>Ansvarlig:</b><br>@user.Sug_Ansvarlig
         </p> 
         
-
-
 
         @foreach (var users in Model.Proposers)
         {

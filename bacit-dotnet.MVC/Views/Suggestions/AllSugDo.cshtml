@@ -1,111 +1,14 @@
 @model bacit_dotnet.MVC.Models.SuggestionsModel
-
-<style>
-    .forslagsliste {
-        border: none; 
-        margin-right: 20px;
-        margin-left: 20px;
-        box-shadow: 5px 10px 18px #bdbdbd; 
-        border-radius: 10px; 
-        padding-top: 22px;
-        column-count: 4;
-        height: 80px;
-    }
-    #stat {
-        width: 80px;
-        height: 30px;
-        transform: rotate(270deg);
-        position: relative;
-        right: 6px;
-        top: 54.7px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        text-align: center;
-    }
-    .overskrift {
-        font-size: 18px;
-        font-weight: 500;
-        margin-left: 45px;
-    }
-    .frist {
-        font-size: 13px;
-        margin-left: 100px;
-    }
-    .ansvarlig {
-        font-size: 13px;
-        margin-left: 180px;
-    }
-    .velg {
-        text-align: right;
-        margin-right: 5%;
-        font-size: 20px;
-    }
-    .sidemeny {
-        width: 250px;
-        position: fixed;
-        top: 150px;
-        left: 25px;
-        padding: 8px 0;
-    }
-    .alleforslag{
-        list-style: none;
-        margin-left: 10%;
-        overflow-y:auto;
-        height: 560px;
-    }
-
-    .plan {
-    background: #f5ebad;
-    }
-    .do {
-    background: #b3f5ad;
-    }
-    .study {
-    background: #f9e4ed;
-    }
-    .act{
-    background: #add1f5;
-    }
-    .Options{
-        border: 1px solid #7a7a7a;
-        border-radius: 15px;
-        width: 150px;
-        padding: 3px;
-        font-size: 12px;
-        margin: 5px;
-        text-align: center;
-        cursor: pointer;
-    }
-
-    .Odo{
-        background-color: #b3f5ad;
-    }
-
-    .Alle:hover{
-        background-color:  #7a7a7a;
-        color: white;
-    }
-    .Oplan:hover{
-       background-color:  #f5ebad;
-    }
-     .Odo:hover{
-        background-color:  #b3f5ad;
-    }
-     .Ostudy:hover{
-        background-color:  #f9e4ed;
-    }
-     .Oact:hover{
-        background-color:  #add1f5;
-    }
-   
-</style>
+<head>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
     <div class="sidemeny">
-        <input type="text" placeholder="Søk" style="height:50px;"> <br> <br>
+        <input type="text" placeholder="Søk" class="søk"> <br> <br>
         <p>Status</p>
 
-            <div class="Options Alle" onclick="location.href='/Suggestions/AllSug';">ALLE</div>
+            <div class="Options Oalle " onclick="location.href='/Suggestions/AllSug';">ALLE</div>
             <div class="Options Oplan" onclick="location.href='/Suggestions/AllSugPlan';">PLAN</div>
-            <div class="Options Odo" onclick="location.href='/Suggestions/AllSugDo';">DO</div>
+            <div class="Options Odo OptDo" onclick="location.href='/Suggestions/AllSugDo';">DO</div>
             <div class="Options Ostudy" onclick="location.href='/Suggestions/AllSugStudy';">STUDY</div>
             <div class="Options Oact" onclick="location.href='/Suggestions/AllSugAct';">ACT</div> <br>
     </div>
@@ -116,13 +19,13 @@
         <p>Alle forslag</p>
         @foreach (var user in Model.suggestions) 
         {
-            <div ID=stat class="@user.Sug_Status"> @user.Sug_Status</div>
+            <div class="@user.Sug_Status status"> @user.Sug_Status</div>
 
             <div class="forslagsliste" onclick="location.href='Save?id=@user.Sug_ID';" style="cursor: pointer;"> 
-                <div class=overskrift> @user.Sug_Overskrift</div>
-                <div class=frist>Frist: @user.Sug_Frist</div>
-                <div class=ansvarlig>Ansvarlig: @user.Sug_Ansvarlig</div>
-                <div class=velg > > </div>
+                <div class="SugOverskrift"> @user.Sug_Overskrift</div>
+                <div class="frist">Frist: @user.Sug_Frist</div>
+                <div class="ansvarlig">Ansvarlig: @user.Sug_Ansvarlig</div>
+                <div class="gåinn"> > </div>
             </div> 
             // location.href='save' gjør classen "clickable" så du sendes videre til "savecshtml"
         } 

@@ -1,96 +1,88 @@
 @model dynamic
+<head>
+    <link rel="stylesheet" href="~/css/add.css" asp-append-version="true" />
+</head>
 
-<style>
- .knapp {
-       padding: 15px;
-        background-color: #717e74;
-        border-radius: 5px;
-        color: white;
-        border: none;
-        width: 180px;
-        text-decoration: none;
-    }
-
-    .knapp:hover {
-        color: black;
-        background-color: #ced0f2;
-    }
-</style>
 
 @foreach(var user in  Model.suggestions){
 <div class="lageforslag">
-<input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
+    <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
 
-<form action="/suggestions/update" method="post">
-<ul style="list-style: none;">
-        <input type="hidden" name="Sug_ID" value=@user.Sug_ID />
+    <form action="/suggestions/update" method="post">
+        <ul style="list-style: none;">
+            <input type="hidden" name="Sug_ID" value=@user.Sug_ID />
+            <li>
+                <input required="required" type="text" name="Sug_Overskrift" placeholder="Tittel" class="nytittel" value=@user.Sug_Overskrift /> 
+            </li>
+            <br>
 
-    <li>
-        <input required="required" type="text" name="Sug_Overskrift" placeholder="Tittel" class="tittel" value=@user.Sug_Overskrift /> 
-    </li><br>
-    <div class="inputs">
-    <li>
-        <label for="Sug_Beskrivelse">Hva går forslaget ut på? </label> <br>
-        <textarea required="required"  type="text" name="Sug_Beskrivelse" placeholder="Beskriv forslag her..." class="beskrivelse" >@user.Sug_Beskrivelse</textarea> 
-    </li><br>
-    <li>
-        <label for="Sug_Ansvarlig">Hvem er ansvarlig for at dette blir gjort?</label> <br>
-        <input required="required" type="text" name="Sug_Ansvarlig" placeholder="Forslagsansvarlig" Value=@user.Sug_Ansvarlig />
-    </li><br>
-     <li>
-        <label for="Emp_Nr">Hvem sitt forslag var det?</label> <br>
-        <select id="DropDownList1" name="Emp_Nr" required> 
-       @foreach (var user in Model.Users){
-            <option value= "@user.Emp_Nr">@user.Emp_Navn</option>
-       }
-
-     
-        </select>
-    </li><br>
-    
+            <div class="inputsAddSug">
                 <li>
-                        <label for="Executor_Nr">Hvem utførte forslaget?</label> <br>
-                        <select id="DropDownList2" name="Executor_Nr" required> 
-                            @foreach (var user in Model.Users){
-                                    <option value= "@user.Executor_Nr">@user.Emp_Navn</option>
-                            }
-                        </select>
-                </li><br>
-
-    <li>
-        <label for="Sug_Status">Status for forslaget</label> <br>
-        <select name="Sug_Status" required> 
-        <option value="">Ingen</option>
-        <option value="plan">PLAN</option> 
-        <option value="do">DO</option>
-        <option value="study">STUDY</option>
-        <option value="act">ACT</option>
-        </select>
-    </li><br>
-    <li>
-        <label for="Sug_Frist">Når skal dette være gjort?</label> <br>
-        <input required="required" type="text" name="Sug_Frist" placeholder="Frist" Value=@user.Sug_Frist />
-    </li><br>
-    <li>
-        <label for="Sug_Varighet">Hva er varigheten på forslaget?</label> <br>
-        <input type="radio" name="Sug_Varighet" id="kortsiktig" value="Kortsiktig"/>
-        <label for="kortsiktig">Kortsiktig </label> <br>
-        <input type="radio" name="Sug_Varighet" id="langsiktig" value="Langsiktig" />
-        <label for="langsiktig">Langsiktig</label> <br>
-    </li><br>
-    <li>
-        <label for="Sug_VedleggEn">Før-bilde 'Denne må fikses'</label> <br>
-        <input type="byte" name="Sug_VedleggEn" />
-    </li><br>
-    <li>
-        <label for="Sug_VedleggTo">Etter-Bilde 'denne må fikses'</label> <br>
-        <input type="byte" name="Sug_VedleggTo" />
-    </li><br>
-    <li>
-        <input type="submit" value="Send inn" class="sendinn"/>
-    </li><br>
-     </div>
-</ul>
-</form> 
+                    <label class="smalltext" for="Sug_Beskrivelse">Hva går forslaget ut på? </label> <br>
+                    <textarea required="required"  type="text" name="Sug_Beskrivelse" placeholder="Beskriv forslag her..." class="nybeskrivelse" >@user.Sug_Beskrivelse</textarea> 
+                </li>
+                <br>
+                <li>
+                    <label class="smalltext" for="Emp_Nr">Hvem sitt forslag var det?</label> <br>
+                    <select class=nyproposer multiple id="DropDownList1" name="Emp_Nr" required> 
+                        @foreach (var user in Model.Users){
+                            <option value= "@user.Emp_Nr">@user.Emp_Navn</option>
+                        }
+                    </select>
+                </li>
+                <br>         
+                <li>
+                    <label class="smalltext" for="Executor_Nr">Hvem utførte forslaget?</label> <br>
+                    <select class=nyexecutor multiple id="DropDownList2" name="Executor_Nr" required> 
+                        @foreach (var user in Model.Users){
+                            <option value= "@user.Executor_Nr">@user.Emp_Navn</option>
+                        }
+                    </select>
+                </li>
+                <br>
+                <li>
+                    <label class="smalltext" for="Sug_Ansvarlig">Hvem er ansvarlig for at dette blir gjort?</label> <br>
+                    <input required="required" type="text" name="Sug_Ansvarlig" placeholder="Forslagsansvarlig" Value=@user.Sug_Ansvarlig class="nyansvarlig" />
+                </li>
+                <br>
+                <li>
+                    <select class=nystatus name="Sug_Status" required> 
+                    <option value="">Ingen</option>
+                    <option value="plan">PLAN</option> 
+                    <option value="do">DO</option>
+                    <option value="study">STUDY</option>
+                    <option value="act">ACT</option>
+                    </select>
+                </li>
+                <br>
+                <li>
+                    <input class=nyfrist required="required" type="text" name="Sug_Frist" placeholder="Frist" Value=@user.Sug_Frist />
+                </li>
+                <br>
+                <li>
+                    <label class="smalltext" for="Sug_Varighet">Hva er varigheten på forslaget?</label> <br>
+                    <input type="radio" name="Sug_Varighet" id="kortsiktig" value="Kortsiktig"/>
+                    <label class="smalltext" for="kortsiktig">Kortsiktig </label> <br>
+                    <input type="radio" name="Sug_Varighet" id="langsiktig" value="Langsiktig" />
+                    <label class="smalltext" for="langsiktig">Langsiktig</label> <br>
+                </li>
+                <br>
+                <li>
+                    <label class="smalltext" for="Sug_VedleggEn">Før-bilde</label> <br>
+                    <input class=nyførbilde type="byte" name="Sug_VedleggEn" />
+                </li>
+                <br>
+                <li>
+                    <label class="smalltext" for="Sug_VedleggTo">Etter-Bilde</label> <br>
+                    <input class=nyetterbilde type="byte" name="Sug_VedleggTo" />
+                </li>
+                <br>
+                <li>
+                    <input type="submit" value="Oppdater forslag" class="sendinn"/>
+                </li>
+                <br>
+            </div>
+        </ul>
+    </form> 
 </div>
 }

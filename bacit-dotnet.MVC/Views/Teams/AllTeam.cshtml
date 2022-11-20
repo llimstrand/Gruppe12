@@ -1,90 +1,31 @@
 @model bacit_dotnet.MVC.Models.TeamsModel
-<style>
-    .teamliste {
-        border-top: 1px solid #e5e5e5;
-        border-bottom: 1px solid #e5e5e5;
-        border-left: none;
-        border-right: none;
-        padding: 20px;
-        column-count: 4;
-        
-        
-    }
-
-    .nytteamknapp {
-        border-radius: 5px;
-        padding: 17px;
-        border: 1px solid #939393;
-        background-color: white;
-        text-decoration: none;
-        color: #525252;
-    }
-    .nytteamknapp:hover {
-        color: #525252;
-        border: 2px solid #939393;
-    }
-
-    .nytteam {
-        text-align: right;
-        margin: 40px;
-    }
-
-    .alleteams {
-        list-style: none;
-        margin-left: 15%;
-    }
-
-    .sidemenyansatt {
-        width: 210px;
-        position: fixed;
-        top: 250px;
-        left: 25px;
-        padding: 8px 0;
-    }
-    .antmedlemmer {
-        font-size: 20px;
-        margin-left: 13px;
-    }
-    .medlemmer{
-        font-size: 7px;
-    }
-    .med {
-        width: 20px;
-        height: 10px;
-        text-align: center;
-    }
-    .pil {
-        text-align: right;
-        font-size: 20px;
-    }
-
-
-
-</style>
-        <div class="sidemenyansatt">
-            <input type="text" placeholder="Søk" style="height:50px;"> <br><br>
+<head>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+        <div class="sidemeny">
+            <input type="text" placeholder="Søk" class="søk"> <br><br>
             <p>Sorter etter</p>
-            <select style="height:30px;"> 
+            <select class="sorteretter"> 
                 <option>Alfabetisk A-Å</option> 
                 <option>Mest utførte forslag</option>
                 <option>Minst utførte forslag</option>
                 <option>Mest sendte inn forslag</option>
                 <option>Minst sendte inn forslag</option>    
             </select>
+            <li class="nyKnapp">
+                <a href="/Teams/AddTeam" class="nyknapp">Legg til nytt team</a>
+            </li>
         </div>
 
-        <ul class="alleteams">
-            <li class="nytteam">
-                <a href="/Teams/AddTeam" class="nytteamknapp">Legg til nytt team</a>
-            </li>
+        <ul class="alleliste">          
             @foreach (var user in Model.Teams)
             {
             <li>
                 <div class="teamliste" onclick="location.href='Save?id=@user.Team_ID';" style="cursor: pointer;">
                     <h5>Team @user.Team_Navn</h5>
-                    <p>Teamleder: @user.Team_Leder</p>
-                    <p class="med"><b class="antmedlemmer"> @user.Antall_Medlemmer</b><br> <div class="medlemmer">MEDLEMMER</div></p>
-                    <p class="pil"> > </p>
+                    <p class="teamleder">Teamleder: @user.Team_Leder</p>
+                    <p class="medlemmer"><b class="antmedlemmer"> @user.Antall_Medlemmer</b><br> <div class="antallTekst">MEDLEMMER</div></p>
+                    <p class="gåinn"> > </p>
                 </div>
             </li>   
             }

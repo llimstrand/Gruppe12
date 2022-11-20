@@ -1,72 +1,24 @@
 @model bacit_dotnet.MVC.Models.UsersModel
 
-<style>
-    .enkeltansatt{
-        border: none;
-        padding: 50px;
-        width: 60%;
-        margin: auto;
-        border-radius: 10px;
-        box-shadow: 5px 10px 18px #888888; 
-        margin-top:20px;
-    }
-    .ansattknapp {
-        width: 130px;
-        height: 130px;
-        border: 1px solid #878787;
-        background-color: white;
-    }
-    .ansattknapper {
-        column-count: 2;
-        width: 260px;
-        column-gap: 0;
-        font-size: 10px;
-        color: grey; opacity: 50%;
-
-    }
-    .button-back {
-       font-size: 17px;
-       background-color: white;
-       border-radius: 20px;
-       border: none;
-       position:relative;
-       margin-left: 90%;
-  }
-  
-    .litenInfo {
-       font-size: 8px;
-       margin-top: -10px;
-  }
-
-  .profilbilde {
-    border: 3px solid #878787;
-    border-radius: 50%;
-    height: 250px;
-    width: 250px;
-    float: right;
-    margin-top: -30px;
-    margin-right: 20px;
-
-   
-
-}
-</style>
+<head>
+    <link rel="stylesheet" href="~/css/view.css" asp-append-version="true" />
+</head>
 
 @foreach(var users in Model.Users){
-<div class="enkeltansatt"> 
+<div class="EttTeaEmp"> 
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
     <h3><b>@users.Emp_Navn</b></h3>
-    <p><div class= litenInfo> Ansattnummer: @users.Emp_Nr </div></p>
+    <p><div class= "litenInfo"> Ansattnummer: @users.Emp_Nr </div></p>
 
 
 
     <div class="profilbilde"></div>
 
-    <div class="ansattknapper">
-        <input type="button" value="SE ANSATTSTATESTIKK"  class="ansattknapp">
-        <input type="button" value="BYTT TEAM"  class="ansattknapp">
-        <a  href="/Users/Edit?id=@users.Emp_Nr"> <input type="button" value="REDIGER ANSATT"  class="ansattknapp"></a> 
-       <a href="/Users/Delete?id=@users.Emp_Nr"> <input  type="button" value="SLETT ANSATT"  class="ansattknapp"></a>
+    <div class="BoksKnapper">
+        <div class="BoksKnapp" ><a class="BoksKnappTxt">SE ANSATTSTATISTIKK</a></div>
+        <div class="BoksKnapp" ><a class="BoksKnappTxt">BYTT TEAM</a></div>
+        <div class="BoksKnapp" ><a class="BoksKnappTxt" href="/Users/Edit?id=@users.Emp_Nr" >REDIGER ANSATT</a></div>
+        <div class="BoksKnapp" ><a class="BoksKnappTxt" href="/Users/Delete?id=@users.Emp_Nr" >SLETT ANSATT</a></div>   
     </div>
 </div>  
 }

@@ -1,50 +1,12 @@
+<head>
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+</head>
 
-<style>
-.instillinger {
-    border-top: 1px solid #878787;
-    border-bottom: 1px solid #878787;
-    border-left: none;
-    border-right: none;
-    margin-top: 0px;
-    background-color: white;
-    width: 400px;
-    font-size: large;
-    text-align: left;
-    height: 50px;
-
-}
-
- .sendinn{
-        padding: 15px;
-        background-color: #717e74;
-        border-radius: 5px;
-        color: white;
-        border: none;
-        width: 180px;
-        float: right;
-    }
-.profilbilde {
-    border: 3px solid #878787;
-    border-radius: 50%;
-    height: 400px;
-    width: 400px;
-
-}
-
-.alt {
-    column-count: 2;
-    width: 70%;
-    margin: auto;
-    margin-top: 100px;
-}
-
-</style>
-
-<div class="alt">
+<div class="minprofil">
 <div class="profilbilde"></div>
 
 <div class="instillingertekst">
-    <ul style="list-style: none;">
+    <ul class="noliststyle">
         <li>
             <h1>Administrator</h1>
         </li> <br>
@@ -64,7 +26,7 @@
             <input type="button" value="Hjelp" class="instillinger"/>
         </li> <br> <br>
         <li>
-            <input type="submit" value="Logg ut" class="sendinn"/>
+            <a class="loggut" asp-controller="Home" asp-action="Index">Logg ut</a>
         </li>
     </ul>
 </div>

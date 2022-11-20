@@ -1,0 +1,157 @@
+/*Denne filen inneholder CSS for alle sider som bruker "add" funksjoner og som bruker "rediger"*/
+
+/*CSS for AddSug og EditSug*/
+.lageforslag {
+    box-shadow:  0px 2px 8px 0px #959da5;
+    padding: 40px;
+    width: 60%;
+    margin: auto;
+    border-radius: 10px;
+}
+.inputsAddSug{
+    column-count: 2;
+    column-gap: 140px;
+    margin-top: 30px;
+}
+.smalltext {
+    font-size: small;
+}
+.nytittel {
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 30px;
+    text-align: center;
+    display: block;
+    margin : 0 auto;
+}
+.nybeskrivelse {
+    width: 340px;
+    height: 117px;
+    border-radius: 5px;
+    border: 1px solid #cfcfcf;
+    font-size: small;
+}
+.nyproposer {
+    width: 340px;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid #cfcfcf;
+    font-size: small;
+}
+.nyexecutor {
+    width: 340px;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid #cfcfcf;
+    font-size: small;
+} 
+.nyansvarlig {
+    width: 340px;
+    border-radius: 5px;
+    border: 1px solid #cfcfcf;
+    height: 30px;
+    font-size: small;
+}
+.nystatus {
+    width: 180px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #cfcfcf;
+    font-size: small;
+    margin-top: 30px;
+}
+.nyfrist {
+    width: 180px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #cfcfcf;
+    font-size: small;
+}
+.nyførbilde {
+    width: 180px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #cfcfcf;
+    font-size: small;
+}
+.nyetterbilde {
+    width: 180px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #cfcfcf;
+    font-size: small;
+}
+.sendinn{
+    padding: 15px;
+    background-color: #717e74;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    width: 180px; 
+}
+.sendinn:hover {
+    background-color: #49514B;
+}
+.plan {
+    background: #f5ebad;
+}
+.do {
+    background: #b3f5ad;
+}
+.study {
+    background: #f9e4ed;
+}
+.act{
+    background: #add1f5;
+}
+.button-back {
+   font-size: 17px;
+   background-color: white;
+   border-radius: 20px;
+   border: none;
+   position:relative;
+   margin-left: 90%;
+}
+.button-back:hover {
+    text-decoration: underline grey;
+    border: none;
+}
+/*CSS for AddEmp og EditEmp + AddTeam og EditTeam*/
+.bakgrunnNyEmpTea{
+    box-shadow:  0px 2px 8px 0px #959da5;
+    padding: 50px;
+    width: 60%;
+    margin: auto;
+    border-radius: 10px;
+}
+.NyEmpTeamInputs{
+    text-align: center;
+    margin-top: 1%;
+    font-size: 20px;
+    margin-left: 26%;
+    margin-right: 26%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 10%;
+}
+.input {
+    border-radius: 5px;
+    border: 1px solid #cfcfcf;
+}
+.nyempnr {
+    font-size: medium;
+    margin-right: 54%;
+}
+.nyempnavn {
+    font-size: medium;
+    margin-right: 64%;
+}
+.nyemppassord {
+    font-size: medium;
+    margin-right: 74%;
+}
+.sendinnEmpTea{
+    margin-left: 36%;
+}
+
+

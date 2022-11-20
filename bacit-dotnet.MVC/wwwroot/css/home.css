@@ -1,0 +1,43 @@
+/*Denne filen inneholder CSS for alle sider som er knyttet til mappen "Home" og AdmProfil*/
+.noliststyle{
+    list-style: none;
+}
+.instillinger {
+    border-top: 1px solid #878787;
+    border-bottom: 1px solid #878787;
+    border-left: none;
+    border-right: none;
+    margin-top: 0px;
+    background-color: white;
+    width: 400px;
+    font-size: large;
+    text-align: left;
+    height: 50px;
+}
+.loggut{
+    padding: 20px;
+    background-color: #717e74;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    width: 180px;
+    float: right;
+    text-decoration: none;
+    text-align: center;
+}
+.loggut:hover{
+    background-color: #49514B;
+    color: white;
+}
+.profilbilde {
+    border: 3px solid #878787;
+    border-radius: 50%;
+    height: 400px;
+    width: 400px;
+}
+.minprofil {
+    column-count: 2;
+    width: 70%;
+    margin: auto;
+    margin-top: 100px;
+}

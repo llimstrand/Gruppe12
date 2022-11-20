@@ -1,83 +1,30 @@
 @model bacit_dotnet.MVC.Models.UsersModel
-
-<style>
-    .ansattliste {
-        border-top: 1px solid #e5e5e5;
-        border-bottom: 1px solid #e5e5e5;
-        border-left: none;
-        border-right: none;
-        padding: 10px;
-        column-count: 3;
-        
-    }
-
-    .nyansattknapp {
-        border-radius: 5px;
-        padding: 10px;
-        border: 1px solid #939393;
-        background-color: white;
-        text-decoration: none;
-        color: #525252;
-    }
-    .nyansattknapp:hover {
-        border-color: black;
-        color: black;
-    }
-
-    .nyansatt {
-        text-align: right;
-        margin: 40px;
-    }
-
-    .alleansatte {
-        list-style: none;
-        margin-left: 15%;
-    }
-
-    .sidemenyansatt {
-        width: 210px;
-        position: fixed;
-        top: 250px;
-        left: 25px;
-        padding: 8px 0;
-    }
-    .ansatt{
-        font-size: large;
-    }
-    .pil {
-        text-align: right;
-        font-size: 20px;
-    }
-    .teamnavn{
-        font-size: small;
-        color: #7B7B7B;
-        text-align: center;
-    }
-
-</style>
-        <div class="sidemenyansatt">
-            <input type="text" placeholder="Søk" style="height:50px;"> <br><br>
+<head>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+        <div class="sidemeny">
+            <input type="text" placeholder="Søk" class="søk"> <br><br>
             <p>Sorter etter</p>
-            <select> 
+            <select class="sorteretter"> 
                 <option>Alfabetisk A-Å</option> 
                 <option>Mest utførte forslag</option>
                 <option>Minst utførte forslag</option>
                 <option>Mest sendte inn forslag</option>
                 <option>Minst sendte inn forslag</option>    
             </select>
+            <li class="nyKnapp">
+                <a href="/Users/AddEmp" class="nyknapp">Legg til ny ansatt</a>
+            </li>
         </div>
 
-        <ul class="alleansatte">
-            <li class="nyansatt">
-                <a href="/Users/AddEmp" class="nyansattknapp">Legg til ny ansatt</a>
-            </li>
+        <ul class="alleliste">
+            
             @foreach (var user in Model.Users)
             {
             <li>
                 <div class="ansattliste" onclick="location.href='Save?id=@user.Emp_Nr';" style="cursor: pointer;"> 
-                    <p class="ansatt">@user.Emp_Navn</p> 
-                    <p class="teamnavn"> Team Navn</p>
-                    <p class="pil"> > </p>       
+                    <p class="ansattnavn">@user.Emp_Navn</p> 
+                    <p class="gåinn"> > </p>       
                 </div>
             </li>   
             }

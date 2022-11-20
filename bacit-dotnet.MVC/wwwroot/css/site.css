@@ -1,18 +1,270 @@
-html {
-  font-size: 14px;
+/*Denne filen inneholder CSS for alle statistikksider + alle forslag, alle team og alle ansatte*/
+
+/*sidemeny*/
+.sidemeny {
+  width: 250px;
+  position: fixed;
+  top: 150px;
+  left: 25px;
+  padding: 8px 0;
+}
+.søk{
+  height: 50px;
+  padding-left: 10px;
+  width: 170px;
+  border-radius: 5px;
+  border: 1px solid #7a7a7a;
+}
+.Sorter{
+  font-size: medium;
+}
+    /*slide over statistikk: mellom team og ansatt*/
+    .ansatteamSlide {
+      border: 1px solid #7a7a7a;
+      border-radius: 15px;
+      column-count: 2;
+      height: 30px;
+      width: 145px;
+      padding: 1px;
+      margin: 15px;
+    }
+    /*slide mellom sorter: utførte og sendt inn, og litt på team og ansatt*/
+    .proexeSlide{
+      border: 1px solid #7a7a7a;
+      border-radius: 15px;
+      column-count: 2;
+      height: 30px;
+      width: 145px;
+      padding: 1px;
+    }
+    .mørkSlide{
+      font-size: small;
+      text-align: center;
+      background-color: #7a7a7a;
+      border-radius: 15px;
+      padding: 3px;
+    }
+    .lysSlide{
+      font-size: small;
+      text-align: center;
+      padding: 3px;
+    }
+    .mørkSlideTekst{
+      color: white;
+      text-decoration: none;
+    }
+    .lysSlideTekst{
+      color: #7a7a7a;
+      text-decoration: none;
+    }
+    .mørkSlideTekst:hover{
+      color: white;
+    }
+    .lysSlideTekst:hover{
+      color: black;
+    }
+
+
+
+/*lister med statistikk*/
+.statliste {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  border-left: none;
+  border-right: none;
+  padding: 20px;
+  column-count: 2;
+}
+.alleliste {
+  list-style: none;
+  margin-left: 15%;
+  margin-top: 20px;
+}
+.statantall {
+  font-size: 20px;
+  padding-left: 200px;
+}
+.statantallTekst {
+  font-size: xx-small;
+  font-weight: normal;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
+/*Alle forslag*/
 
-html {
+.forslagsliste {
+  border: none; 
+  margin-right: 20px;
+  margin-left: 20px;
+  box-shadow: 5px 10px 18px #bdbdbd; 
+  border-radius: 10px; 
+  padding-top: 22px;
+  column-count: 4;
+  height: 80px;
+}
+.SugOverskrift {
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 45px;
+}
+.frist {
+  font-size: 13px;
+  margin-left: 100px;
+}
+.ansvarlig {
+  font-size: 13px;
+  margin-left: 180px;
+}
+.gåinn {
+  text-align: right;
+  margin-right: 5%;
+  font-size: 20px;
+}
+.sidemeny {
+  width: 250px;
+  position: fixed;
+  top: 150px;
+  left: 25px;
+  padding: 8px 0;
+}
+.alleforslag{
+  list-style: none;
+  margin-left: 10%;
+  overflow-y:auto;
+  height: 560px;
+}
+.status {
+  width: 80px;
+  height: 30px;
+  transform: rotate(270deg);
   position: relative;
-  min-height: 100%;
+  right: 6px;
+  top: 54.7px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+}
+    /*få farger etter hva som er sendt inn*/
+    .plan {
+      background: #f5ebad;
+    }
+    .do {
+    background: #b3f5ad;
+    }
+    .study {
+    background: #f9e4ed;
+    }
+    .act{
+    background: #add1f5;
+    }
+
+/*utforming og farger på hva du sorterer forslagene etter: status*/
+.Options{
+  border: 1px solid #7a7a7a;
+  border-radius: 15px;
+  width: 150px;
+  padding: 3px;
+  font-size: 12px;
+  margin: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+    .OptAlle{
+      background-color: #7a7a7a;
+      color: white;
+    }
+    .Oalle:hover{
+      background-color:  #7a7a7a;
+      color: white;
+    }
+    .OptPlan{
+      background-color:  #f5ebad;
+    }
+    .Oplan:hover{
+    background-color:  #f5ebad;
+    }
+    .OptDo{
+      background-color: #b3f5ad;
+    }
+    .Odo:hover{
+      background-color:  #b3f5ad;
+    }
+    .OptStudy{
+      background-color:  #f9e4ed;
+    }
+    .Ostudy:hover{
+      background-color:  #f9e4ed;
+    }
+    .OptAct{
+      background-color: #add1f5;
+    }
+    .Oact:hover{
+      background-color:  #add1f5;
+    }
+
+/*CSS for alle ansatte*/
+
+.ansattliste {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  border-left: none;
+  border-right: none;
+  padding: 10px;
+  column-count: 2;
+}
+.nyKnapp {
+  margin-top: 70px;
+  list-style: none;
+}
+.nyknapp {
+  border-radius: 5px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  background-color: #717e74;
+  text-decoration: none;
+  color: white;
+}
+.nyknapp:hover {
+  background-color: #49514B;
+  color: white;
+}
+.ansattnavn{
+  font-size: large;
+}
+.sorteretter{
+  width: 170px;
+  height: 40px;
+  border-radius: 5px;
 }
 
-body {
-  margin-bottom: 60px;
+
+/*CSS for Alle Team*/
+
+.teamliste {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  border-left: none;
+  border-right: none;
+  padding-top: 25px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  column-count: 4;
+}
+.antmedlemmer {
+  font-size: 20px;
+  margin-left: 15px;
+}
+.medlemmer {
+  width: 20px;
+  height: 10px;
+  margin-left: 155px;
+}
+.teamleder{
+  font-size: small;
+  margin-left: 100px;  
+}
+.antallTekst{
+  font-size: xx-small;
+  margin-left: 150px
 }

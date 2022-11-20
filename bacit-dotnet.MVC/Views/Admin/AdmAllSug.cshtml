@@ -1,106 +1,17 @@
 @model bacit_dotnet.MVC.Models.SuggestionsModel
+<head>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
 
-<style>
-    .forslagsliste{
-        border: none; 
-        margin: 20px; 
-        box-shadow: 5px 10px 18px #888888; 
-        border-radius: 10px; 
-        padding: 5px;
-    }
-    .sidemeny {
-        width: 250px;
-        position: fixed;
-        top: 150px;
-        left: 25px;
-        padding: 8px 0;
-    }
-    .alleforslag{
-        list-style: none;
-        margin-left: 10%;
-        overflow-y:auto;
-        height: 560px;
-    }
-    .knapper {
-        margin: 1%;
-        border-width: 1px;
-        border-radius: 4px;
-        font-size: medium;
-        background-color: white;
-        transition-duration: 0,4s;
-        cursor: pointer;
-        position: relative;
-        left: 920px;
-        
-    }
-    .knapper2:hover {
-        background-color: #FF5C5C;
-        color: white;
-        border-color: #FF5C5C;
-        
-    }
-      .knapper1:hover {
-        background-color: #7D7DFF;
-        color: white;
-        border-color: #7D7DFF;
-        
-    }
-
-    .plan {
-    background: #f5ebad;
-    }
-    .do {
-    background: #b3f5ad;
-    }
-    .study {
-    background: #f9e4ed;
-    }
-    .act{
-    background: #add1f5;
-    }
-    .Options{
-        border: 1px solid #7a7a7a;
-        border-radius: 15px;
-        width: 150px;
-        padding: 3px;
-        font-size: 12px;
-        margin: 5px;
-        text-align: center;
-        cursor: pointer;
-    }
-
-    .Alle{
-        background-color: #7a7a7a;
-        color: white;
-    }
-
-    .Alle:hover{
-        background-color:  #7a7a7a;
-        color: white;
-    }
-    .Oplan:hover{
-       background-color:  #f5ebad;
-    }
-     .Odo:hover{
-        background-color:  #b3f5ad;
-    }
-     .Ostudy:hover{
-        background-color:  #f9e4ed;
-    }
-     .Oact:hover{
-        background-color:  #add1f5;
-    }
-   
-</style>
     <div class="sidemeny">
-        <input type="text" placeholder="Søk" style="height:50px;"> <br> <br>
+        <input type="text" placeholder="Søk" class="søk"> <br> <br>
         <p>Status</p>
 
-            <div class="Options Alle" >ALLE</div>
-            <div class="Options Oplan" >PLAN</div>
-            <div class="Options Odo" >DO</div>
-            <div class="Options Ostudy" >STUDY</div>
-            <div class="Options Oact" >ACT</div> <br>
+            <div class="Options Oalle OptAlle">ALLE</div>
+            <div class="Options Oplan">PLAN</div>
+            <div class="Options Odo">DO</div>
+            <div class="Options Ostudy">STUDY</div>
+            <div class="Options Oact">ACT</div> <br>
     </div>
 
 
@@ -109,21 +20,15 @@
         <p>Alle forslag</p>
         @foreach (var user in Model.suggestions) 
         {
-            <div class="forslagsliste" onclick="location.href='Save?id=@user.Sug_ID';" style="cursor: pointer;"> 
-                <p class="@user.Sug_Status">Status: @user.Sug_Status</p>
+            <div class="@user.Sug_Status status"> @user.Sug_Status</div>
 
-                <h5> @user.Sug_Overskrift</h5>
-                <p>Frist: @user.Sug_Frist</p>
+            <div class="forslagsliste" onclick="location.href='Save?id=@user.Sug_ID';" style="cursor: pointer;"> 
+                <div class="SugOverskrift"> @user.Sug_Overskrift</div>
+                <div class="frist">Frist: @user.Sug_Frist</div>
+                <div class="ansvarlig">Ansvarlig: @user.Sug_Ansvarlig</div>
+                <div class="gåinn"> > </div>
             </div> 
             // location.href='save' gjør classen "clickable" så du sendes videre til "savecshtml"
         } 
     </ul>
-
-    <script>
-        if (mndSug.Checked)
-        {
-                   
-   
-        }
-    </script>
 

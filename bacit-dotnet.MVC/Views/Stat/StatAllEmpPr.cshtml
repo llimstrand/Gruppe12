@@ -1,136 +1,30 @@
 @model bacit_dotnet.MVC.Models.UsersModel
 
-<style>
-    .ansattliste {
-        border-top: 1px solid #e5e5e5;
-        border-bottom: 1px solid #e5e5e5;
-        border-left: none;
-        border-right: none;
-        padding: 20px;
-        column-count: 2;
-        
-    }
-    .alleansatte {
-        list-style: none;
-        margin-left: 15%;
-        margin-top: 20px;
-    }
-
-    .sidemenyansatt {
-        width: 210px;
-        position: fixed;
-        top: 250px;
-        left: 25px;
-        padding: 8px 0;
-    }
-
-    .antall {
-        font-size: 20px;
-    }
-    .utforte {
-        font-size: xx-small;
-        font-weight: normal;
-    }
-
-    .Team{
-        font-size: small;
-        text-align: center;
-        padding: 3px;
-    }
-     .Team:hover{
-        color: black;
-    }
-
-    .Ansatte{
-        font-size: small;
-        text-align: center;
-         background-color: #7a7a7a;
-        border-radius: 15px;
-        padding: 3px;
-    }
-     .Ansatte:hover{
-        color: white;
-    }
-
-    .ansattteam {
-        border: 1px solid #7a7a7a;
-        border-radius: 15px;
-        column-count: 2;
-        height: 30px;
-        width: 145px;
-        padding: 1px;
-        margin: 15px;
-    }
-
-
-    .proexe{
-        border: 1px solid #7a7a7a;
-        border-radius: 15px;
-        column-count: 2;
-        height: 30px;
-        width: 145px;
-        padding: 1px;
-    }
-
-    .executor{
-        font-size: small;
-        text-align: center;
-        padding: 3px;
-    }
-
-    .proposer{
-        font-size: small;
-        text-align: center;
-        background-color: #7a7a7a;
-        border-radius: 15px;
-        padding: 3px;
-    }
-
-    .ex{
-        color: #7a7a7a;
-        text-decoration: none;
-    }
-
-    .pr{
-        color: white;
-        text-decoration: none;
-    }
-     .ex:hover{
-        color: black;
-    }
-
-    .pr:hover{
-        color: white;
-    }
-
-    .Sorter{
-        font-size: medium;
-    }
-
-
-</style>
-        <div class="sidemenyansatt">
-            <input type="text" placeholder="Søk" style="height:50px;"> <br><br>
+<head>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+        <div class="sidemeny">
+            <input type="text" placeholder="Søk" class="søk"> <br><br>
             
              <p class="Sorter">Sorter forslag etter:</p>
-            <div class="proexe">
-                <div class="executor" ><a class="ex" asp-area="" asp-controller="Stat" asp-action="ViewStatEmpEx">Utførte</a></div>
-                <div class="proposer"><a class="pr" asp-area="" asp-controller="Stat" asp-action="ViewStatEmpPr">Sendt inn</a></div>
+            <div class="proexeSlide">
+                <div class="lysSlide" ><a class="lysSlideTekst" asp-area="" asp-controller="Stat" asp-action="ViewStatEmpEx">Utførte</a></div>
+                <div class="mørkSlide"><a class="mørkSlideTekst" asp-area="" asp-controller="Stat" asp-action="ViewStatEmpPr">Sendt inn</a></div>
             </div>
         </div>
 
-        <ul class="alleansatte">
-            <div class="ansattteam">
-                <div class="Team" ><a class="ex" asp-area="" asp-controller="Stat" asp-action="ViewStatTeamEx">Team</a></div>
-                <div class="Ansatte" ><a class="pr" asp-area="" asp-controller="Stat" asp-action="ViewStatEmpEx">Ansatte</a></div>
+        <ul class="alleliste">
+            <div class="ansatteamSlide">
+                <div class="lysSlide" ><a class="lysSlideTekst" asp-area="" asp-controller="Stat" asp-action="ViewStatTeamEx">Team</a></div>
+                <div class="mørkSlide" ><a class="mørkSlideTekst" asp-area="" asp-controller="Stat" asp-action="ViewStatEmpEx">Ansatte</a></div>
             </div>
 
             @foreach (var user in Model.Users)
             {
             <li>
-                <div class="ansattliste" style="cursor: pointer;"> 
+                <div class="statliste" style="cursor: pointer;"> 
                     <h5>@user.Emp_Navn</h5>
-                    <p><b class="antall">@user.Antall_Pr_Forslag</b> <b class="utforte">FORSLAG SENDT INN</b></p>
+                    <p><b class="statantall">@user.Antall_Pr_Forslag</b> <b class="statantallTekst">FORSLAG SENDT INN</b></p>
 
                 </div>
             </li>   

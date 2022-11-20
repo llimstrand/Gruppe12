@@ -1,86 +1,29 @@
-<style>
-    .lageansatt {
-        border: 1px solid black;
-        padding: 50px;
-        width: 60%;
-        margin: auto;
-        border-radius: 10px;
-    }
+<head>
+    <link rel="stylesheet" href="~/css/add.css" asp-append-version="true" />
+</head>
 
-    .sendinn{
-        padding: 15px;
-        background-color: #717e74;
-        border-radius: 5px;
-        color: white;
-        border: none;
-        width: 180px;
-        margin-left: 36%;
-        margin-right: 36%;
-        margin-top: 5%;
-    }
-
-    .sendinn:hover {
-        background-color: #91a194;
-        border: none;
-    }
-
-    .button-back {
-       font-size: 17px;
-       background-color: white;
-       border-radius: 20px;
-       border: none;
-       position:relative
-  }
-
-  .button-back:hover {
-    text-decoration: underline grey;
-  }
-  .ansattinputs{
-    text-align: center;
-    margin-top: 1%;
-        font-size: 20px;
-        margin-left: 26%;
-        margin-right: 26%;
-        padding-left: 5%;
-        padding-right: 5%;
-
-  }
-
-  #empnr {
-    font-size: medium;
-    margin-right: 54%;
-  }
-
-  #empnavn {
-    font-size: medium;
-    margin-right: 64%;
-  }
-  
-  #emppassord {
-  font-size: medium;
-  margin-right: 74%;
-  }
-</style>
-
-<div class="lageansatt">
+<div class="bakgrunnNyEmpTea">
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
 
     <form action="/Users/Save" method="post">
         <ul style="list-style: none;">
-                <li class="ansattinputs">
-                    <p Id=empnr>Ansattnummer</p>
-                    <input required="required" type="number" name="Emp_Nr" placeholder="Ansattnummer"/> 
-                </li><br>
-                <li class="ansattinputs">
-                    <p Id=empnavn>Ansattnavn</p>
-                    <input required="required" type="text" name="Emp_Navn" placeholder="Navn"/> 
-                </li><br>
-                <li class="ansattinputs">
-                    <p Id=emppassord>Passord</p>
-                    <input required="required" type="password" name="Emp_Passord" placeholder="Passord"/> 
-                </li><br>
+                <li class="NyEmpTeamInputs">
+                    <p class="nyempnr">Ansattnummer</p>
+                    <input class=input required="required" type="number" name="Emp_Nr" placeholder="Ansattnummer"/> 
+                </li>
+                <br>
+                <li class="NyEmpTeamInputs">
+                    <p class="nyempnavn">Ansattnavn</p>
+                    <input class=input required="required" type="text" name="Emp_Navn" placeholder="Navn"/> 
+                </li>
+                <br>
+                <li class="NyEmpTeamInputs">
+                    <p class="nyemppassord">Passord</p>
+                    <input class=input required="required" type="password" name="Emp_Passord" placeholder="Passord"/> 
+                </li>
+                <br>
                 
-                <input type="submit" value="Opprett ansatt" class="sendinn"/>
+                <input type="submit" value="Opprett ansatt" class="sendinn sendinnEmpTea"/>
         </ul>
     </form> 
 </div>

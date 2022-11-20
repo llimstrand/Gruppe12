@@ -1,44 +1,34 @@
-@model bacit_dotnet.MVC.Models.Teams.TeamsViewModel
-<style>
-    .enkeltteam{
-        border: none;
-        padding: 50px;
-        width: 60%;
-        margin: auto;
-        border-radius: 10px;
-        box-shadow: 5px 10px 18px #888888; 
-    }
-    .teamknapp {
-        width: 130px;
-        height: 130px;
-        border: 1px solid #878787;
-        background-color: white;
-    }
-    .teamknapper {
-        column-count: 2;
-        width: 260px;
-        column-gap: 0;
-        font-size: 10px;
-    }
-    .button-back {
-       font-size: 17px;
-       background-color: white;
-       border-radius: 20px;
-       border: none;
-       position:relative;
-       margin-left: 90%;
-  }
-</style>
-<div class="enkeltteam"> 
+@model dynamic
+<head>
+    <link rel="stylesheet" href="~/css/view.css" asp-append-version="true" />
+</head>
+
+<div class="EttTeaEmp"> 
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
+    
+    <div class="EttTeaEmpKol">
+        @foreach (var user in Model.Teams){
+            <h3>Team @user.Team_Navn</h3>
+            <p> Teamleder: @user.Team_Leder</p>
 
-    <h3><b>@Model.Team_Navn</b></h3>
-    <p> Teamleder: @Model.Team_Leder</p>
+        <div class="BoksKnapper">
+            <div class="BoksKnapp" ><a class="BoksKnappTxt">SE TEAMSTATISTIKK</a></div>
+            <div class="BoksKnapp" ><a class="BoksKnappTxt" href="/Teams/AddMember?id=@user.Team_ID">LEGG TIL MEDLEMMER</a></div>
+            <div class="BoksKnapp" ><a class="BoksKnappTxt" href="/Teams/Edit?id=@user.Team_ID" >REDIGER TEAM</a></div>
+            <div class="BoksKnapp" ><a class="BoksKnappTxt" href="/Teams/Delete?id=@user.Team_ID" >SLETT TEAM</a></div>    
+        </div>
+        }
+        <br><br> 
+        <p>Medlemmer:</p>
 
-    <div class="teamknapper">
-        <input type="button" value="Se ansattstatistikk"  class="teamknapp">
-        <input type="button" value="Bytt team"  class="teamknapp">
-        <input type="button" value="Rediger ansatt"  class="teamknapp">
-        <input type="button" value="Slett ansatt"  class="teamknapp">
+        <div class="scrollMedlem">
+            @foreach (var user in Model.Users){
+                <div class="medlemliste" value="@user.Emp_Nr"> @user.Emp_Navn</div>  
+            }
+        </div>
     </div>
+            @foreach(var user in Model.Teams){
+                <a class="fjernMedl" href="/Teams/EditMemb?id=@user.Team_ID" >Fjern medlemmer</a>
+            }
+    
 </div>

@@ -1,12 +1,26 @@
 @model bacit_dotnet.MVC.Models.UsersModel
-
+<head>
+    <link rel="stylesheet" href="~/css/add.css" asp-append-version="true" />
+</head>
+<div class="bakgrunnNyEmpTea">
+    <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
   @foreach(var User in Model.Users){
  <form action="/Users/Update" method="post">
-         <input required="required" type="hidden" name="Emp_Nr" value=@User.Emp_Nr /> <br>
-         <input required="required" type="text" name="Emp_Navn" value=@User.Emp_Navn /> <br>
-         <input required="hidden" type="text" name="Emp_passord" value=@User.Emp_Passord /> <br>
-              <input type="submit" value="Send inn" class="sendinn"/>
+        <ul style="list-style: none;">
+                    <input required="required"  type="hidden" name="Emp_Nr" value="@User.Emp_Nr"/> 
+                <li class="NyEmpTeamInputs">
+                    <p class="nyempnavn">Ansattnavn</p>
+                    <input class=input required="required" type="text" name="Emp_Navn" placeholder="Navn" value="@User.Emp_Navn"/> 
+                </li><br>
+                <li class="NyEmpTeamInputs">
+                    <p class="nyemppassord">Passord</p>
+                    <input class=input required="required" type="password" name="Emp_Passord" placeholder="Passord" value="@User.Emp_Passord"/> 
+                </li><br>
+                
+                <input type="submit" value="Oppdater ansatt" class="sendinn sendinnEmpTea"/>
+        </ul>
   <br>
   </form>
 
     }
+</div>

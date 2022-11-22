@@ -165,7 +165,7 @@
     color: #888888; 
 }   
 .scrollMedlem{ /* Dersom det er medlemmer som overskrider høyden, må man scrolle (overflow-y:auto; setter dette)*/
-overflow-y:auto;
+overflow-y: auto;
 height: 250px;
 }
 

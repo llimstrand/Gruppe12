@@ -1,99 +1,33 @@
 @model dynamic
-<style>
-    .enkeltteam{
-        border: none;
-        padding: 50px;
-        width: 60%;
-        margin: auto;
-        border-radius: 10px;
-        box-shadow: 5px 10px 18px #888888; 
-    }
-    .kolonne{
-        column-count: 2;
-    }
-    .teamknapp {
-        width: 120px;
-        height: 120px;
-        border: 1px solid #b8b8b8;
-        background-color: white;
-        text-align: center;
-        padding-top: 34%;
 
+<head>
+    <link rel="stylesheet" href="~/css/view.css" asp-append-version="true" />
+</head>
 
-    }
-    .teamknapper {
-        column-count: 2;
-        width: 240px;
-        column-gap: 0;
-        
-        
-    }
-    
-    .teamknapp:hover {
-        color: black;
-
-    }
-
-    .tekst {
-        text-decoration: none;
-        color: grey;
-        font-size: 10px;
-        text-align: center;
-       
-    }
-
-    .tekst:hover {
-        color: black
-    }
-    .button-back {
-       font-size: 17px;
-       background-color: white;
-       border-radius: 20px;
-       border: none;
-       position:relative;
-       margin-left: 90%;
-  }
-
-  .medlemmer{
-         border-top: 1px solid #e5e5e5;
-        border-bottom: 1px solid #e5e5e5;
-        border-left: none;
-        border-right: none;
-        padding: 4px;
-        color: #888888;
-        
-  }
-  /* Dersom det er medlemmer som overskrider høyden, må man scrolle (overflow-y:auto; setter dette)*/
-  .scroll{ 
-    overflow-y:auto;
-    height: 250px;
-  }
-</style>
-
-<div class="enkeltteam"> 
+<div class="EttTeaEmp"> 
     <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
-    <div class="kolonne">
+    <div class="EttTeaEmpKol">
         @foreach (var user in Model.Teams){
             <h3><b>Team @user.Team_Navn</b></h3>
             <p> Teamleder: @user.Team_Leder</p>
 
-        <div class="teamknapper">
-        <div class="teamknapp" ><a class="tekst">SE ANSATTSTATISTIKK</a></div>
-        <div class="teamknapp" ><a class="tekst" href="/Teams/AddMember?id=@user.Team_ID">LEGG TIL MEDLEMMER</a></div>
-        <div class="teamknapp" ><a class="tekst" href="/Teams/Edit?id=@user.Team_ID" >REDIGER TEAM</a></div>
-        <div class="teamknapp" ><a class="tekst" href="/Teams/Delete?id=@user.Team_ID" >SLETT TEAM</a></div>
+        <div class="BoksKnapper">
+        <div class="BoksKnapp" ><a class="BoksKnappTxt">SE ANSATTSTATISTIKK</a></div>
+        <div class="BoksKnapp" ><a class="BoksKnappTxt" href="/Teams/AddMember?id=@user.Team_ID">LEGG TIL MEDLEMMER</a></div>
+        <div class="BoksKnapp" ><a class="BoksKnappTxt" href="/Teams/Edit?id=@user.Team_ID" >REDIGER TEAM</a></div>
+        <div class="BoksKnapp" ><a class="BoksKnappTxt" href="/Teams/Delete?id=@user.Team_ID" >SLETT TEAM</a></div>
          
     </div>
 
         }
         <br> <br> <p>Medlemmer:</p>
-        <div class="scroll">
+        <div class="scrollMedlem">
             @foreach (var users in Model.Users){
-                    <div class="medlemmer" value="@users.Emp_Nr"> @users.Emp_Navn</div>  
+                    <div class="medlemliste" value="@users.Emp_Nr"> @users.Emp_Navn</div>  
             }
     </div>
     @foreach(var user in Model.Teams){
-        <a class="tekst" href="/Teams/EditMemb?id=@user.Team_ID" >Fjern medlemmer</a>
+        <a class="fjernMedl" href="/Teams/EditMemb?id=@user.Team_ID" >Fjern medlemmer</a>
     }
      
 

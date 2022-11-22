@@ -7,86 +7,138 @@
 @model LoginViewModel
 @inject SignInManager<IdentityUser> SignInManager
 
-@{
-    ViewData["Title"] = "Log in";
+<style>
+
+
+
+body {
+  background-image: url("https://iili.io/D4zAa2.jpg");
+  font-family: Arial, Helvetica, sans-serif;
+   background-size: cover;
+ 
+}
+ 
+.box{
+   background-color: rgba(255, 255, 255, 0.7);
+   width:30%;
+   height: 65%;
+   text-align: center;
+   margin: auto;
+   margin-top: 12%;
+   border-radius: 10px;
+   padding: 1px;
+   }
+
+ h1 {
+  font-weight: lighter;
+  letter-spacing: 0.8px;
+   }
+ 
+ 
+img {
+   margin-top: 100px;
+   margin-bottom: -10%;
+   width: 30%;
+   margin-left: 35%;
+   margin-right: 35%;
+    }
+ 
+.knapp {
+   border-radius: 5px;
+   padding: 17px;
+   border: 1px solid #939393;
+   text-decoration: none;
+   color: #525252;
 }
 
-<h1>@ViewData["Title"].</h1>
+ 
+#Email, #Password{
+  border-top: none;
+   border-left: none;
+   border-right: none;
+   border-bottom: 1px solid #525252;
+   background-color: rgba(0, 0, 0, 0);
+   height: 40px;
+   width: 300px;
+   margin: 20px;
+   font-size: 17px;
+   }
+
+  label{
+    margin-right: 200px;
+
+   }
+ 
+h1{
+  margin-top: 10%;
+  
+   }
+ 
+ .knapp {
+    border-radius: 5px;
+    padding: 17px;
+    border: 1px solid #939393;
+    text-decoration: none;
+    color: #525252;
+    margin-left: 200px;
+    font-size: 17px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.registrerNyBruker
+{
+   font-weight: lighter;
+    text-align: center;
+    text-decoration: underline;
+    color: #525252;
+   
+
+   
+}
+ 
+
+    
+</style>
+
+
+
+@{
+    ViewData["Title"] = "Logg inn";
+}
+<img src = "https://lh4.googleusercontent.com/opmUcBFmnDaFXxt6k2_sQ1Z2OR6gtO1tzyyM504jN5g0tVRBjZkglVsTWlQ4ePeDS8M=w2400"> 
+<div class= box>
+<h1>@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-8">
         <section>
             <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-                <h4>Use a local account to log in.</h4>
-                <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="Email" class="col-md-2 control-label"></label>
+                 
                     <div class="col-md-10">
-                        <input asp-for="Email" class="form-control" />
+                        <input asp-for="Email" class="form-control" placeholder="Email"/>
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Password" class="col-md-2 control-label"></label>
+                   
                     <div class="col-md-10">
-                        <input asp-for="Password" class="form-control" />
+                        <input asp-for="Password" class="form-control" placeholder="Passord"/>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            <label asp-for="RememberMe">
-                                <input asp-for="RememberMe" />
-                                @Html.DisplayNameFor(m => m.RememberMe)
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-default">Log in</button>
+                        <button type="submit" class="Knapp">Logg inn</button>
+                        <br><br><br><br><br><br>
                     </div>
                 </div>
                 <p>
-                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
-                </p>
-                <p>
-                    <a asp-action="ForgotPassword">Forgot your password?</a>
+                    <a asp-action="Register" class ="registrerNyBruker" asp-route-returnurl="@ViewData["ReturnUrl"]">Registrer ny bruker</a>
                 </p>
             </form>
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                var schemes = await SignInManager.GetExternalAuthenticationSchemesAsync();
-                var loginProviders = schemes.ToList();
-                if (loginProviders.Count == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-                        <div>
-                            <p>
-                                @foreach (var provider in loginProviders)
-                                {
-                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.Name account">@provider.Name</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
+   
         </section>
     </div>
 </div>

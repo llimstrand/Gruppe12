@@ -13,8 +13,7 @@ namespace bacit_dotnet.MVC.DataAccess
         IEnumerable<Team> ViewTeams(int id);
         void DeleteTeam(int id);
         IEnumerable<Team> UpdateTeam(int id);
-         void SetUpTeam(TeamsViewModel model);
-
+        void SetUpTeam(TeamsViewModel model);
         void SetUsers(UsersViewModel model);
         IEnumerable<User> FetchEmp();
         void DeleteEmp(int id);
@@ -43,8 +42,7 @@ namespace bacit_dotnet.MVC.DataAccess
         IEnumerable<Suggestion> FetchSugByDo();
         IEnumerable<Suggestion> FetchSugByStudy();
         IEnumerable<Suggestion> FetchSugByAct();
-         IDbConnection GetDbConnection();
-          void DeleteMemb(int id);
+        IDbConnection GetDbConnection();
         IEnumerable<User> FetchEmpByTeamID(int id);
         void DeleteMember(int id);
 

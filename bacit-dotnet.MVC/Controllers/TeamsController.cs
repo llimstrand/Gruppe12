@@ -28,7 +28,6 @@ namespace bacit_dotnet.MVC.Controllers
             model.Users = data;
             return View(model);
         }
-
         
         [HttpGet]
         public IActionResult Save(int id) 
@@ -39,11 +38,8 @@ namespace bacit_dotnet.MVC.Controllers
             model.Teams = sqlConnector.ViewTeams(id);
             model.Users = sqlConnector.ViewMembers(id);
             model.Teams = data;
-          
             return View("ViewTeam", model); 
-
         }
-
 
         [HttpPost]
         public IActionResult Save(TeamsViewModel model) 
@@ -75,34 +71,28 @@ namespace bacit_dotnet.MVC.Controllers
         [HttpGet]
         public IActionResult ViewTeam()
         {
-
             var data = sqlConnector.FetchTeam();
             var model = new TeamsModel();
             model.Teams = data;
-
             return View("AllTeam",model);
-
         }
 
-           [HttpPost]
+        [HttpPost]
         public IActionResult ViewTeam(TeamsViewModel model) 
         {
             sqlConnector.SetTeam(model);
             return View(model); 
         }
-
                 
         [HttpGet]
-
         public IActionResult Delete(int id)
         {
             Console.WriteLine(id);
             sqlConnector.DeleteTeam(id); // Denne metoden sletter data
             return View("DeleteTeam");
-
          }
 
-          [HttpGet]
+        [HttpGet]
 
         public IActionResult Edit(int id)
         {
@@ -134,9 +124,7 @@ namespace bacit_dotnet.MVC.Controllers
             return View(model);
         }
 
-
         [HttpGet]
-
         public IActionResult DeleteMemb(int id)
         {
             Console.WriteLine(id);
@@ -145,12 +133,8 @@ namespace bacit_dotnet.MVC.Controllers
             model.Teams = sqlConnector.ViewTeams(id);
             model.Users = sqlConnector.ViewMembers(id);
             return View("ViewTeam", model);
-
          }
-
-        
-  
- }
+    }
  }
         
         

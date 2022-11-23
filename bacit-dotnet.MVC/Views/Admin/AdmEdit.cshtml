@@ -1,21 +1,7 @@
 @model dynamic
-
-<style>
- .knapp {
-       padding: 15px;
-        background-color: #717e74;
-        border-radius: 5px;
-        color: white;
-        border: none;
-        width: 180px;
-        text-decoration: none;
-    }
-
-    .knapp:hover {
-        color: black;
-        background-color: #ced0f2;
-    }
-</style>
+<head>
+    <link rel="stylesheet" href="~/css/add.css" asp-append-version="true" />
+</head>
 
 @foreach(var user in  Model.suggestions){
 <div class="lageforslag">

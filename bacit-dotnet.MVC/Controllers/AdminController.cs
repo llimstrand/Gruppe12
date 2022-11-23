@@ -16,23 +16,18 @@ namespace bacit_dotnet.MVC.Controllers
             _logger = logger;
             this.sqlConnector = sqlConnector;
         }
-        public IActionResult AdmProfile()
-        
+        public IActionResult AdmProfile()      
         {
             return View();
         }
 
-
         [HttpGet]
         public IActionResult AdmAllSug()
         {
-
             var data = sqlConnector.FetchSug();
             var model = new SuggestionsModel();
             model.suggestions = data;
-
             return View(model);
-
         }
          [HttpGet]
          public IActionResult Save(int id) 
@@ -42,8 +37,7 @@ namespace bacit_dotnet.MVC.Controllers
             dynamic mymodel = new ExpandoObject();
             mymodel.suggestions = sqlConnector.SaveSug(id);
             mymodel.Proposers = sqlConnector.FetchProByID(id);
-            mymodel.Users = sqlConnector.FetchExByID(id);
-            
+            mymodel.Users = sqlConnector.FetchExByID(id);           
             return View("AdmViewSug", mymodel);
         }
 
@@ -53,7 +47,6 @@ namespace bacit_dotnet.MVC.Controllers
             Console.WriteLine(id);
             sqlConnector.DeleteSug(id); // Denne metoden sletter data
             return View("Delete");
-
         }
 
         
@@ -65,9 +58,7 @@ namespace bacit_dotnet.MVC.Controllers
             dynamic mymodel = new ExpandoObject();
             mymodel.suggestions = sqlConnector.UpdateSug(id); ;
             mymodel.Users = sqlConnector.FetchEmp();
-            
             return View(mymodel);
-
         }
 
         [HttpPost]
@@ -76,7 +67,6 @@ namespace bacit_dotnet.MVC.Controllers
             sqlConnector.SetUpSug(model);
             Console.WriteLine("Model");
             int id =  model.Sug_ID;
-            
             var data = sqlConnector.UpdateSug(id); //hvis forslaget har en id skal forslaget vises
             dynamic models = new ExpandoObject();
             models.suggestions = sqlConnector.SaveSug(id);
@@ -84,9 +74,6 @@ namespace bacit_dotnet.MVC.Controllers
             models.Users = sqlConnector.FetchExByID(id);
             return View("ViewSug", models);
         }
-
-        
-        
         
     }
 }

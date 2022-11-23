@@ -18,7 +18,6 @@ namespace bacit_dotnet.MVC.Controllers
         
         public IActionResult AllEmp()
         {
-
             return View();
         }
         public IActionResult AddEmp()
@@ -28,7 +27,6 @@ namespace bacit_dotnet.MVC.Controllers
         [HttpGet]
         public IActionResult Save(int id) 
         {
-
             Console.WriteLine(id);
             var data = sqlConnector.FetchEmpByID(id);
             var model = new UsersModel();
@@ -36,8 +34,7 @@ namespace bacit_dotnet.MVC.Controllers
             return View("ViewEmp",model); 
         }
 
-
-         [HttpPost]
+        [HttpPost]
         public IActionResult Save(UsersViewModel model) 
         {
             sqlConnector.SetUsers(model);
@@ -54,12 +51,10 @@ namespace bacit_dotnet.MVC.Controllers
             var data = sqlConnector.FetchEmp();
             var model = new UsersModel();
             model.Users = data;
-
             return View("AllEmp",model);
-
         }
 
-         [HttpPost]
+        [HttpPost]
         public IActionResult ViewEmp(UsersViewModel model) 
         {
             sqlConnector.SetUsers(model);
@@ -70,8 +65,7 @@ namespace bacit_dotnet.MVC.Controllers
        {
            Console.WriteLine(id);
            sqlConnector.DeleteEmp(id); // Denne metoden sletter data
-           return View("DeleteEmp");
- 
+           return View("DeleteEmp"); 
         }
         
         [HttpGet]
@@ -85,7 +79,7 @@ namespace bacit_dotnet.MVC.Controllers
             return View(model);
         }
 
-    [HttpPost]
+        [HttpPost]
         public IActionResult Update(UsersViewModel model){
             Console.WriteLine("Updates");
             sqlConnector.SetUpEmp(model);
@@ -96,8 +90,7 @@ namespace bacit_dotnet.MVC.Controllers
             var data = sqlConnector.UpdateEmp(id);
             var result = new UsersModel();
             result.Users = data;
-            return View("ViewEmp", result);}
-
- 
+            return View("ViewEmp", result);
+        } 
     }
 }

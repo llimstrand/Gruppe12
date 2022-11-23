@@ -157,5 +157,24 @@
 .medlemTxt{
     font-size: medium;
 }
-
-
+/*CSS for EditMemb*/
+.fjernKnapp{
+    border-radius: 3px;
+    border: 1px solid #888888;
+    color: #888888;
+    font-size: small;
+    text-decoration:none;
+    padding: 2px;
+    position: relative; 
+    margin-right: 5px;
+}
+.fjernKnapp:hover {
+    color: black;
+    border: 2px solid black;
+} 
+.medlemmer{
+    padding: 4px;
+    color: #888888; 
+    width: 500px;
+    margin: 20px;
+}

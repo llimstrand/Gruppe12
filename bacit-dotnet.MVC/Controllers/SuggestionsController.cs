@@ -28,13 +28,10 @@ namespace bacit_dotnet.MVC.Controllers
         [HttpGet]
         public IActionResult AllSug()
         {
-
             var data = sqlConnector.FetchSug(); //henter alle forslag og sier at de skal vises på AlleFor
             var model = new SuggestionsModel();
             model.suggestions = data;
-
             return View(model);
-
         }
 
         [HttpPost]
@@ -48,7 +45,6 @@ namespace bacit_dotnet.MVC.Controllers
             var data = sqlConnector.FetchSug(); //henter alle forslag og sier at de skal vises på AlleFor
             var models = new SuggestionsModel();
             models.suggestions = data;
-
             return View("AllSug",models);
         }
        
@@ -72,10 +68,8 @@ namespace bacit_dotnet.MVC.Controllers
              // Denne metoden henter ut data
             dynamic mymodel = new ExpandoObject();
             mymodel.suggestions = sqlConnector.UpdateSug(id); ;
-            mymodel.Users = sqlConnector.FetchEmp();
-            
+            mymodel.Users = sqlConnector.FetchEmp();           
             return View(mymodel);
-
         }
 
         [HttpPost]
@@ -83,8 +77,7 @@ namespace bacit_dotnet.MVC.Controllers
             Console.WriteLine("Update");
             sqlConnector.SetUpSug(model);
             Console.WriteLine("Model");
-            int id =  model.Sug_ID;
-            
+            int id =  model.Sug_ID;           
             var data = sqlConnector.UpdateSug(id); //hvis forslaget har en id skal forslaget vises
             dynamic models = new ExpandoObject();
             models.suggestions = sqlConnector.SaveSug(id);
@@ -99,13 +92,11 @@ namespace bacit_dotnet.MVC.Controllers
             Console.WriteLine(id);
             sqlConnector.DeleteSug(id); // Denne metoden sletter data
             return View("Delete");
-
         }
 
         [HttpGet]
         public IActionResult AllSugPlan()
         {
-
             var data = sqlConnector.FetchSugByPlan(); //henter alle forslag og sier at de skal vises på AlleFor
             var model = new SuggestionsModel();
             model.suggestions = data;
@@ -115,7 +106,6 @@ namespace bacit_dotnet.MVC.Controllers
         [HttpGet]
         public IActionResult AllSugDo()
         {
-
             var data = sqlConnector.FetchSugByDo(); //henter alle forslag og sier at de skal vises på AlleFor
             var model = new SuggestionsModel();
             model.suggestions = data;
@@ -125,7 +115,6 @@ namespace bacit_dotnet.MVC.Controllers
         [HttpGet]
         public IActionResult AllSugStudy()
         {
-
             var data = sqlConnector.FetchSugByStudy(); //henter alle forslag og sier at de skal vises på AlleFor
             var model = new SuggestionsModel();
             model.suggestions = data;
@@ -135,12 +124,10 @@ namespace bacit_dotnet.MVC.Controllers
         [HttpGet]
         public IActionResult AllSugAct()
         {
-
             var data = sqlConnector.FetchSugByAct(); //henter alle forslag og sier at de skal vises på AlleFor
             var model = new SuggestionsModel();
             model.suggestions = data;
             return View(model);
-        }
-        
+        }        
     }
 }

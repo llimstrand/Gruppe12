@@ -15,8 +15,7 @@ namespace bacit_dotnet.MVC.Controllers
             _logger = logger;
             this.sqlConnector = sqlConnector;
         }
-        public IActionResult Index()
-        
+        public IActionResult Index()        
         {
             return View();
         }
@@ -42,8 +41,6 @@ namespace bacit_dotnet.MVC.Controllers
                             <body><h1>?</h1>
                             </body> 
                             </html>", ContentType = "text/html; charset=UTF-8" };
-        }
-    
+        }   
     }
-
 }

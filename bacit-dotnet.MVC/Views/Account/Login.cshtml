@@ -7,100 +7,9 @@
 @model LoginViewModel
 @inject SignInManager<IdentityUser> SignInManager
 
-<style>
-
-
-
-body {
-  background-image: url("https://iili.io/D4zAa2.jpg");
-  font-family: Arial, Helvetica, sans-serif;
-   background-size: cover;
- 
-}
- 
-.box{
-   background-color: rgba(255, 255, 255, 0.7);
-   width:30%;
-   height: 65%;
-   text-align: center;
-   margin: auto;
-   margin-top: 12%;
-   border-radius: 10px;
-   padding: 1px;
-   }
-
- h1 {
-  font-weight: lighter;
-  letter-spacing: 0.8px;
-   }
- 
- 
-img {
-   margin-top: 100px;
-   margin-bottom: -10%;
-   width: 30%;
-   margin-left: 35%;
-   margin-right: 35%;
-    }
- 
-.knapp {
-   border-radius: 5px;
-   padding: 17px;
-   border: 1px solid #939393;
-   text-decoration: none;
-   color: #525252;
-}
-
- 
-#Email, #Password{
-  border-top: none;
-   border-left: none;
-   border-right: none;
-   border-bottom: 1px solid #525252;
-   background-color: rgba(0, 0, 0, 0);
-   height: 40px;
-   width: 300px;
-   margin: 20px;
-   font-size: 17px;
-   }
-
-  label{
-    margin-right: 200px;
-
-   }
- 
-h1{
-  margin-top: 10%;
-  
-   }
- 
- .knapp {
-    border-radius: 5px;
-    padding: 17px;
-    border: 1px solid #939393;
-    text-decoration: none;
-    color: #525252;
-    margin-left: 200px;
-    font-size: 17px;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.registrerNyBruker
-{
-   font-weight: lighter;
-    text-align: center;
-    text-decoration: underline;
-    color: #525252;
-   
-
-   
-}
- 
-
-    
-</style>
-
-
+<head>
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+</head>
 
 @{
     ViewData["Title"] = "Logg inn";
@@ -130,12 +39,12 @@ h1{
                 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="Knapp">Logg inn</button>
+                        <button type="submit" class="Knapp"><a href="/admin/AdmAllSug" class="admlogginn">Logg inn</a></button>
                         <br><br><br><br><br><br>
                     </div>
                 </div>
                 <p>
-                    <a asp-action="Register" class ="registrerNyBruker" asp-route-returnurl="@ViewData["ReturnUrl"]">Registrer ny bruker</a>
+                    <a asp-action="Register" class ="registrerNyBruker" asp-route-returnurl="@ViewData["ReturnUrl"]">Registrer ny bruker</a> <br>
                 </p>
             </form>
    

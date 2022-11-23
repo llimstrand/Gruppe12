@@ -32,7 +32,6 @@ namespace bacit_dotnet.MVC.Controllers
             var data = sqlConnector.FetchStatEmpEx();
             var model = new UsersModel();
             model.Users = data;
-
             return View("StatAllEmpEx",model);
 
         }
@@ -44,9 +43,7 @@ namespace bacit_dotnet.MVC.Controllers
             var data = sqlConnector.FetchStatEmpPr();
             var model = new UsersModel();
             model.Users = data;
-
             return View("StatAllEmpPr",model);
-
         }
 
         public IActionResult StatAllTeamEx()
@@ -59,16 +56,14 @@ namespace bacit_dotnet.MVC.Controllers
             return View();
         }
 
-         [HttpGet]
+        [HttpGet]
         public IActionResult ViewStatTeamEx()
         {
             Console.WriteLine();
             var data = sqlConnector.FetchStatTeamEx();
             var model = new TeamsModel();
             model.Teams = data;
-
             return View("StatAllTeamEx",model);
-
         }
 
         [HttpGet]
@@ -78,9 +73,7 @@ namespace bacit_dotnet.MVC.Controllers
             var data = sqlConnector.FetchStatTeamPr();
             var model = new TeamsModel();
             model.Teams = data;
-
             return View("StatAllTeamPr",model);
-
         }
     }
 }

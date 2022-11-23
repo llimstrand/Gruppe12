@@ -25,10 +25,11 @@
             @foreach (var users in Model.Users){
                     <div class="medlemliste" value="@users.Emp_Nr"> @users.Emp_Navn</div>  
             }
-    </div>
-    @foreach(var user in Model.Teams){
+        </div>
+        
+         @foreach(var user in Model.Teams){
         <a class="fjernMedl" href="/Teams/EditMemb?id=@user.Team_ID" >Fjern medlemmer</a>
-    }
+        }
      
 
 </div> 

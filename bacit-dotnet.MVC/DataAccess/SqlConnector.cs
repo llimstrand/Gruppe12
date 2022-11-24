@@ -607,15 +607,6 @@ namespace bacit_dotnet.MVC.DataAccess
             command.ExecuteNonQuery();
         }
         
-
-        /**/
-        private void DeleteData(string query, MySqlConnection conn, int id){
-            using var command = conn.CreateCommand();
-            command.CommandType = System.Data.CommandType.Text;
-            command.CommandText = query;
-            command.Parameters.AddWithValue("@id", id);
-            command.ExecuteNonQuery();
-        }
         /*Sletter et forslag*/
         public  void DeleteSug(int id) {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));

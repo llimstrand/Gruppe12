@@ -64,10 +64,9 @@ namespace bacit_dotnet.MVC.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Console.WriteLine(id);
-             // Denne metoden henter ut data
+            Console.WriteLine(id); // Denne metoden henter ut data
             dynamic mymodel = new ExpandoObject();
-            mymodel.suggestions = sqlConnector.UpdateSug(id); ;
+            mymodel.suggestions = sqlConnector.SaveSug(id); ;
             mymodel.Users = sqlConnector.FetchEmp();           
             return View(mymodel);
         }

@@ -65,13 +65,16 @@
         <label for="langsiktig">Langsiktig</label> <br>
     </li><br>
     <li>
-        <label for="Sug_VedleggEn">Før-bilde 'Denne må fikses'</label> <br>
-        <input type="byte" name="Sug_VedleggEn" />
-    </li><br>
+        <label class="smalltext" for="Vedlegg_En">Førbilde</label> <br>
+        <input class=nyførbilde type="file" name="Vedlegg_En"
+        accept="image/png, image/jpeg"/>
+    </li>
+    <br>
     <li>
-        <label for="Sug_VedleggTo">Etter-Bilde 'denne må fikses'</label> <br>
-        <input type="byte" name="Sug_VedleggTo" />
-    </li><br>
+        <label class="smalltext" for="Vedlegg_To">Etterbilde</label> <br>
+        <input class=nyetterbilde type="file" name="Vedlegg_To" 
+        accept="image/png, image/jpeg"/>
+    </li>
     <li>
         <input type="submit" value="Send inn" class="sendinn"/>
     </li><br>

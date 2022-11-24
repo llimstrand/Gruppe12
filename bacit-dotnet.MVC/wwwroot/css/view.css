@@ -70,19 +70,16 @@
     left: 1%;
 }
 .Enbilde{
-    background-color:#ddd;
-    border-radius: 4px;
-    padding: 5px;
-    width: 180px;
-    height: 250px;
+    width: 200px;
+    height: 275px;
 }
 .Enbildefor{
     position:absolute; 
-    left: 385px; top:310px;
+    left: 385px; top:270px;
 }
 .Enbildeetter{
     position:absolute; 
-    left:640px; top:310px; 
+    left:640px; top:270px; 
 }
 /*Edit og delete knapper*/
 .EdiDel {
@@ -94,11 +91,10 @@
     position: relative;
     left: 600px;
     float: left;
-    margin: 4%;
+    margin: 8%;
     padding-left: 7%;
     padding-right: 7%;
     text-decoration:none;
-    bottom: 30px;
 }
 .edit:hover {
     color: black;

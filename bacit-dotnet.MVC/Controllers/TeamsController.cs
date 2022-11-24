@@ -132,7 +132,7 @@ namespace bacit_dotnet.MVC.Controllers
             dynamic model = new ExpandoObject();
             model.Teams = sqlConnector.ViewTeams(id);
             model.Users = sqlConnector.ViewMembers(id);
-            return View("ViewTeam", model);
+            return View("DeleteMember", model);
          }
     }
  }

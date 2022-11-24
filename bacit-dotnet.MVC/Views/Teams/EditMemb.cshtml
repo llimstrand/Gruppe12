@@ -5,14 +5,16 @@
 </head>
 
 <div class="bakgrunnNyEmpTea">
-
-    <h5> Fjern medlemmer fra dette teamet </h5>
-    <p>Medlemmer:</p>
-
+    <input type="button" value="Tilbake" class= "button-back" onclick="history.go(-1);" />
+    
+    @foreach (var user in Model.Teams){
+    <h5 value="@user.Team_ID"> Fjern medlemmer fra Team @user.Team_Navn </h5>
+    }
     <div>
             @foreach (var users in Model.Users){
                 <div class="medlemmer" value="@users.Emp_Nr?"> 
-                    <a class="fjernKnapp" href="/Teams/DeleteMemb?id=@users.Emp_Nr" >Fjern</a> @users.Emp_Navn
+                    <a class="fjernKnapp" href="/Teams/DeleteMemb?id=@users.Emp_Nr">Fjern</a>
+                    @users.Emp_Navn
                 </div>  
             }    
     </div>

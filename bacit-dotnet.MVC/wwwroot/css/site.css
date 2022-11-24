@@ -89,6 +89,7 @@
   font-weight: normal;
 }
 
+
 /*Alle forslag*/
 
 .forslagsliste {
@@ -106,13 +107,32 @@
   font-weight: 500;
   margin-left: 45px;
 }
+.SugOverskriftt {
+  font-size: 18px;
+  font-weight: 500;
+}
+.starIcon{
+  height: 20px;
+  width: 20px;
+  opacity: 0.6;
+  margin-right: 4px;
+  margin-left: 40px;
+  margin-bottom: 5px;
+}
 .frist {
   font-size: 13px;
   margin-left: 100px;
 }
+.alarmIcon{
+  height: 13px;
+  width: 13px;
+  opacity: 0.6;
+  margin-right: 4px;
+}
 .ansvarlig {
   font-size: 13px;
   margin-left: 180px;
+  width: 300px;
 }
 .gåinn {
   text-align: right;
@@ -142,6 +162,9 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   text-align: center;
+}
+.statusmnd {
+  background: #b3f5ad;
 }
     /*få farger etter hva som er sendt inn*/
     .plan {

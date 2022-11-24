@@ -23,7 +23,10 @@
 
            <div class="forslagsliste" onclick="location.href='Save?id=@user.Sug_ID';" style="cursor: pointer;"> 
                 <div class="SugOverskrift"> @user.Sug_Overskrift</div>
-                <div class="frist">Frist: @user.Sug_Frist</div>
+                <div class="frist">
+                    <img class="alarmIcon" src="https://cdn-icons-png.flaticon.com/512/3602/3602134.png">
+                    Frist: @user.Sug_Frist
+                </div>
                 <div class="ansvarlig">Ansvarlig: @user.Sug_Ansvarlig</div>
                 <div class="gåinn"> > </div>
             </div> 

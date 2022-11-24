@@ -3,7 +3,7 @@ using bacit_dotnet.MVC.Models.Suggestions;
 using bacit_dotnet.MVC.Models.Users;
 using bacit_dotnet.MVC.Models.Teams;
 using System.Data;
-
+/*Denne filen sier at disse funksjonene fungerer*/
 namespace bacit_dotnet.MVC.DataAccess
 {
     public interface ISqlConnector

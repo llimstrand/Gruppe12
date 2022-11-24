@@ -20,10 +20,8 @@
                     top: 44%;
                     left: 86%;
                     width: 170px;
-                    height: 57px;
-                    
+                    height: 57px;                  
                 }
-
                 #knapp:hover {
                     border-color: black;
                 }
@@ -34,17 +32,13 @@
                     height:45px;
                     position: absolute; 
                     z-index: 2;                    
-                 }
-                
-             
+                 }                            
               .border-bottom {                  
                     padding: 3%;                  
                     }
-
                .box-shadow {
                     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
                }
-
                 #meny {
                     width: 100%;
                     font-size: large;
@@ -67,6 +61,21 @@
                
                 #minprof:hover {
                     text-decoration: underline grey; /* css til minprofil knapp */
+                }
+                .gridIcon{
+                    height: 20px;
+                    width: 20px;
+                    opacity: 0.8;
+                    margin-right: 8px;
+                    margin-bottom: 4px;
+                } 
+                .statiIcon{
+                    height: 15px;
+                    width: 15px;
+                    margin-left: 40px;
+                    opacity: 0.6;
+                    margin-right: 8px;
+                    margin-bottom: 4px;
                 } 
                 
         </style>
@@ -78,10 +87,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Suggestions" asp-action="AllSug">Alle forslag</a>
+                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Suggestions" asp-action="AllSug">
+                                <img class="gridIcon" src="https://www.pngrepo.com/png/379439/512/grid.png">
+                                Alle forslag
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Stat" asp-action="ViewStatEmpEx">Statistikk</a>
+                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Stat" asp-action="ViewStatEmpEx">
+                                <img class="statiIcon" src="https://icon-library.com/images/statistics-icon-png/statistics-icon-png-1.jpg"> 
+                                Statistikk
+                            </a>
                         </li>
                         <a id="nordic" class="navbar-brand" asp-area="" asp-controller="Suggestions" asp-action="AllSug">NordicDoor</a> 
                 <button  class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -103,7 +118,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            @RenderBody() <!--rendrer views som controller returnerer -->
         </main>
     </div>
 

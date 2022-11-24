@@ -1,3 +1,4 @@
+/*konfigurert til docker, får opp docker når vi builder, setter opp et utviklingsmiljø for oss*/
 {
   "iisSettings": {
     "windowsAuthentication": false,

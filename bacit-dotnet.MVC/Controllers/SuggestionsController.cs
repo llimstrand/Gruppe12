@@ -1,22 +1,22 @@
-﻿using bacit_dotnet.MVC.Models.Suggestions;
-using bacit_dotnet.MVC.DataAccess;
-using Microsoft.AspNetCore.Mvc;
-using bacit_dotnet.MVC.Models;
-using System.Dynamic;
+﻿using bacit_dotnet.MVC.Models.Suggestions;//imorterter modell SuggestionViewModel
+using bacit_dotnet.MVC.DataAccess;//SqlConnector
+using Microsoft.AspNetCore.Mvc;//standardbibliotek for å bruke MVC
+using bacit_dotnet.MVC.Models;//UsrsModel
+using System.Dynamic;//for å bruke dynamiske modeller
 
 namespace bacit_dotnet.MVC.Controllers
 {
-    public class SuggestionsController : Controller
+    public class SuggestionsController : Controller 
     {
-        private readonly ILogger<SuggestionsController> _logger;
-        private readonly ISqlConnector sqlConnector;
+        private readonly ILogger<SuggestionsController> _logger; //loggfører endringer og feil
+        private readonly ISqlConnector sqlConnector; //databasetilgangen
 
-        public SuggestionsController(ILogger<SuggestionsController> logger, ISqlConnector sqlConnector)
+        public SuggestionsController(ILogger<SuggestionsController> logger, ISqlConnector sqlConnector)//constructor, lage et loggerobject, sette riktig sqlconnector
         {
             _logger = logger;
             this.sqlConnector = sqlConnector;
         }
- 
+
         public IActionResult AddSug()
         {
             var data = sqlConnector.FetchEmp();
@@ -34,20 +34,22 @@ namespace bacit_dotnet.MVC.Controllers
             return View(model);
         }
 
+        /*lage et forslag*/
         [HttpPost]
         public IActionResult Save(SuggestionViewModel model) 
         {   
             Console.WriteLine(model.Emp_Nr);
-            Console.WriteLine(model.Executor_Nr);
+            Console.WriteLine(model.Executor_Nr); //måte å loggføre på, systemet skal skrive ut følgende
             sqlConnector.SetSug(model);
             sqlConnector.SetProposer(model);
             sqlConnector.SetExecutor(model);
             var data = sqlConnector.FetchSug(); //henter alle forslag og sier at de skal vises på AlleFor
-            var models = new SuggestionsModel();
-            models.suggestions = data;
+            var models = new SuggestionsModel(); //modellen som inneholder liste med alle forslag
+            models.suggestions = data; //bruker listen og fyller den opp med data
             return View("AllSug",models);
         }
-       
+
+        /*Viser et enkelt forslag med id*/
         [HttpGet]
          public IActionResult Save(int id) 
         {
@@ -60,23 +62,21 @@ namespace bacit_dotnet.MVC.Controllers
             Console.WriteLine(mymodel);
             return View("ViewSug", mymodel);
         }
-       
+        /*Henter forslaget du skal redigere*/
         [HttpGet]
         public IActionResult Edit(int id)
         {
             Console.WriteLine(id);
-             // Denne metoden henter ut data
             dynamic mymodel = new ExpandoObject();
             mymodel.suggestions = sqlConnector.UpdateSug(id); ;
             mymodel.Users = sqlConnector.FetchEmp();           
             return View(mymodel);
         }
-
+        /*Sender inn det redigerte forslaget*/
         [HttpPost]
-        public IActionResult Update(SuggestionViewModel model){
-            Console.WriteLine("Update");
+        public IActionResult Update(SuggestionViewModel model)
+        {
             sqlConnector.SetUpSug(model);
-            Console.WriteLine("Model");
             int id =  model.Sug_ID;           
             var data = sqlConnector.UpdateSug(id); //hvis forslaget har en id skal forslaget vises
             dynamic models = new ExpandoObject();

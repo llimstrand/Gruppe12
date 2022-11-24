@@ -60,6 +60,29 @@
                     font-size: medium;
                     bottom: 70%;
                 }
+                .gridIcon{
+                    height: 20px;
+                    width: 20px;
+                    opacity: 0.8;
+                    margin-right: 8px;
+                    margin-bottom: 4px;
+                } 
+                .teamIcon{
+                    height: 20px;
+                    width: 20px;
+                    opacity: 0.6;
+                    margin-right: 8px;
+                    margin-bottom: 4px;
+                    margin-left: 40px;
+                } 
+                .userIcon{
+                    height: 20px;
+                    width: 20px;
+                    opacity: 0.9;
+                    margin-right: 8px;
+                    margin-bottom: 4px;
+                    margin-left: 40px;
+                }
         </style>
         
         <nav  class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -68,13 +91,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdmAllSug">Alle Forslag</a>
+                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdmAllSug">
+                                <img class="gridIcon" src="https://www.pngrepo.com/png/379439/512/grid.png">
+                                Alle Forslag
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Teams" asp-action="ViewTeam">Teams</a>
+                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Teams" asp-action="ViewTeam">
+                                <img class="teamIcon" src="https://cdn-icons-png.flaticon.com/512/171/171561.png">
+                                Teams
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="ViewEmp">Ansatte</a>
+                            <a id="meny" class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="ViewEmp">
+                                <img class="userIcon" src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png">
+                                Ansatte
+                            </a>
                         </li>
                         <a id="nordic" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NordicDoor</a> 
                 <button  class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"

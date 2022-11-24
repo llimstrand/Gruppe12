@@ -63,10 +63,20 @@ namespace bacit_dotnet.MVC.DataAccess
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
             connection.Open();
             var query = "Insert into team(Team_ID, Team_Navn, Team_Leder) values (@teamnummer, @teamnavn, @teamleder)";
-            Console.WriteLine(query);
-            WriteData(query, connection, model);
+            WriteTeam(query, connection, model);
             connection.Close();
         } 
+         /**/
+        private void WriteTeam(string query, MySqlConnection conn, TeamsViewModel model)
+        {
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@teamnummer", model.Team_ID);
+            command.Parameters.AddWithValue("@teamnavn", model.Team_Navn);
+            command.Parameters.AddWithValue("@teamleder", model.Team_Leder);
+            command.ExecuteNonQuery(); 
+        }
         /*Viser et enkelt team*/
         public IEnumerable<Team> ViewTeams(int id) {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
@@ -74,8 +84,7 @@ namespace bacit_dotnet.MVC.DataAccess
           
             var teams = new List<Team>();
             var reader = ReadDatawithID("select Team_ID, Team_Navn, Team_Leder from team where Team_ID = @id", connection, id);
-            while (reader.Read())
-          
+            while (reader.Read())          
             {
                 var user = new Team();
                 user.Team_ID = reader.GetInt32("Team_ID");
@@ -87,25 +96,30 @@ namespace bacit_dotnet.MVC.DataAccess
             return teams;
         }
         /*Sletter et enkelt team*/
-        public  void DeleteTeam(int id) {
+        public void DeleteTeam(int id) {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
             DeleteData("Delete from team where Team_ID = @id", connection, id);
             connection.Close();
         }
+        /**/
+        private void DeleteData(string query, MySqlConnection conn, int id){
+            using var command = conn.CreateCommand();
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@id", id);
+            command.ExecuteNonQuery();
+        }
         /*Oppdaterer et enkelt team*/
         public void SetUpTeam(TeamsViewModel model){
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDB"));
             connection.Open();
-            Console.WriteLine(model.Team_Navn);
             var query = "Update team set Team_Navn = @Navn, Team_Leder = @Leder where Team_ID = @id;";
             UpdateTeamData(query, connection, model);
-            Console.WriteLine("UpdateData");
             connection.Close();
         }
-        /**/
+        /*Setter inn data*/
         private void UpdateTeamData(string query, MySqlConnection conn, TeamsViewModel model){
-             Console.WriteLine("Model");
             using var command = conn.CreateCommand();
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = query;
@@ -115,7 +129,7 @@ namespace bacit_dotnet.MVC.DataAccess
             command.ExecuteNonQuery();
         }
         /*Henter oppdatert data*/
-        public  IEnumerable<Team> UpdateTeam(int id) {
+        public IEnumerable<Team> UpdateTeam(int id) {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
             connection.Open();
 
@@ -132,17 +146,7 @@ namespace bacit_dotnet.MVC.DataAccess
             connection.Close();
             return teams;
         }
-        /**/
-        private void WriteData(string query, MySqlConnection conn, TeamsViewModel model)
-        {
-            using var command = conn.CreateCommand();
-            command.CommandType = System.Data.CommandType.Text;
-            command.CommandText = query;
-            command.Parameters.AddWithValue("@teamnummer", model.Team_ID);
-            command.Parameters.AddWithValue("@teamnavn", model.Team_Navn);
-            command.Parameters.AddWithValue("@teamleder", model.Team_Leder);
-            command.ExecuteNonQuery(); 
-        }
+       
         /*hente alle ansatte som tilhører et enkelt team*/
         public  IEnumerable<User> FetchEmpByTeamID(int id) {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));
@@ -572,14 +576,7 @@ namespace bacit_dotnet.MVC.DataAccess
             command.Parameters.AddWithValue("@id", model.Sug_ID);
             command.ExecuteNonQuery();
         }
-        /**/
-        private void DeleteData(string query, MySqlConnection conn, int id){
-            using var command = conn.CreateCommand();
-            command.CommandType = System.Data.CommandType.Text;
-            command.CommandText = query;
-            command.Parameters.AddWithValue("@id", id);
-            command.ExecuteNonQuery();
-        }
+        
         /*Sletter et forslag*/
         public  void DeleteSug(int id) {
             using var connection = new MySqlConnection(config.GetConnectionString("MariaDb"));

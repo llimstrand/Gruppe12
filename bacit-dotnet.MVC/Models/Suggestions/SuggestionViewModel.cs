@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace bacit_dotnet.MVC.Models.Suggestions
+namespace bacit_dotnet.MVC.Models.Suggestions //importeringslinje
 {
     public class SuggestionViewModel
     {
@@ -22,6 +22,7 @@ namespace bacit_dotnet.MVC.Models.Suggestions
 
         public DateTime Sug_Timestamp {get; set;}
 
+        /*lager et randomt ID nummer og oppretter data*/
         public SuggestionViewModel(){
             Random random = new Random();
             int randomNumber = random.Next();

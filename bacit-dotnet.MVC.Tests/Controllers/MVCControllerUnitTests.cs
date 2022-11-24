@@ -17,12 +17,12 @@ namespace bacit_dotnet.MVC.Tests.Controllers
             Assert.Same("<html><head><title>BACIT</title></head><body><h1>En time til ørsta rådhus</h1></body> </html>", result.Content); //Check if expected is the same as the returned value
         }
 
-        [Fact]
+        [Fact] //komme tilbake true
         public void UsingRazorReturnsCorrectView() 
         {
-            var unitUnderTest = SetupUnitUnderTest();
-            var result = unitUnderTest.UsingRazor() as ViewResult;
-            Assert.Same("UsingRazor", result.ViewName);
+            var unitUnderTest = SetupUnitUnderTest(); //systemfunksjon
+            var result = unitUnderTest.UsingRazor() as ViewResult; //få resultatet fra testen
+            Assert.Same("UsingRazor", result.ViewName); //UsingRazor skal være likt som resultatet fra ViewName
         }
 
         [Fact]
